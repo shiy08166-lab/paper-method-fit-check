@@ -1,0 +1,42 @@
+name: self-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  self-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 脚本语法检查
+        run: python -m py_compile scripts/check_agreement.py scripts/export_session_text.py scripts/extract_usage_v2.py
+
+      - name: 自检脚本命令行可用
+        run: python scripts/check_agreement.py --help
+
+      - name: Skill 本体与随附文件存在
+        run: |
+          test -f paper-method-fit-check/SKILL.md
+          test -f paper-method-fit-check/QUICKSTART.md
+          test -f QUICKSTART.md
+          wc -c paper-method-fit-check/SKILL.md
+
+      - name: Skill 文档结构自检
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys
+          t = pathlib.Path('paper-method-fit-check/SKILL.md').read_text(encoding='utf-8')
+          for need in ('Workflow', 'Validation', 'Failure modes'):
+              if need not in t:
+                  sys.exit('SKILL.md 缺少段落: ' + need)
+          steps = len(re.findall(r'^### ', t, re.M))
+          print('SKILL.md 段落自检通过，二级小节 %d 个' % steps)
+          PY
