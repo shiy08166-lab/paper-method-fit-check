@@ -1,0 +1,17 @@
+[PASS] C-P1: 四类前置条件齐全
+[PASS] C-P2: 无空 source_locator；absent 行带原因
+[PASS] C-P3: classification 三选一
+[PASS] C-P4: paper-fact 行引文与定位均非空
+[PASS] C-P5: 每条引文都能在材料里检索命中且为连续片段
+[PASS] EVID: evidence_index 引文可在原文命中且 sha256 指向被引文件
+[PASS] C-CASE-1: 非 paper-fact 行不带引文、不带 numeric_value
+[PASS] C-CASE-2: 被截断的单元格未出现在任何 quote / numeric_value
+[PASS] C-P8: agreement 无未处置标记
+[PASS] C-P6: 结论唯一且取自四选一
+[PASS] C-P7: 四段齐全
+[PASS] C-P11: 存在独立「异常处理对照」小节
+[PASS] C-P11b: 异常处理对照逐条覆盖 5 条预期行为
+[PASS] C-P10: 本次加载的 Skill 与仓库锁定版本一致（未改动）
+[PASS] XNUM: 表格 CORE 0.2565 与正文 0.256525 的相对误差 < 1%
+counts: {"claims_total": 39, "paper_fact": 28, "inference": 4, "undetermined": 7, "preconditions_total": 32, "preconditions_stated": 21, "preconditions_absent": 11, "downgraded_total": 18, "evidence_entries": 28}
+all_ok: True

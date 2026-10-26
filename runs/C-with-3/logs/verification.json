@@ -1,0 +1,157 @@
+{
+  "schema_version": "caseC/verification/v1",
+  "material_sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c",
+  "all_ok": true,
+  "checks": [
+    {
+      "check": "C-P1",
+      "desc": "四类前置条件齐全",
+      "ok": true,
+      "detail": {
+        "present": [
+          "compute",
+          "data scale",
+          "hidden assumptions",
+          "hyperparameters"
+        ],
+        "missing": []
+      }
+    },
+    {
+      "check": "C-P2",
+      "desc": "无空 source_locator；absent 行带原因",
+      "ok": true,
+      "detail": {
+        "blank_locator": [],
+        "absent_without_reason": []
+      }
+    },
+    {
+      "check": "C-P3",
+      "desc": "classification 三选一",
+      "ok": true,
+      "detail": {
+        "invalid": []
+      }
+    },
+    {
+      "check": "C-P4",
+      "desc": "paper-fact 行引文与定位均非空",
+      "ok": true,
+      "detail": {
+        "no_quote": [],
+        "no_locator": []
+      }
+    },
+    {
+      "check": "C-P5",
+      "desc": "每条引文都能在材料里检索命中且为连续片段",
+      "ok": true,
+      "detail": {
+        "not_found": [],
+        "min_hits": 1,
+        "n_quotes_checked": 28
+      }
+    },
+    {
+      "check": "EVID",
+      "desc": "evidence_index 引文可在原文命中且 sha256 指向被引文件",
+      "ok": true,
+      "detail": {
+        "not_found": [],
+        "sha256_set": [
+          "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+        ],
+        "material_sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+      }
+    },
+    {
+      "check": "C-CASE-1",
+      "desc": "非 paper-fact 行不带引文、不带 numeric_value",
+      "ok": true,
+      "detail": {
+        "with_quote": [],
+        "with_numeric": []
+      }
+    },
+    {
+      "check": "C-CASE-2",
+      "desc": "被截断的单元格未出现在任何 quote / numeric_value",
+      "ok": true,
+      "detail": {
+        "offenders": []
+      }
+    },
+    {
+      "check": "C-P8",
+      "desc": "agreement 无未处置标记",
+      "ok": true,
+      "detail": {
+        "findings_count": 0,
+        "all_passed": true
+      }
+    },
+    {
+      "check": "C-P6",
+      "desc": "结论唯一且取自四选一",
+      "ok": true,
+      "detail": {
+        "verdict": "transferable-with-changes"
+      }
+    },
+    {
+      "check": "C-P7",
+      "desc": "四段齐全",
+      "ok": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "C-P11",
+      "desc": "存在独立「异常处理对照」小节",
+      "ok": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "C-P11b",
+      "desc": "异常处理对照逐条覆盖 5 条预期行为",
+      "ok": true,
+      "detail": {
+        "behaviour_rows_found": 5
+      }
+    },
+    {
+      "check": "C-P10",
+      "desc": "本次加载的 Skill 与仓库锁定版本一致（未改动）",
+      "ok": true,
+      "detail": {
+        "local_skill_sha256": "0d048c99959f59b3de51204cac23593f952588359e2c85bf7f759bfbe9a60ade",
+        "repo_skill_sha256": null
+      }
+    },
+    {
+      "check": "XNUM",
+      "desc": "表格 CORE 0.2565 与正文 0.256525 的相对误差 < 1%",
+      "ok": true,
+      "detail": {
+        "table_value": 0.2565,
+        "prose_value": 0.256525,
+        "relative_error": 9.745638826624012e-05
+      }
+    }
+  ],
+  "counts": {
+    "claims_total": 39,
+    "paper_fact": 28,
+    "inference": 4,
+    "undetermined": 7,
+    "preconditions_total": 32,
+    "preconditions_stated": 21,
+    "preconditions_absent": 11,
+    "downgraded_total": 18,
+    "evidence_entries": 28
+  }
+}

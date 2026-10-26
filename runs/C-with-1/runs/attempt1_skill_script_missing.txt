@@ -1,0 +1,51 @@
+﻿ATTEMPT 1 - use the Skill's own numeric agreement tool
+Skill workflow step 7 prescribes: python3 scripts/check_agreement.py --claims claims.csv --preconditions preconditions.csv --tolerance 0.01 --report logs/agreement.json
+Executed (absolute path, no cd): python <skill>/scripts/check_agreement.py --claims ... --preconditions ... --tolerance 0.01 --report ..\logs\agreement.json
+
+--- raw stdout/stderr ---
+python.exe : D:\python\python.exe: can't open file 'E:\\minimax\\project\\DP match\\work\\a-runs\\with\\caseC\\skill\\s
+cripts\\check_agreement.py': [Errno 2] No such file or directory
+所在位置 行:4 字符: 8
++ $raw = & python "$base\skill\scripts\check_agreement.py" --claims "$b ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\python\pytho...le or directory:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+--- exit code: 2 ---
+
+Skill directory contents (recursive):
+E:\minimax\project\DP match\work\a-runs\with\caseC\skill\SKILL.md
+
+DISPOSITION: the Skill package ships only SKILL.md; scripts/check_agreement.py does not exist.
+Per SKILL.md 'Failure modes' -> 'The tool that extracts or checks something fails': fix the input rather than the criterion and re-run;
+if the check cannot be made to pass, record the failure in runs/ with its output.
+=> Implemented an equivalent checker at runs/check_agreement.py (same tolerance semantics: rel = |a-b|/max(|a|,|b|), flag if > 0.01).
+   The substitute does NOT relax the criterion; it only replaces a file that was never shipped.
+
+--------------------------------------------------------------------------------------------------
+ATTEMPT 2 (RETRY - SUCCESS) - 官方脚本已就位，改用官方判定
+
+发现：官方 scripts/check_agreement.py 并非不存在，而是被放在【运行根目录】的 scripts/ 下
+      （CreationTime 2026-10-23 16:57:03，晚于本会话起点 16:56；LastWriteTime 14:39:33）。
+      它不在 skill/ 目录内，所以 ATTEMPT 1 按 skill/scripts/... 寻址必然失败。
+
+执行的命令（官方脚本，参数与其文档用法一致）：
+  python scripts/check_agreement.py \
+      --claims claims.csv \
+      --preconditions preconditions.csv \
+      --source materials/nanochat_README_table_corrupted.md \
+      --tolerance 0.01 \
+      --report logs/agreement_canonical.json
+
+原始输出：
+  检查 62 条结论，标记 0 项 -> ...\logs\agreement_canonical.json
+  exit code: 0
+  （all_passed = true；findings = []；claims_checked = 62；
+    preconditions.rows_without_locator_or_absent = []）
+
+处置：官方判定结果原样保留为 logs/agreement.json 的主字段
+     （schema_version = paper-method-fit-check/agreement/v1），未被自建脚本覆盖；
+     自建脚本的补充核对（跨声明一致性 / 防编造护栏 / 受损单元格旁证）放在 supplement 键下，
+     合并过程见 runs/merge_agreement.py。两份原始输出都留档，不删除任何一次尝试。
+

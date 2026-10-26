@@ -1,0 +1,60 @@
+﻿{
+    "schema_version":  "paper-method-fit-check/source-meta/v1",
+    "case_id":  "A",
+    "collected_at":  "2026-10-23T06:42:53.4053301Z",
+    "primary_source":  "nanochat_README.md",
+    "primary_source_url":  "https://github.com/karpathy/nanochat",
+    "walkthrough_url":  "https://github.com/karpathy/nanochat/discussions/1",
+    "license":  "MIT",
+    "note":  "材料为公开仓库原文快照，未做任何改写。引用一律以 quote 逐字照抄，定位到 README 的章节标题或代码行。",
+    "files":  [
+                  {
+                      "file":  "nanochat_README.md",
+                      "role":  "primary",
+                      "description":  "nanochat 官方 README（方法的主声明来源）",
+                      "origin_url":  "https://github.com/karpathy/nanochat/blob/master/README.md",
+                      "bytes":  16800,
+                      "sha256":  "1ac00d0999b0bebb397f596f38dd2d6a218a60994775a488f9ef3cc93484cf00"
+                  },
+                  {
+                      "file":  "nanochat_base_train.py",
+                      "role":  "supporting",
+                      "description":  "预训练脚本：真实超参与显存相关的代码证据",
+                      "origin_url":  "https://github.com/karpathy/nanochat/blob/master/scripts/base_train.py",
+                      "bytes":  32917,
+                      "sha256":  "bfd5f6f818a1eb27b35b90c1dd1bbe611bcb59af9d6c818caac76301edafcd2d"
+                  },
+                  {
+                      "file":  "autoresearch_README.md",
+                      "role":  "supporting",
+                      "description":  "autoresearch README：nanochat 简化单卡版，平台/显存前提的另一处声明",
+                      "origin_url":  "https://github.com/karpathy/autoresearch/blob/master/README.md",
+                      "bytes":  8131,
+                      "sha256":  "6d76890344339551005a5dc1fb56f70fc8963f74644f73d503387168aba7a728"
+                  },
+                  {
+                      "file":  "autoresearch_train.py",
+                      "role":  "supporting",
+                      "description":  "autoresearch 训练脚本：单文件可改超参的证据",
+                      "origin_url":  "https://github.com/karpathy/autoresearch/blob/master/train.py",
+                      "bytes":  26860,
+                      "sha256":  "5277fe091d302c6536bb86ed69b3eaebd7b821203ea3e5cefbad2e8949231772"
+                  },
+                  {
+                      "file":  "autoresearch_prepare.py",
+                      "role":  "supporting",
+                      "description":  "数据准备与分词器训练：数据规模的证据",
+                      "origin_url":  "https://github.com/karpathy/autoresearch/blob/master/prepare.py",
+                      "bytes":  15432,
+                      "sha256":  "f3ff54f2271df15144f0674a6234306e350004fc1ae3f9237aa176e6d3ba9944"
+                  },
+                  {
+                      "file":  "autoresearch_program.md",
+                      "role":  "reference",
+                      "description":  "Karpathy 写的 Agent 指令文件，自称\"超轻量 skill\"",
+                      "origin_url":  "https://github.com/karpathy/autoresearch/blob/master/program.md",
+                      "bytes":  7153,
+                      "sha256":  "dd676076ba8ab905d6cc196f69dd223754237510593c7927465d06a36bf98622"
+                  }
+              ]
+}

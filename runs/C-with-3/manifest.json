@@ -1,0 +1,163 @@
+{
+  "schema_version": "caseC/manifest/v1",
+  "case": {
+    "id": "caseC-3",
+    "title": "案例 C · 边界与异常处理",
+    "task_sha256": "e364bf2a641b4899b3c6b483a1d0cee11333fa12901ba8e43140a47988245ae8",
+    "acceptance_sha256": "21e6081520e21f357c6e9bc4a30b06067129b7c97f2a3c70868854632d24d4b1",
+    "offline": true,
+    "trained": false,
+    "dataset_downloaded": false,
+    "pytorch_installed": false
+  },
+  "skill": {
+    "path": "skill/SKILL.md",
+    "skill_version": "0d048c99959f59b3de51204cac23593f952588359e2c85bf7f759bfbe9a60ade",
+    "modified": false,
+    "note": "skill_version 与仓库 manifest 中 A(with_skill) 的锁定值一致"
+  },
+  "material": {
+    "path": "materials/nanochat_README_table_corrupted.md",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c",
+    "bytes": 17623,
+    "nature": "合成/损坏件（非作者原文）；引用时必须标注性质",
+    "working_copy": "materials/source.txt",
+    "working_copy_sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  "upstream_snapshot": {
+    "path": "E:\\minimax\\project\\DP match\\work\\submission\\materials\\A\\nanochat_README.md",
+    "sha256": "1ac00d0999b0bebb397f596f38dd2d6a218a60994775a488f9ef3cc93484cf00",
+    "usage": "仅用于正文逐行来源核验；上游 leaderboard 表格刻意未读、未打印、未落盘"
+  },
+  "verdict": "transferable-with-changes",
+  "counts": {
+    "claims_total": 39,
+    "paper_fact": 28,
+    "inference": 4,
+    "undetermined": 7,
+    "preconditions_total": 32,
+    "preconditions_stated": 21,
+    "preconditions_absent": 11,
+    "downgraded_total": 18,
+    "evidence_entries": 28
+  },
+  "expected_behaviours_met": "5/5",
+  "checks_all_ok": true,
+  "files": [
+    {
+      "path": "preconditions.csv",
+      "bytes": 6795,
+      "sha256": "e2ed4c7993b7e4e0c02cb82d096f3aba4e11c91dad4b2ee66080d59da3561ed9"
+    },
+    {
+      "path": "claims.csv",
+      "bytes": 13759,
+      "sha256": "a0ff5ad7959abe2f8186aa9feec4523272be6b1c702ba317a28351e54779a59b"
+    },
+    {
+      "path": "evidence_index.json",
+      "bytes": 9774,
+      "sha256": "bf32ff43e4cbec14bd0532ebe66c49ddb1065c4c67a37dc3d22b4ae7ec8f269b"
+    },
+    {
+      "path": "verdict.md",
+      "bytes": 18602,
+      "sha256": "75878ff42135dcd3941ddff63a5e8035b34ac241744ec7818a7aa910c734d82e"
+    },
+    {
+      "path": "logs/agreement.json",
+      "bytes": 593,
+      "sha256": "1466b33376b849f50a62351baebd193abf6f51f5322e4a693a0c9f9fc12b494d"
+    },
+    {
+      "path": "logs/agreement_detail.md",
+      "bytes": 3716,
+      "sha256": "90abcc1ff69c7d7b8ec5a8f8904d9958b7c19045df3eb36addf4e1f406f46510"
+    },
+    {
+      "path": "logs/corruption_audit.json",
+      "bytes": 4281,
+      "sha256": "1615cc6b6fee90a6a601dae49620becf3079a8ede23cd9f1efd86aac160df0a7"
+    },
+    {
+      "path": "logs/line_provenance.json",
+      "bytes": 1138,
+      "sha256": "d33d0c687a9d8a44e69ebf38067ab40e716ec1514167d3484b789e14c1018bc3"
+    },
+    {
+      "path": "logs/verification.json",
+      "bytes": 3830,
+      "sha256": "0858d5298834cdb5e07e2f5a60cf04f64642e93e7526654d0392f05fa1bd3243"
+    },
+    {
+      "path": "logs/verify_stdout.txt",
+      "bytes": 1590,
+      "sha256": "c94beb7cea999dbf2af0a64594bec6778a0b985986b3dbbe537434cbcda586e0"
+    },
+    {
+      "path": "logs/check_agreement_stdout.txt",
+      "bytes": 190,
+      "sha256": "f2e4f02b80ac8c03ec34bea456769383d2c48dad49de0ac90c1da70d8fd61c71"
+    },
+    {
+      "path": "logs/run_log.md",
+      "bytes": 5161,
+      "sha256": "6c146d4f066fddd0e3d5a139bf96e81a69719cd1b90b9f9228f0fe480f8b2b3a"
+    },
+    {
+      "path": "materials/source.txt",
+      "bytes": 17623,
+      "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+    },
+    {
+      "path": "materials/nanochat_README_table_corrupted.md",
+      "bytes": 17623,
+      "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+    },
+    {
+      "path": "cases/task-C.md",
+      "bytes": 4184,
+      "sha256": "e364bf2a641b4899b3c6b483a1d0cee11333fa12901ba8e43140a47988245ae8"
+    },
+    {
+      "path": "cases/acceptance-C.md",
+      "bytes": 3150,
+      "sha256": "21e6081520e21f357c6e9bc4a30b06067129b7c97f2a3c70868854632d24d4b1"
+    },
+    {
+      "path": "skill/SKILL.md",
+      "bytes": 13080,
+      "sha256": "0d048c99959f59b3de51204cac23593f952588359e2c85bf7f759bfbe9a60ade"
+    },
+    {
+      "path": "scripts/audit_corruption.py",
+      "bytes": 10065,
+      "sha256": "a096ef63f559f1de92dc19e9f8ea6c2884ea28b84ea897640cd8a12cdf5e4014"
+    },
+    {
+      "path": "scripts/line_provenance.py",
+      "bytes": 4150,
+      "sha256": "e3baea9ef980e4aa800ee04006e047a45f18a263f48271d448bd4a39e930fadf"
+    },
+    {
+      "path": "scripts/build_outputs.py",
+      "bytes": 29656,
+      "sha256": "694caa7fbbfd37efdb3a1ea45c37b06f9508883ccf15e1c7063a52a9ece91997"
+    },
+    {
+      "path": "scripts/verify_outputs.py",
+      "bytes": 8903,
+      "sha256": "46d44483bdfaf0043450caf00bbf9822229b1e93e5b9de315169df984d3be4a0"
+    },
+    {
+      "path": "scripts/check_agreement.py",
+      "bytes": 7322,
+      "sha256": "1f1ee51288dc01d1f88ba95d532987a7f2d668a6d66ac3b72951950371ab0f2a"
+    },
+    {
+      "path": "scripts/build_manifest.py",
+      "bytes": 6603,
+      "sha256": "7a3e032b2da56578c883f7d2f58ce7c69f4763073d7d5aec984bec2ee854e092"
+    }
+  ]
+}

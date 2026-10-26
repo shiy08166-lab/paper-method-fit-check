@@ -1,0 +1,33 @@
+id,category,value,unit,source_locator,confidence
+P-C1,compute,8×H100 单节点是 speedrun 的参考配置,GPU 节点,nanochat_README_table_corrupted.md § Getting started > Reproduce and talk to GPT-2（L65）,stated
+P-C2,compute,speedrun 全流程墙钟时间 ~1.5 小时,hours,nanochat_README_table_corrupted.md § Getting started > Reproduce and talk to GPT-2（L71）,stated
+P-C3,compute,GPU 单价 ~$3/GPU/hr,USD/hour,nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41）,stated
+P-C4,compute,8×H100 节点约 $24/hr；2 小时约 $48,USD,nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41）,stated
+P-C5,compute,"代码可在 8×A100 节点运行，原文仅称 ""a bit slower""（未给量化倍率）",-,nanochat_README_table_corrupted.md § Getting started > A few more notes（L98）,stated
+P-C6,compute,单 GPU 可跑（去掉 torchrun，自动切梯度累积），代价是等待时间 ×8,×墙钟,nanochat_README_table_corrupted.md § Getting started > A few more notes（L99）,stated
+P-C7,compute,每 GPU 显存需 ≥80GB，否则必须调超参或 OOM / 显存溢出,GB VRAM/GPU,nanochat_README_table_corrupted.md § Getting started > A few more notes（L100）,stated
+P-C8,compute,未给出 —— 原因：训练/评测的实测峰值显存从未出现；README 只给 80GB 这一经验阈值。迁移到 A100 80GB 时没有余量数据可依，必须先实测占用。,MiB,nanochat_README_table_corrupted.md（全文检索：未出现峰值显存陈述）,absent
+P-C9,compute,"未给出 —— 原因：A100 相对 H100 的时间倍率没有量化（L98 只有 ""a bit slower""）。它是判断 ≤4 小时训练预算能否覆盖的唯一缺失量。",×,nanochat_README_table_corrupted.md § Getting started > A few more notes（L98）,absent
+P-D1,data scale,GPT-2 参数量 1.6B,params,nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41）,stated
+P-D2,data scale,speedrun 模型算力规模 4e19,FLOPs,nanochat_README_table_corrupted.md § Getting started > Reproduce and talk to GPT-2（L77）,stated
+P-D3,data scale,预训练数据经 nanochat/dataset.py 下载/读取（数据可下载）,-,nanochat_README_table_corrupted.md § File structure（L171）,stated
+P-D4,data scale,未给出 —— 原因：训练 token 数与语料体积全文未出现。,tokens / GB,nanochat_README_table_corrupted.md（全文检索：未出现 token 数或数据体积陈述）,absent
+P-D5,data scale,未给出 —— 原因：默认预训练语料的身份/混合/版本全文未声明；语料线索只有致谢里的 fineweb/smoltalk（L226）与受损表格 Description 单元格的 ClimbMix（L35），都不足以确定当前 speedrun 默认用什么。,-,nanochat_README_table_corrupted.md § Acknowledgements（L226）与 § Time-to-GPT-2 Leaderboard 表（L35）,absent
+P-D6,data scale,未给出 —— 原因：全文没有任何下载耗时陈述。读者约束明确要求单独说明下载时间，材料无法支撑该预算项。,minutes,nanochat_README_table_corrupted.md（全文检索：未出现下载时间陈述）,absent
+P-D7,data scale,未给出 —— 原因：全文没有数据落盘体积，无法与读者的磁盘 ≥100GB 约束对照。,GB,nanochat_README_table_corrupted.md（全文检索：未出现数据体积陈述）,absent
+P-D8,data scale,未给出 —— 原因：验证集/CORE 评测所用数据规模未出现，val_bpb 与 CORE 的可比性无从判断。,samples,nanochat_README_table_corrupted.md（全文检索：未出现评测集规模陈述）,absent
+P-H1,hyperparameters,唯一复杂度旋钮 --depth（层数）；GPT-2 能力 ≈ depth 26，当前代码在 d24–d26 区间,layers,nanochat_README_table_corrupted.md § nanochat 首段（L23）与 § Research（L125）,stated
+P-H2,hyperparameters,--device-batch-size 默认 32，可依次降到 16/8/4/2/1,tokens/step,nanochat_README_table_corrupted.md § Getting started > A few more notes（L100）,stated
+P-H3,hyperparameters,总 batch size 1M tokens（leaderboard #3 行 Description 单元格自述；该单元格位于受损表格内，未做上游核验）,tokens,nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard 表（# 3 行，L37）,stated
+P-H4,hyperparameters,计算精度由全局 COMPUTE_DTYPE 决定；SM80+（A100/H100）默认 bfloat16，权重以 fp32 存储供优化器用,dtype,nanochat_README_table_corrupted.md § Precision / dtype（L133/L137/L148）,stated
+P-H5,hyperparameters,优化器 AdamW + Muon（支持单 GPU 与分布式）,-,nanochat_README_table_corrupted.md § File structure（L181）,stated
+P-H6,hyperparameters,学习率调整、训练时长、权重衰减等由代码按 depth 自动计算，用户无需设置,-,nanochat_README_table_corrupted.md § nanochat 首段（L23）,stated
+P-H7,hyperparameters,fp16 训练自动启用 GradScaler（SFT 支持，RL 目前不支持）,-,nanochat_README_table_corrupted.md § Precision / dtype（L150）,stated
+P-H8,hyperparameters,"未给出 —— 原因：speedrun 的完整超参取值（lr、warmup、batch 切分、序列长度、depth 具体配置）没有内联在材料里，README 只说""自动计算""并指向 runs/speedrun.sh。",-,nanochat_README_table_corrupted.md § nanochat 首段（L23，仅指向 runs/speedrun.sh）,absent
+P-A1,hidden assumptions,单机 8 卡多进程（torchrun --standalone --nproc_per_node=8）为参考配置,-,nanochat_README_table_corrupted.md § Research（L108）,stated
+P-A2,hidden assumptions,depth 单一旋钮原则必须对所有 depth 成立，仓库改动须对全谱系有效,-,nanochat_README_table_corrupted.md § Research（L125）,stated
+P-A3,hidden assumptions,runs/speedrun.sh 是榜单的参考实现；榜单各行对应不同 commit（代码版本随行变化）,-,nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L29）,stated
+P-A4,hidden assumptions,未给出 —— 原因：预训练语料的混合比例与版本只在致谢里被提及，未作为方法前置条件声明。,-,nanochat_README_table_corrupted.md § Acknowledgements（L226）,absent
+P-A5,hidden assumptions,未给出 —— 原因：CORE（DCLM）评测的实现依赖与版本只出现在文件清单里，方法能否达标直接依赖这个门限。,-,nanochat_README_table_corrupted.md § File structure（L174）,absent
+P-A6,hidden assumptions,"未给出 —— 原因：榜单 ""time"" 列的计时口径（是否含评测/保存/数据加载）表头没有说明；且该表格整体结构受损，无法从行内文字反推口径。",-,nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard 表（L31–L39）,absent
+P-A7,hidden assumptions,训练验收门限：CORE 需超过 0.256525,CORE,nanochat_README_table_corrupted.md § Contributing（L218）,stated

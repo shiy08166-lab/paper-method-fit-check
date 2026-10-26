@@ -1,0 +1,20 @@
+# 自检落盘证据（本次提交前，评审可原样复跑）
+
+命令：python scripts/check_agreement.py --claims runs/<run>/claims.csv --preconditions runs/<run>/preconditions.csv \
+        --source paper_materials/nanochat_README_table_corrupted.md --report <report.json>
+
+环境：Python 3 标准库（无第三方依赖）；材料为合成/损坏件（含 CRLF 行尾），脚本按字节精确匹配，不做归一化。
+
+## C-with-1
+$ python scripts/check_agreement.py --claims runs/C-with-1/claims.csv --preconditions runs/C-with-1/preconditions.csv \
+      --source paper_materials/nanochat_README_table_corrupted.md --report report.json
+检查 62 条结论，标记 0 项 -> E:\minimax\project\DP match\work\tmp\selfcheck_C-with-1.json
+退出码：0
+report.json 摘要：claims_checked=62 findings_count=0 all_passed=True
+
+## C-with-3
+$ python scripts/check_agreement.py --claims runs/C-with-3/claims.csv --preconditions runs/C-with-3/preconditions.csv \
+      --source paper_materials/nanochat_README_table_corrupted.md --report report.json
+检查 39 条结论，标记 0 项 -> E:\minimax\project\DP match\work\tmp\selfcheck_C-with-3.json
+退出码：0
+report.json 摘要：claims_checked=39 findings_count=0 all_passed=True

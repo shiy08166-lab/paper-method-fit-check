@@ -1,0 +1,201 @@
+{
+  "schema_version": "caseC/corruption-audit/v1",
+  "material_file": "E:\\minimax\\project\\DP match\\work\\a-runs\\with\\caseC-3\\materials\\nanochat_README_table_corrupted.md",
+  "material_sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c",
+  "material_bytes": 17623,
+  "table_audit": {
+    "header": {
+      "line_no": 31,
+      "n_cells": 7,
+      "cells": [
+        "#",
+        "time",
+        "CORE",
+        "Description",
+        "Date",
+        "Commit",
+        "Contributors"
+      ]
+    },
+    "separator": {
+      "line_no": 32,
+      "n_cells": 8,
+      "cells": [
+        "---",
+        "-------------",
+        "---------",
+        "------",
+        "-------------",
+        "------",
+        "--------",
+        "--------------"
+      ]
+    },
+    "header_n_cells": 7,
+    "separator_n_cells": 8,
+    "column_count_mismatch": true,
+    "n_data_rows": 7,
+    "data_row_cell_counts": [
+      7,
+      9
+    ],
+    "rows": [
+      {
+        "physical_row": 1,
+        "line_no": 33,
+        "n_cells": 7,
+        "label": "6",
+        "anomalies": []
+      },
+      {
+        "physical_row": 2,
+        "line_no": 34,
+        "n_cells": 7,
+        "label": "1",
+        "anomalies": []
+      },
+      {
+        "physical_row": 3,
+        "line_no": 35,
+        "n_cells": 7,
+        "label": "4",
+        "anomalies": [
+          "truncated_numeric_cell[cell_index=1]='2.'"
+        ]
+      },
+      {
+        "physical_row": 4,
+        "line_no": 36,
+        "n_cells": 7,
+        "label": "0",
+        "anomalies": []
+      },
+      {
+        "physical_row": 5,
+        "line_no": 37,
+        "n_cells": 7,
+        "label": "3",
+        "anomalies": []
+      },
+      {
+        "physical_row": 6,
+        "line_no": 38,
+        "n_cells": 7,
+        "label": "2",
+        "anomalies": []
+      },
+      {
+        "physical_row": 7,
+        "line_no": 39,
+        "n_cells": 9,
+        "label": "5",
+        "anomalies": [
+          "cell_count=9 != header=7"
+        ]
+      }
+    ],
+    "labels_in_physical_order": [
+      "6",
+      "1",
+      "4",
+      "0",
+      "3",
+      "2",
+      "5"
+    ],
+    "row_order_is_sorted_by_label": false,
+    "displaced_rows": [
+      {
+        "label": "6",
+        "physical_position": 1,
+        "expected_position": 6
+      },
+      {
+        "label": "1",
+        "physical_position": 2,
+        "expected_position": 1
+      },
+      {
+        "label": "4",
+        "physical_position": 3,
+        "expected_position": 4
+      },
+      {
+        "label": "0",
+        "physical_position": 4,
+        "expected_position": 0
+      },
+      {
+        "label": "3",
+        "physical_position": 5,
+        "expected_position": 3
+      },
+      {
+        "label": "2",
+        "physical_position": 6,
+        "expected_position": 2
+      },
+      {
+        "label": "5",
+        "physical_position": 7,
+        "expected_position": 5
+      }
+    ]
+  },
+  "provenance": {
+    "clean_leaderboard_section_excluded": true,
+    "clean_leaderboard_chars_removed": 2049,
+    "prose_excluding_leaderboard_identical": false,
+    "material_prose_sha256": "6c11582dc1499f5a893cf855155a4e9d8ebea9fd2fdda52b0c10a1acffe87edc",
+    "clean_prose_sha256": "e9334bbbe665417f6f00ab1e0c56a82e7fd6eb7da082187718543fe28c86ef4b",
+    "material_prose_chars": 14133,
+    "clean_prose_chars": 14128,
+    "differing_line_numbers": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      24,
+      25,
+      26,
+      27,
+      28,
+      30,
+      32,
+      33,
+      34,
+      35,
+      36,
+      38,
+      39,
+      40,
+      41,
+      42,
+      44,
+      45,
+      46,
+      48,
+      50,
+      52,
+      54,
+      55
+    ],
+    "n_differing_lines": 174,
+    "line_count_material": 214,
+    "line_count_clean": 212,
+    "clean_file_sha256": "1ac00d0999b0bebb397f596f38dd2d6a218a60994775a488f9ef3cc93484cf00",
+    "clean_file": "E:\\minimax\\project\\DP match\\work\\submission\\materials\\A\\nanochat_README.md"
+  }
+}

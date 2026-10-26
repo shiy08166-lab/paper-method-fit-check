@@ -1,0 +1,198 @@
+[
+  {
+    "id": "EV01",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41 段）",
+    "quote": "the wall clock time needed to outperform the GPT-2 (1.6B) CORE metric on an 8XH100 GPU node",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV02",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41 段）",
+    "quote": "The GPT-2 CORE score is 0.256525.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV03",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41 段）",
+    "quote": "at the current ~$3/GPU/hr",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV04",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41 段）",
+    "quote": "an 8XH100 node is ~$24/hr",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV05",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41 段）",
+    "quote": "so 2 hours is ~$48",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV06",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard（L41 段）",
+    "quote": "In 2019, the training of GPT-2 cost approximately $43,000",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV07",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Getting started > Reproduce and talk to GPT-2（L65）",
+    "quote": "The entire pipeline to do so is contained in the single file [runs/speedrun.sh](runs/speedrun.sh), which is designed to be run on an 8XH100 GPU node.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV08",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Getting started > Reproduce and talk to GPT-2（L71）",
+    "quote": "as this will take ~1.5 hours to run",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV09",
+    "kind": "list-item",
+    "locator": "materials/nanochat_README_table_corrupted.md § Getting started > A few more notes（L98）",
+    "quote": "The code will run just fine on the Ampere 8XA100 GPU node as well, but a bit slower.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV10",
+    "kind": "list-item",
+    "locator": "materials/nanochat_README_table_corrupted.md § Getting started > A few more notes（L99）",
+    "quote": "All code will run just fine on even a single GPU by omitting `torchrun`, and will produce ~identical results (code will automatically switch to gradient accumulation), but you'll have to wait 8 times longer.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV11",
+    "kind": "list-item",
+    "locator": "materials/nanochat_README_table_corrupted.md § Getting started > A few more notes（L100）",
+    "quote": "If your GPU(s) have less than 80GB, you'll have to tune some of the hyperparameters or you will OOM / run out of VRAM.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV12",
+    "kind": "list-item",
+    "locator": "materials/nanochat_README_table_corrupted.md § Getting started > A few more notes（L100）",
+    "quote": "Look for `--device-batch-size` in the scripts and reduce it until things fit. E.g. from 32 (default) to 16, 8, 4, 2, or even 1.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV13",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § nanochat 首段（L23）",
+    "quote": "setting one single complexity dial: `--depth`, the number of layers in the GPT transformer model (GPT-2 capability happens to be approximately depth 26",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV14",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Research（L125）",
+    "quote": "happens to be somewhere around d24-d26 range with the current code",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV15",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Getting started > Reproduce and talk to GPT-2（L77）",
+    "quote": "The speedrun is a 4e19 FLOPs capability model",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV16",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Research（L105）",
+    "quote": "For quick experimentation (~5 min pretraining runs) my favorite scale is to train a 12-layer model (GPT-1 sized)",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV17",
+    "kind": "list-item",
+    "locator": "materials/nanochat_README_table_corrupted.md § Research > 监控指标（L119）",
+    "quote": "`val_bpb` (validation loss in vocab-size-invariant units of bits per byte) as a function of `step`, `total_training_time` and `total_training_flops`.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV18",
+    "kind": "table-row",
+    "locator": "materials/nanochat_README_table_corrupted.md § Precision / dtype 表（L137 行）",
+    "quote": "| CUDA SM 80+ (A100, H100, ...) | `bfloat16` | Native bf16 tensor cores |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV19",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Precision / dtype（L148）",
+    "quote": "model weights are stored in fp32 (for optimizer precision), but our custom `Linear` layer casts them to `COMPUTE_DTYPE` during the forward pass.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV20",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Precision / dtype（L150）",
+    "quote": "`float16` training automatically enables a `GradScaler` in `base_train.py` to prevent gradient underflow. SFT supports this too but RL currently does not.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV21",
+    "kind": "code-block",
+    "locator": "materials/nanochat_README_table_corrupted.md § File structure > nanochat/optim.py（L181）",
+    "quote": "AdamW + Muon optimizer, 1GPU and distributed",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV22",
+    "kind": "code-block",
+    "locator": "materials/nanochat_README_table_corrupted.md § File structure > nanochat/core_eval.py（L174）",
+    "quote": "core_eval.py                # Evaluates base model CORE score (DCLM paper)",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV23",
+    "kind": "list-item",
+    "locator": "materials/nanochat_README_table_corrupted.md § Acknowledgements（L226）",
+    "quote": "Thank you to [HuggingFace](https://huggingface.co/) for fineweb and smoltalk.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV24",
+    "kind": "paragraph",
+    "locator": "materials/nanochat_README_table_corrupted.md § Contributing（L218）",
+    "quote": "Currently this takes ~1.5 hours (down from 3h)",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV25",
+    "kind": "table-row",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard 表（# 0 行，L36）",
+    "quote": "| 0 | 168 hours | 0.2565 | Original OpenAI GPT-2 checkpoint | 2019 | - | OpenAI |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV26",
+    "kind": "table-row",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard 表（# 1 行，L34）",
+    "quote": "| 1 | 3.04 | 0.74833 | d24 baseline, slightly overtrained | Jan 29 2026 | 348fbb3 | @karpathy |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV27",
+    "kind": "table-row",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard 表（# 6 行，L33）",
+    "quote": "| 6 | 1.65 | 0.71800 | autoresearch round 2 | Mar 14 2026 | a825e63 | @karpathy |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "EV28",
+    "kind": "table-cell",
+    "locator": "materials/nanochat_README_table_corrupted.md § Time-to-GPT-2 Leaderboard 表（# 4 行 Description 单元格，L35）",
+    "quote": "change dataset to NVIDIA ClimbMix",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  }
+]

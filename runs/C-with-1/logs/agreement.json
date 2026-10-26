@@ -1,0 +1,402 @@
+{
+  "schema_version": "paper-method-fit-check/agreement/v1",
+  "source_file": "E:\\minimax\\project\\DP match\\work\\a-runs\\with\\caseC\\materials\\nanochat_README_table_corrupted.md",
+  "source_sha256_note": "建议同时记录 source 文件的 SHA-256，便于评审核对",
+  "tolerance": 0.01,
+  "claims_checked": 62,
+  "findings": [],
+  "findings_count": 0,
+  "all_passed": true,
+  "preconditions": {
+    "total": 28,
+    "categories_present": [
+      "compute",
+      "data scale",
+      "hidden assumptions",
+      "hyperparameters"
+    ],
+    "rows_without_locator_or_absent": []
+  },
+  "source_sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c",
+  "tool_runs": [
+    {
+      "attempt": 1,
+      "tool": "skill/scripts/check_agreement.py",
+      "result": "failed",
+      "error": "Errno 2 No such file or directory (exit 2)",
+      "raw_output": "runs/attempt1_skill_script_missing.txt",
+      "disposition": "按 SKILL.md Failure modes 记录原始报错，不删除；改用自建等价脚本先跑通判定"
+    },
+    {
+      "attempt": 2,
+      "tool": "scripts/check_agreement.py (官方脚本，运行根目录下)",
+      "result": "success",
+      "claims_checked": 62,
+      "findings_count": 0,
+      "all_passed": true,
+      "raw_output": "logs/agreement_canonical.json",
+      "disposition": "官方判定结果原样保留为 logs/agreement.json 的主字段"
+    },
+    {
+      "attempt": "2b",
+      "tool": "runs/verify_artifacts.py (自建补充核对)",
+      "result": "success",
+      "raw_output": "logs/agreement_supplement.json",
+      "disposition": "只补充官方脚本不覆盖的检查（跨声明一致性、防编造护栏、受损单元格旁证），不放宽官方判定"
+    }
+  ],
+  "dispositions": [
+    {
+      "flag_id": "CONCEPT-reference_wallclock_hours",
+      "kind": "source-internal-inconsistency",
+      "detail": [
+        1.5,
+        2.0
+      ],
+      "disposition": "源内不一致（多处表述不同），不是本次抽取错误：各值均按原文照录、未做归一；已写入 verdict.md 第 ④ 节。",
+      "reviewed": true
+    },
+    {
+      "flag_id": "CONCEPT-reference_depth_layers",
+      "kind": "source-internal-inconsistency",
+      "detail": [
+        20.0,
+        24.0,
+        26.0
+      ],
+      "disposition": "源内不一致（多处表述不同），不是本次抽取错误：各值均按原文照录、未做归一；已写入 verdict.md 第 ④ 节。",
+      "reviewed": true
+    }
+  ],
+  "unreviewed_dispositions": 0,
+  "supplement": {
+    "tool": {
+      "name": "runs/verify_artifacts.py (自建替代)",
+      "why_not_skill_script": "SKILL.md step 7 指定的 scripts/check_agreement.py 在本 Skill 包中不存在；原始报错见 runs/attempt1_skill_script_missing.txt。本脚本按同样的判定语义实现，未放宽标准。",
+      "semantics": "rel = |a-b| / max(|a|,|b|); rel > tolerance 即标记为不一致",
+      "tolerance": 0.01
+    },
+    "material": {
+      "path": "materials/nanochat_README_table_corrupted.md",
+      "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+    },
+    "summary": {
+      "numeric_checks_run": 13,
+      "flags": 2,
+      "flags_with_disposition": 2,
+      "unreviewed_flags": 0,
+      "guards_run": 4,
+      "guards_failed": [],
+      "structural_errors": 0
+    },
+    "checks": [
+      {
+        "check_id": "NUM-K10",
+        "claim_id": "K10",
+        "concept": "[正文·作者原文] 参考成本与时长：GPT-2 能力级 LLM 2019 年训练约 $43,000，如今 8×H100 ",
+        "transcribed_value": "48",
+        "matched_token_in_quote": "48",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E18 | materials/nanochat_README_table_corrupted.md L23"
+      },
+      {
+        "check_id": "NUM-K11",
+        "claim_id": "K11",
+        "concept": "[正文·作者原文] 方法机制只有一个复杂度旋钮 `--depth`（transformer 层数）；GPT-2 能力对应",
+        "transcribed_value": "26",
+        "matched_token_in_quote": "26",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E19 | materials/nanochat_README_table_corrupted.md L23"
+      },
+      {
+        "check_id": "NUM-K14",
+        "claim_id": "K14",
+        "concept": "[正文·作者原文] 主指标 = 在 8×H100 节点上跑赢 GPT-2（1.6B）CORE 所需墙钟；GPT-2 的 ",
+        "transcribed_value": "0.256525",
+        "matched_token_in_quote": "0.256525",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E22 | materials/nanochat_README_table_corrupted.md L41"
+      },
+      {
+        "check_id": "NUM-K15",
+        "claim_id": "K15",
+        "concept": "[正文·作者原文] 价格基准约 $3/GPU/hr → 8×H100 节点约 $24/hr → 2 小时约 $48；作者",
+        "transcribed_value": "48",
+        "matched_token_in_quote": "48",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E23 | materials/nanochat_README_table_corrupted.md L41"
+      },
+      {
+        "check_id": "NUM-K17",
+        "claim_id": "K17",
+        "concept": "[正文·作者原文] speedrun 一次运行耗时约 1.5 小时。",
+        "transcribed_value": "1.5",
+        "matched_token_in_quote": "1.5",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E25 | materials/nanochat_README_table_corrupted.md L71"
+      },
+      {
+        "check_id": "NUM-K18",
+        "claim_id": "K18",
+        "concept": "[正文·作者原文] speedrun 模型是 4e19 FLOPs 的能力模型。",
+        "transcribed_value": "4e19",
+        "matched_token_in_quote": "4e19",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E26 | materials/nanochat_README_table_corrupted.md L77"
+      },
+      {
+        "check_id": "NUM-K20",
+        "claim_id": "K20",
+        "concept": "[正文·作者原文] 单卡可跑：去掉 `torchrun` 即自动切换梯度累积，结果 ~identical，墙钟要慢 8 ",
+        "transcribed_value": "8",
+        "matched_token_in_quote": "8",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E28 | materials/nanochat_README_table_corrupted.md L99"
+      },
+      {
+        "check_id": "NUM-K21",
+        "claim_id": "K21",
+        "concept": "[正文·作者原文] 显存不足 80GB 时下调 `--device-batch-size`（默认 32 → 16/8/4",
+        "transcribed_value": "32",
+        "matched_token_in_quote": "32",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E29 | materials/nanochat_README_table_corrupted.md L100"
+      },
+      {
+        "check_id": "NUM-K22",
+        "claim_id": "K22",
+        "concept": "[正文·作者原文] 快速实验档：12 层（GPT-1 规模）预训练约 5 分钟。",
+        "transcribed_value": "12",
+        "matched_token_in_quote": "12",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E30 | materials/nanochat_README_table_corrupted.md L105"
+      },
+      {
+        "check_id": "NUM-K25",
+        "claim_id": "K25",
+        "concept": "[正文·作者原文] 以当前代码，GPT-2 能力模型落在 d24-d26 区间。",
+        "transcribed_value": "24",
+        "matched_token_in_quote": "24",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E33 | materials/nanochat_README_table_corrupted.md L125"
+      },
+      {
+        "check_id": "NUM-K35",
+        "claim_id": "K35",
+        "concept": "[正文·作者原文] 文件树注释称 `runs/speedrun.sh` 训练的是约 $100 的 nanochat d2",
+        "transcribed_value": "20",
+        "matched_token_in_quote": "20",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E43 | materials/nanochat_README_table_corrupted.md L188"
+      },
+      {
+        "check_id": "NUM-K36",
+        "claim_id": "K36",
+        "concept": "[正文·作者原文] 当前把 GPT-2 延迟（跑赢 CORE 0.256525）压到约 1.5 小时（此前 3 小时）。",
+        "transcribed_value": "1.5",
+        "matched_token_in_quote": "1.5",
+        "relative_error": 0.0,
+        "tolerance": 0.01,
+        "status": "pass",
+        "source_locator": "E44 | materials/nanochat_README_table_corrupted.md L218"
+      },
+      {
+        "check_id": "DAMAGED-CORROBORATION",
+        "concept": "damaged cell 0.2565 vs 正文 0.256525",
+        "transcribed_value": "0.2565",
+        "matched_token_in_quote": "0.2565",
+        "relative_error": 9.745638826624012e-05,
+        "tolerance": 0.01,
+        "status": "within-tolerance (damaged cell, NOT a source)",
+        "source_locator": "materials/nanochat_README_table_corrupted.md L36 (受损表内，非数值来源)"
+      }
+    ],
+    "concept_consistency": [
+      {
+        "concept": "reference_cost_usd",
+        "distinct_values": [
+          48.0
+        ],
+        "value_source": "numeric_value",
+        "claims_by_value": {
+          "48.0": [
+            "K10",
+            "K15"
+          ]
+        },
+        "status": "consistent"
+      },
+      {
+        "concept": "gpt2_core_threshold",
+        "distinct_values": [
+          0.256525
+        ],
+        "value_source": "numeric_value",
+        "claims_by_value": {
+          "0.256525": [
+            "K14",
+            "K36"
+          ]
+        },
+        "status": "consistent"
+      },
+      {
+        "concept": "reference_wallclock_hours",
+        "distinct_values": [
+          1.5,
+          2.0
+        ],
+        "value_source": "numeric_value (K17/K36) 与引文中表述 (~2 hours, K10/K15)",
+        "claims_by_value": {
+          "1.5": [
+            "K17",
+            "K36"
+          ],
+          "2.0": [
+            "K10",
+            "K15"
+          ]
+        },
+        "status": "source-internal-inconsistency",
+        "disposition": "源内不一致（多处表述不同），不是本次抽取错误：各值均按原文照录、未做归一；已写入 verdict.md 第 ④ 节。"
+      },
+      {
+        "concept": "reference_depth_layers",
+        "distinct_values": [
+          20.0,
+          24.0,
+          26.0
+        ],
+        "value_source": "numeric_value",
+        "claims_by_value": {
+          "26.0": [
+            "K11"
+          ],
+          "24.0": [
+            "K25"
+          ],
+          "20.0": [
+            "K35"
+          ]
+        },
+        "status": "source-internal-inconsistency",
+        "disposition": "源内不一致（多处表述不同），不是本次抽取错误：各值均按原文照录、未做归一；已写入 verdict.md 第 ④ 节。"
+      },
+      {
+        "concept": "pricing_arithmetic",
+        "status": "consistent",
+        "checks": [
+          {
+            "check_id": "ARITH-pricing_hourly",
+            "expression": "3 USD/GPU/hr x 8 GPU = 24 USD/hr",
+            "computed": 24.0,
+            "stated": 24.0,
+            "relative_error": 0.0,
+            "status": "consistent"
+          },
+          {
+            "check_id": "ARITH-pricing_total",
+            "expression": "24 USD/hr x 2 hr = 48 USD",
+            "computed": 48.0,
+            "stated": 48.0,
+            "relative_error": 0.0,
+            "status": "consistent"
+          }
+        ]
+      },
+      {
+        "check_id": "DAMAGED-CORROBORATION",
+        "damaged_cell_text": "0.2565",
+        "damaged_cell_location": "materials/nanochat_README_table_corrupted.md L36 (受损表内，非数值来源)",
+        "authoritative_value": "0.256525",
+        "authoritative_source": "materials/nanochat_README_table_corrupted.md L41 与 L218 (正文，未受损)",
+        "relative_error": 9.745638826624012e-05,
+        "tolerance": 0.01,
+        "status": "within-tolerance",
+        "disposition": "受损单元格未被用作任何 paper-fact 的数值来源；此处仅作『7 列表头映射自洽性』的旁证，权威值取正文 0.256525。"
+      }
+    ],
+    "flags": [
+      {
+        "check_id": "CONCEPT-reference_wallclock_hours",
+        "concept": "reference_wallclock_hours",
+        "distinct_values": [
+          1.5,
+          2.0
+        ],
+        "status": "source-internal-inconsistency",
+        "disposition": "源内不一致（多处表述不同），不是本次抽取错误：各值均按原文照录、未做归一；已写入 verdict.md 第 ④ 节。"
+      },
+      {
+        "check_id": "CONCEPT-reference_depth_layers",
+        "concept": "reference_depth_layers",
+        "distinct_values": [
+          20.0,
+          24.0,
+          26.0
+        ],
+        "status": "source-internal-inconsistency",
+        "disposition": "源内不一致（多处表述不同），不是本次抽取错误：各值均按原文照录、未做归一；已写入 verdict.md 第 ④ 节。"
+      }
+    ],
+    "fabrication_guards": [
+      {
+        "guard": "G01_no_paperfact_from_damaged_row",
+        "violations": [],
+        "passed": true
+      },
+      {
+        "guard": "G02_no_quote_contains_truncated_cell_marker",
+        "violations": [],
+        "passed": true
+      },
+      {
+        "guard": "G03_truncated_cell_not_adopted",
+        "violations": [],
+        "passed": true,
+        "evidence": {
+          "float_trap_value": 2.0,
+          "explanation": "float('2.') 求值为 2.0 —— 朴素抽取器会把截断值静默读成 2.0；本运行不采用该值。",
+          "adopted_anywhere": false
+        }
+      },
+      {
+        "guard": "G04_paperfact_numeric_value_found_in_quote",
+        "violations": [],
+        "passed": true
+      }
+    ],
+    "classification_counts": {
+      "paper-fact": 37,
+      "inference": 15,
+      "undetermined": 10
+    },
+    "precondition_confidence_counts": {
+      "stated": 22,
+      "absent": 6
+    },
+    "structural_errors": []
+  }
+}

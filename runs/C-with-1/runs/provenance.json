@@ -1,0 +1,52 @@
+{
+  "case": "C",
+  "run_mode": "with_skill",
+  "skill": {
+    "name": "paper-method-fit-check",
+    "path": "skill/SKILL.md",
+    "sha256": "0d048c99959f59b3de51204cac23593f952588359e2c85bf7f759bfbe9a60ade",
+    "modified_by_this_run": false,
+    "suggested_skill_version": "skill-13890f6a@0d048c99959f"
+  },
+  "frozen_inputs": {
+    "cases/task-C.md": "e364bf2a641b4899b3c6b483a1d0cee11333fa12901ba8e43140a47988245ae8",
+    "cases/acceptance-C.md": "21e6081520e21f357c6e9bc4a30b06067129b7c97f2a3c70868854632d24d4b1"
+  },
+  "material": {
+    "path": "materials/nanochat_README_table_corrupted.md",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c",
+    "nature": "合成/损坏件（非作者原文）；materials/A/ 原文快照不在本运行目录内"
+  },
+  "outputs": {
+    "preconditions.csv": "7097736e2b8681620bc02a1b7c2a55feedf9924b6a0e2c47dffd7de452c72f7f",
+    "claims.csv": "3543b4a5a1abd2cb236c99a229f9784510f58d95e3c28f518c6e5e51f733d3b5",
+    "evidence_index.json": "d0b11e988a2da6906039f15a7b1613d325a3b4882e8c144aa0190121111c0cac",
+    "verdict.md": "bfcc9e1ddd62430e31b9704310165d0319ffc7d86416d8e07e3f7f85862effa8",
+    "logs/agreement.json": "47e10e98ee488d4e12f2e45deb364f10faf8154627d1006a70649b14bf1def33"
+  },
+  "counts": {
+    "claims_total": 62,
+    "classification_counts": {
+      "paper-fact": 37,
+      "inference": 15,
+      "undetermined": 10
+    },
+    "preconditions_total": 28,
+    "precondition_categories": [
+      "compute",
+      "data scale",
+      "hidden assumptions",
+      "hyperparameters"
+    ],
+    "evidence_entries": 46,
+    "verdict": "transferable-with-changes",
+    "degraded_rows": {
+      "preconditions_confidence_absent": 6,
+      "claims_classification_undetermined": 10
+    }
+  },
+  "network_used": false,
+  "training_run": false,
+  "dataset_downloaded": false,
+  "pytorch_installed": false
+}

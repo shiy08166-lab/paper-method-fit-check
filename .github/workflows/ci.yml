@@ -40,3 +40,47 @@ jobs:
           steps = len(re.findall(r'^### ', t, re.M))
           print('SKILL.md 段落自检通过，二级小节 %d 个' % steps)
           PY
+
+      # 真实数据自检：两次运行的引文逐条命中原文、数值在容差内、非事实行不带引文/数值
+      - name: 真实数据自检 · 第一次运行（62 条结论）
+        run: |
+          python scripts/check_agreement.py \
+            --claims runs/C-with-1/claims.csv \
+            --preconditions runs/C-with-1/preconditions.csv \
+            --source paper_materials/nanochat_README_table_corrupted.md \
+            --report /tmp/agreement-c1.json
+          python - <<'PY'
+          import json, sys
+          d = json.load(open('/tmp/agreement-c1.json', encoding='utf-8'))
+          print('claims_checked=%s findings_count=%s all_passed=%s' % (
+              d.get('claims_checked'), d.get('findings_count'), d.get('all_passed')))
+          if d.get('findings_count'):
+              sys.exit('第一次运行存在 %d 项标记' % d['findings_count'])
+          PY
+
+      - name: 真实数据自检 · 严格对称复测（39 条结论）
+        run: |
+          python scripts/check_agreement.py \
+            --claims runs/C-with-3/claims.csv \
+            --preconditions runs/C-with-3/preconditions.csv \
+            --source paper_materials/nanochat_README_table_corrupted.md \
+            --report /tmp/agreement-c3.json
+          python - <<'PY'
+          import json, sys
+          d = json.load(open('/tmp/agreement-c3.json', encoding='utf-8'))
+          print('claims_checked=%s findings_count=%s all_passed=%s' % (
+              d.get('claims_checked'), d.get('findings_count'), d.get('all_passed')))
+          if d.get('findings_count'):
+              sys.exit('严格对称复测存在 %d 项标记' % d['findings_count'])
+          PY
+
+      - name: 冻结哈希记录存在
+        run: |
+          test -f runs/C-with-3/manifest.json
+          test -f cases/task-C.md
+          test -f cases/acceptance-C.md
+          python - <<'PY'
+          import json, pathlib
+          m = json.loads(pathlib.Path('runs/C-with-3/manifest.json').read_text(encoding='utf-8-sig'))
+          print('manifest 键：', list(m.keys())[:8])
+          PY
