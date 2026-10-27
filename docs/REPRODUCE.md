@@ -44,7 +44,7 @@ python scripts/check_agreement.py \
 **预期输出**：`检查 39 条结论，标记 0 项 -> ./agreement_recheck.json`，**退出码 0**。
 **判据**：`./agreement_recheck.json` 中 `claims_checked=39`、`findings_count=0`、`all_passed=true`。
 
-## ② 同一命令跑第一次运行（62 条结论）
+## ② 同一命令跑第一次运行（62 条结论 · **该轮台账未随包**）
 
 ```bash
 python scripts/check_agreement.py \
@@ -54,7 +54,7 @@ python scripts/check_agreement.py \
   --tolerance 0.01 --report ./agreement_recheck-c1.json
 ```
 
-（第一次运行的 `preconditions.csv` 未随包，见公开仓库 `runs/C-with-1/preconditions.csv`；
+（第一次运行的 `claims.csv` 与 `preconditions.csv` 均未随包，见公开仓库 `runs/C-with-1/`；
 上面这条命令在包内的两次运行上均实测退出码 0。）
 
 **预期输出**：`检查 62 条结论，标记 0 项`，**退出码 0**。
