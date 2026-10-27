@@ -350,12 +350,12 @@ CRLF 被折成 `
 **"独立复核"指向的其实不是独立复核日志**——这两条应当回灌进 Skill）。我另外独立复核了它答复正文里 16 处
 原文引用与行号：**16/16 按它给的行号在包内材料里命中**，其中 1 处它在审计正文里用了 `...` 缩写（按原文补全后
 命中且全文仅 1 次）——**"逐字"这条纪律在写审计报告时最容易破，恰恰是那个在查别人引文的人破的**。
-详见 `science-space/author-verification.md` 与 `author-verification-cites.csv`。
+详见 `science-space/author-verification.md` 与 `author_verification_cites.csv`。
 
 **这次实践的边界（如实说明）**：① **未跑训练、未下载数据集、未联网取件**（材料靠附件挂载）；
 ② **未把上游 nanochat 原文放进云端工作空间**——这是有意的：上游 leaderboard 原表一旦进入工作空间，
 受损单元格的"无法确定"就可能被污染成"已知答案"（包内两次 CLI 运行同样遵守这条纪律，见
-公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 `runs/C-with-3/logs/run_log.md`）。代价是云端那一轮第 ④ 条预期行为降为"部分做到"——
+公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 `runs/C-with-3/logs/run_log.md`）。代价是云端那一轮第 ④ 条预期行为降为"部分做到"——
 **它少做的那一步，正是我们刻意不做的那一步**；而评审补上这一步的条件在包内：
 `paper_materials/nanochat_README_leaderboard_upstream.md`（上游**原表节选**）+
 `paper_materials/upstream_source.json`（上游 URL / SHA-256 / 两侧正文行集合的可复算指纹）。
