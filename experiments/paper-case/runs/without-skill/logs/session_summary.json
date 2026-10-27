@@ -1,0 +1,17 @@
+{
+  "workspace": "E:\\minimax\\project\\DP match\\work\\tmp\\paper-case\\without-skill",
+  "model": "ccs-deepseek/deepseek-v4-pro",
+  "attempts": [
+    {
+      "attempt": 1,
+      "file": "codex_attempt1.jsonl",
+      "stderr_file": "codex_stderr_attempt1.txt",
+      "exit_code": 0,
+      "elapsed_s": 1098.4,
+      "thread_id": "01a17c1d-bd28-7190-9220-6287c03ba1f1",
+      "last_error": null,
+      "completed": true
+    }
+  ],
+  "thread_id": "01a17c1d-bd28-7190-9220-6287c03ba1f1"
+}

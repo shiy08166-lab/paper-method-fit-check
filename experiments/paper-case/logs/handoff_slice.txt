@@ -1,0 +1,76 @@
+### A 作者侧独立重算（本案例最值钱的部分）
+
+| 文件 | 字节 |
+|---|---|
+| `logs/author_table12_geom.txt` | 2493 |
+| `scripts/extract_tables_geom.py` | 3196 |
+| `logs/author_table1_geom.txt` | 3896 |
+| `scripts/verify_paper_results.py` | 11937 |
+| `ledger.md` | 16470 |
+| `scripts/build_ledger.py` | 24540 |
+| `ledger.json` | 27134 |
+
+### B 有/无 Skill 对照
+
+| 文件 | 字节 |
+|---|---|
+| `comparison.md` | 4765 |
+| `scripts/build_comparison.py` | 13102 |
+
+### C 冻结的任务书与验收标准
+
+| 文件 | 字节 |
+|---|---|
+| `cases/frozen_hashes.json` | 929 |
+| `cases/acceptance-paper.md` | 4633 |
+| `cases/task-paper.md` | 6618 |
+
+### D 两次运行的产物（原始证据）
+
+| 文件 | 字节 |
+|---|---|
+| `runs/without-skill/logs/agreement.json` | 531 |
+| `runs/with-skill/logs/agreement.json` | 532 |
+| `runs/without-skill/preconditions.csv` | 1035 |
+| `runs/without-skill/prompt.txt` | 3041 |
+| `runs/with-skill/preconditions.csv` | 3328 |
+| `runs/with-skill/prompt.txt` | 3377 |
+| `runs/without-skill/evidence_index.json` | 5317 |
+| `runs/without-skill/verdict.md` | 5340 |
+| `runs/with-skill/evidence_index.json` | 7203 |
+| `runs/with-skill/verdict.md` | 7652 |
+| `runs/without-skill/claims.csv` | 9572 |
+| `runs/with-skill/claims.csv` | 10361 |
+
+### E 材料与说明
+
+| 文件 | 字节 |
+|---|---|
+| `scripts/extract_source.py` | 3532 |
+| `materials/source_manifest.json` | 3618 |
+| `scripts/build_handoff_slice.py` | 4175 |
+| `scripts/finalize_run.py` | 4943 |
+| `scripts/export_codex_session.py` | 6463 |
+| `scripts/build_runs.py` | 8885 |
+| `HANDOFF.md` | 9174 |
+| `README.md` | 11393 |
+
+### 预算内切片建议（预算 14 KiB = 14336 B）
+
+| 组合 | 累计字节 | 装得下 |
+|---|---|---|
+| A + B（作者侧重算 + 对照表） | 12612 | 是 |
+| A（只要作者侧重算） | 89666 | 是 |
+| 全部 Tier A–E | 229185 | 否 |
+
+**在 14 KiB 余量下建议带：**
+
+- `logs/author_table12_geom.txt`（2493 B）
+- `scripts/extract_tables_geom.py`（3196 B）
+- `logs/author_table1_geom.txt`（3896 B）
+- `cases/frozen_hashes.json`（929 B）
+- `runs/without-skill/logs/agreement.json`（531 B）
+- `runs/with-skill/logs/agreement.json`（532 B）
+- `runs/without-skill/preconditions.csv`（1035 B）
+
+合计 12612 B（12.3 KiB），余量 1724 B。

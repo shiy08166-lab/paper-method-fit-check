@@ -1,0 +1,83 @@
+{
+  "schema": "paper-case/source_manifest/v1",
+  "case_id": "paper-case",
+  "paper": {
+    "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+    "authors": [
+      "Edward Hu",
+      "Yelong Shen",
+      "Phillip Wallis",
+      "Zeyuan Allen-Zhu",
+      "Yuanzhi Li",
+      "Shean Wang",
+      "Lu Wang",
+      "Weizhu Chen"
+    ],
+    "arxiv_id": "2106.09685",
+    "version": "v2",
+    "arxiv_published": "2021-06-17T17:37:18Z",
+    "arxiv_updated": "2021-10-16T18:40:34Z",
+    "primary_category": "cs.CL",
+    "arxiv_comment": "Draft V2 includes better baselines, experiments on GLUE, and more on adapter latency",
+    "version_marker_in_pdf": "PDF 第 1 页作者块下方印有 (Version 2)"
+  },
+  "retrieval": {
+    "source_url": "https://arxiv.org/pdf/2106.09685v2",
+    "landing_page": "https://arxiv.org/abs/2106.09685v2",
+    "metadata_api": "http://export.arxiv.org/api/query?id_list=2106.09685",
+    "retrieved_at_local": "2026-10-27T13:54:48+0800",
+    "retrieved_at_utc": "2026-10-27T05:54:48Z",
+    "http_user_agent": "Mozilla/5.0 (research; contact local)",
+    "license": {
+      "declared_by": "arXiv abs 页版权链接",
+      "url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+      "spdx_like": "arXiv.org perpetual, non-exclusive license to distribute this article",
+      "note": "arXiv API 的 <arxiv:license> 字段为空；abs 页版权链接指向 licenses/nonexclusive-distrib/1.0/，即 arXiv 默认的永久非独占发布许可。论文自身页面未声明 CC 许可。"
+    }
+  },
+  "files": [
+    {
+      "path": "materials/lora_2106.09685.pdf",
+      "role": "原始 PDF（唯一权威副本）",
+      "bytes": 1609513,
+      "sha256": "e9a0d3128767db616085dc0f4e6e455e672e89af823e8ed1282793682787395a"
+    },
+    {
+      "path": "materials/source.txt",
+      "role": "逐页抽取文本（带 === PAGE n === 锚点），check_agreement.py 的 --source 指向它",
+      "bytes": 82806,
+      "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+    },
+    {
+      "path": "materials/source_pages.json",
+      "role": "按页切分的同一份文本（机器可读）",
+      "bytes": 84856,
+      "sha256": "a15883f54726b2a4ec2103e1812200470ba7fa492ac479042581dd75579808fd"
+    },
+    {
+      "path": "scripts/extract_source.py",
+      "role": "抽取脚本（可复现抽取）",
+      "bytes": 3532,
+      "sha256": "c7d75c79d00263b550251c5dab17312282b66f6d4e5fade9b63bad7498b28573"
+    }
+  ],
+  "extraction": {
+    "engine": "pdfminer.high_level.extract_pages",
+    "pages": 26,
+    "rules": [
+      "保留原始换行（LaTeX 断词处的 '-\\n' 也保留，不做合并）",
+      "Unicode NFC 归一",
+      "连字 → ASCII：ﬁ→fi、ﬂ→fl、ﬀ→ff、ﬃ→ffi、ﬄ→ffl、ﬅ/ﬆ→st",
+      "公式里的私用区字形在 pdfminer 输出中呈现为 (cid:NN)，**原样保留**，不猜测它是什么符号"
+    ],
+    "known_artifacts": [
+      "第 1 页左侧有 arXiv 的竖排水印字形，抽取时顺序被打散（出现在标题之前）",
+      "论文标题在 PDF 里用小型大写排版，抽取结果是全大写 'LORA: LOW-RANK ADAPTATION OF LARGE LAN-\\nGUAGE MODELS'",
+      "表格在抽取文本里被压平为单元格序列，**行/列身份不保留**（这一点是本案例的关键风险，见 ledger.md）"
+    ]
+  },
+  "notes": [
+    "PDF 与 source.txt 均为逐字节保留；source.txt 由 scripts/extract_source.py 从本 PDF 生成，可重跑验证。",
+    "本目录下的文件是本案例的输入材料，运行前已冻结（见 cases/frozen_hashes.json）。"
+  ]
+}

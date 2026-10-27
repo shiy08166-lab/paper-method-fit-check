@@ -1,0 +1,90 @@
+{
+  "run": "with-skill",
+  "src": "E:\\minimax\\project\\DP match\\work\\tmp\\paper-case\\with-skill",
+  "dst": "E:\\minimax\\project\\DP match\\ai-github-work\\repo\\experiments\\paper-case\\runs\\with-skill",
+  "copied": [
+    {
+      "path": "preconditions.csv",
+      "bytes": 3328,
+      "sha256": "d0bdb738c4b266b9584248ef67bf37c109ba1679da28c2ad644823cdda9b3400",
+      "identical": true
+    },
+    {
+      "path": "claims.csv",
+      "bytes": 10361,
+      "sha256": "4b2ec8d26407d72e9fe5099d65c30db1c576b552dc3e718210661169c8dc60f5",
+      "identical": true
+    },
+    {
+      "path": "evidence_index.json",
+      "bytes": 7203,
+      "sha256": "d170ef4b41b900412411af12480ff94a3725c36e8cd0b5ab021544b0235dae38",
+      "identical": true
+    },
+    {
+      "path": "verdict.md",
+      "bytes": 7652,
+      "sha256": "9e45c2e83f042f4825d87d64c36de1f794c9f3c216a907f37b1dcb7d983db2c5",
+      "identical": true
+    },
+    {
+      "path": "logs/agreement.json",
+      "bytes": 532,
+      "sha256": "69340e0f3990ebb3437383e36929dbca24558f1f1df3a84f7432e5dfc540e52e",
+      "identical": true
+    },
+    {
+      "path": "logs/check_agreement_stdout.txt",
+      "bytes": 71,
+      "sha256": "7e5e003505a8dd2630ec2b425065cab1641d3110f008a6668a0d22963be9076d",
+      "identical": true
+    },
+    {
+      "path": "logs/codex_attempt1.jsonl",
+      "bytes": 181329,
+      "sha256": "d4a22cf0f0e5bf60f43435f2158a28a6a370fefe83ce878ba79ac5fa4eb15249",
+      "identical": true
+    },
+    {
+      "path": "logs/codex_events_raw.jsonl",
+      "bytes": 181514,
+      "sha256": "eb6657f6ce307f666165ce39c721fd22ecbbdfd6ffb3d1d6ba25f31b780dddbd",
+      "identical": true
+    },
+    {
+      "path": "logs/codex_stderr_attempt1.txt",
+      "bytes": 181,
+      "sha256": "fcbdbfa5b3288a8a1765b37ec5bbc1675d7bb316078fd50de33b3c8424308a68",
+      "identical": true
+    },
+    {
+      "path": "logs/run_log.md",
+      "bytes": 5236,
+      "sha256": "8ba5d71eeb0e8ee9c17a3fa46624468e14a9f61a4925c8b940540d7617be1990",
+      "identical": true
+    },
+    {
+      "path": "logs/session_summary.json",
+      "bytes": 571,
+      "sha256": "96cc9ac0cab70174630004596fe07be9839826cf1fcee9cbe08f9832e8565995",
+      "identical": true
+    },
+    {
+      "path": "session-export.txt",
+      "bytes": 12697,
+      "sha256": "afdc7500ae8b4530f2f6d60d4896b184b7e9f9e595adbcf097b6bf4193fe507d",
+      "identical": true
+    },
+    {
+      "path": "events.jsonl",
+      "bytes": 200079,
+      "sha256": "834160a67e4bed919d9fef25e39cbed4480f5cad38c718b2c57997886920639a",
+      "identical": true
+    }
+  ],
+  "missing": [],
+  "session_id": "01a17c1c-f209-7320-9b2d-5ddcd1ec7c22",
+  "rollout": "C:\\Users\\30416\\.codex\\sessions\\2026\\10\\27\\rollout-2026-10-27T14-47-14-01a17c1c-f209-7320-9b2d-5ddcd1ec7c22.jsonl",
+  "export_stdout": "session_id=01a17c1c-f209-7320-9b2d-5ddcd1ec7c22 events=61 usage=141339",
+  "export_stderr": ""
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "paper-case/run_workspace/v1",
+  "note": "两次运行的差异清单：除 skill/SKILL.md 与 prompt.txt 外必须逐字节一致。",
+  "files": {
+    "with-skill": {
+      "cases/task-paper.md": {
+        "bytes": 6618,
+        "sha256": "d114cc29aa77ecee2002cee9b628db87bca761226cd00406fb9b1648a7a64c4a"
+      },
+      "materials/source.txt": {
+        "bytes": 82806,
+        "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+      },
+      "materials/source_manifest.json": {
+        "bytes": 3618,
+        "sha256": "4fb122e12c3fdd0284c6eb734864a69defc4078d650b62db2171bf21084a050f"
+      },
+      "materials/source_pages.json": {
+        "bytes": 84856,
+        "sha256": "a15883f54726b2a4ec2103e1812200470ba7fa492ac479042581dd75579808fd"
+      },
+      "prompt.txt": {
+        "bytes": 3377,
+        "sha256": "daf77eafc2f1e6c267244ab442f18777a69e14f3abfd4db9f03b0cf78276221b"
+      },
+      "scripts/check_agreement.py": {
+        "bytes": 7322,
+        "sha256": "1f1ee51288dc01d1f88ba95d532987a7f2d668a6d66ac3b72951950371ab0f2a"
+      },
+      "skill/SKILL.md": {
+        "bytes": 13291,
+        "sha256": "7ec803cb2f547c340515e3e5a0e04cc447d5b4348e7585e892d41d8fb35d79f3"
+      }
+    },
+    "without-skill": {
+      "cases/task-paper.md": {
+        "bytes": 6618,
+        "sha256": "d114cc29aa77ecee2002cee9b628db87bca761226cd00406fb9b1648a7a64c4a"
+      },
+      "materials/source.txt": {
+        "bytes": 82806,
+        "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+      },
+      "materials/source_manifest.json": {
+        "bytes": 3618,
+        "sha256": "4fb122e12c3fdd0284c6eb734864a69defc4078d650b62db2171bf21084a050f"
+      },
+      "materials/source_pages.json": {
+        "bytes": 84856,
+        "sha256": "a15883f54726b2a4ec2103e1812200470ba7fa492ac479042581dd75579808fd"
+      },
+      "prompt.txt": {
+        "bytes": 3041,
+        "sha256": "89461cdc21e7a96d9ebe03a970def13c20e3f31afbc12bbaea1f8202df2187b0"
+      },
+      "scripts/check_agreement.py": {
+        "bytes": 7322,
+        "sha256": "1f1ee51288dc01d1f88ba95d532987a7f2d668a6d66ac3b72951950371ab0f2a"
+      }
+    }
+  },
+  "only_in_with_skill": [
+    "skill/SKILL.md"
+  ],
+  "only_in_without_skill": [],
+  "content_differs": [
+    "prompt.txt"
+  ],
+  "identical_except_skill_and_prompt": true
+}

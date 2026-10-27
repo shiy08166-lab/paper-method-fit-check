@@ -1,0 +1,3 @@
+检查 24 条结论，标记 0 项 -> logs\agreement.json
+
+exit_code=0

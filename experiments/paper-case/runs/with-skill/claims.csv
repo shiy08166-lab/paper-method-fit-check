@@ -1,0 +1,60 @@
+claim_id,claim_text,classification,locator,quote,numeric_value,dependency_preconditions,reasoning,confidence
+PF-1,"LoRA freezes the pre-trained model weights and injects trainable rank decomposition matrices into each Transformer layer.",paper-fact,"ABSTRACT, PAGE 1","We propose Low-Rank Adaptation, or LoRA, which freezes the pre-
+trained model weights and injects trainable rank decomposition matrices into each
+layer of the Transformer architecture, greatly reducing the number of trainable pa-
+rameters for downstream tasks.",,"P-H1,P-H2",,high
+PF-2,"Compared to GPT-3 175B fine-tuned with Adam, LoRA reduces the number of trainable parameters by 10,000 times.",paper-fact,"ABSTRACT, PAGE 1","Compared to GPT-3 175B fine-tuned with Adam,
+LoRA can reduce the number of trainable parameters by 10,000 times and the
+GPU memory requirement by 3 times.",10000,"P-C4",,high
+PF-3,"Compared to GPT-3 175B fine-tuned with Adam, LoRA reduces the GPU memory requirement by 3 times.",paper-fact,"ABSTRACT, PAGE 1","Compared to GPT-3 175B fine-tuned with Adam,
+LoRA can reduce the number of trainable parameters by 10,000 times and the
+GPU memory requirement by 3 times.",3,"P-C4",,high
+PF-4,"On GPT-3 175B, LoRA reduces training VRAM from 1.2TB to 350GB.",paper-fact,"§4.2, PAGE 5","On GPT-3 175B, we reduce the VRAM consumption during training from 1.2TB to
+350GB.",350,"P-C3",,high
+PF-5,"With r=4 and adapting only Wq and Wv, the checkpoint size is reduced by roughly 10,000x (350GB to 35MB).",paper-fact,"§4.2, PAGE 5","With r = 4 and only the query and value projection matrices being adapted, the checkpoint
+size is reduced by roughly 10,000× (from 350GB to 35MB)",10000,"P-H1,P-H2",,high
+PF-6,"LoRA gives a 25% training speedup vs full fine-tuning on GPT-3 175B.",paper-fact,"§4.2, PAGE 5","We also observe a 25% speedup
+during training on GPT-3 175B compared to full fine-tuning",25,"P-C1",,high
+PF-7,"On GPT-3 175B, LoRA training throughput is 43.1 tokens/s per V100 GPU vs 32.5 for full fine-tuning.",paper-fact,"fn 5, PAGE 5","For GPT-3 175B, the training throughput for full fine-tuning is 32.5 tokens/s per V100 GPU; with the same
+number of weight shards for model parallelism, the throughput is 43.1 tokens/s per V100 GPU for LoRA.",43.1,"P-C1",,high
+PF-8,"LoRA trainable parameter count is |Θ| = 2 × L̂LoRA × dmodel × r.",paper-fact,"§5.1, PAGE 6","|Θ| = 2 × ˆLLoRA × dmodel × r, where ˆLLoRA is the number of weight matrices we apply LoRA to.",,"P-H1",,high
+PF-9,"A very low rank (r=1 or 2) suffices even when the full rank d is as high as 12,288.",paper-fact,"INTRODUCTION, PAGE 2","we show that a very low rank (i.e., r in Figure 1 can be one or two) suffices even
+when the full rank (i.e., d) is as high as 12,288",12288,,,high
+PF-10,"The principles of LoRA apply to any dense layers in deep learning models.",paper-fact,"§4, PAGE 4","The principles outlined here apply
+to any dense layers in deep learning models",,"P-A7",,high
+PF-11,"The proposed principles are generally applicable to any neural networks with dense layers.",paper-fact,"§8, PAGE 12","the proposed principles are generally applicable to any neural
+networks with dense layers",,"P-A7",,high
+PF-12,"In most experiments LoRA is applied only to Wq and Wv.",paper-fact,"§5.1, PAGE 6","we only apply LoRA to Wq and Wv in most experiments for simplicity",,"P-H2",,high
+PF-13,"GPT-3 LoRA uses two parameter budgets: 4.7M (rq=rv=1 or rv=2) and 37.7M (rq=rv=8 or all four attention matrices at r=2).",paper-fact,"§D.4, PAGE 20","present two parameter budgets for LoRA: 4.7M (rq = rv = 1 or rv = 2) and 37.7M (rq = rv = 8
+or rq = rk = rv = ro = 2).",4.7,"P-H1",,high
+PF-14,"GPT-3 experiments train with AdamW for 2 epochs, batch size 128, weight decay 0.1.",paper-fact,"§D.4, PAGE 19","For all GPT-3 experiments, we train using AdamW (Loshchilov & Hutter, 2017) for 2 epochs with
+a batch size of 128 samples and a weight decay factor of 0.1.",128,"P-H4",,high
+PF-15,"GPT-3 experiments use sequence length 768 for MNLI and 2048 for SAMSum (384 for WikiSQL appears at the end of PAGE 19).",paper-fact,"§D.4, PAGE 20","WikiSQL (Zhong et al., 2017), 768 for MNLI (Williams et al., 2018), and 2048 for SAMSum (Gliwa
+et al., 2019).",768,"P-H4",,high
+PF-16,"Low-data regime: the paper samples 100, 1k and 10k training examples from MNLI.",paper-fact,"§F.3, PAGE 22","we randomly
+sample 100, 1k and 10k training examples from the full training set of MNLI to form the low-data
+MNLI-n tasks.",,"P-D4",,high
+PF-17,"In the low-data regime LoRA beats fine-tuning on MNLI-100 and MNLI-Full, and is comparable on MNLI-1k/MNLI-10K (±0.3).",paper-fact,"§F.3, PAGE 22","LoRA achieves better performance than fine-tuning on both
+MNLI-100 and MNLI-Full, and comparable results on MNLI-1k and MNLI-10K considering the
+(±0.3) variance due to random seeds.",,"P-D4",,high
+PF-18,"A small rank r may underperform if the downstream task is in a different language than pre-training.",paper-fact,"fn 6, PAGE 10","if the downstream task were in a different language than the one used for pre-training, retraining
+the entire model (similar to LoRA with r = dmodel) could certainly outperform LoRA with a small r.",,"P-A3",,high
+PF-19,"The relationship between model size and the optimal adaptation rank is still an open question.",paper-fact,"§H.2, PAGE 24","the relationship between model size and the optimal rank for adaptation is still an open
+question",,,,high
+PF-20,"At deployment LoRA can be merged: W = W0 + BA, giving no additional inference latency.",paper-fact,"§4.1, PAGE 4","we can explicitly compute and
+store W = W0 + BA and perform inference as usual",,,,high
+PF-21,"Besides GPT-3, the largest model LoRA is evaluated on is DeBERTa XXL (1.5B).",paper-fact,"§5.3, PAGE 7","fully
+fine-tuned DeBERTa XXL (1.5B) on GLUE",1.5,,,high
+PF-22,"The paper scales LoRA up to GPT-3 with 175 billion parameters.",paper-fact,"§5.5, PAGE 8","we scale up to GPT-3 with 175 billion parameters",175,,,high
+PF-23,"The paper evaluates LoRA on RoBERTa base (125M) and RoBERTa large (355M).",paper-fact,"§5.2, PAGE 7","RoBERTa base
+(125M) and RoBERTa large (355M)",355,,,high
+INF-1,"The LoRA mechanism transfers to a 7B model, even though the paper never runs one.",inference,,,,"PF-10,PF-11,PF-21","PF-10/PF-11 表明方法适用于任意稠密层；除 GPT-3 外论文最大的实验模型是 DeBERTa 1.5B（PF-21）。推广到 7B 是从逐层低秩分解机制推出的推断，不是论文的实测结论。","P-A4,P-A7",medium
+INF-2,"Full fine-tuning a 7B model with AdamW will not fit in 24GB, while LoRA will.",inference,,,,"PF-3,PF-4,PF-8","全量微调（混合精度 + fp32 Adam 状态）：权重 bf16 2B + 梯度 2B + Adam m,v 各 4B = 12 字节/参数，7e9×12=84GB > 24GB。LoRA 冻结底座（7e9×2=14GB bf16），只训练 |Θ|=2×L̂LoRA×dmodel×r（PF-8）。假设 Llama-2-7B 的 dmodel=4096、L=32，只调 Wq/Wv（L̂LoRA=64）、r=8：|Θ|=2×64×4096×8=4.19M；优化器+梯度≈4.19M×12≈50MB。合计≈14.05GB+激活，24GB 卡上留约 10GB 给激活。参数来源：PF-8（公式）、PF-3/PF-4（论文 GPT-3 显存下降，方向性支撑）；dmodel/L/r 与每参数字节数是我的假设。需要梯度检查点并限制序列长度。","P-C3,P-C4,P-H1,P-A5",medium
+INF-3,"At r=1..8 on Wq,Wv, a 7B model's LoRA trainable parameter count is about 0.52M..4.19M - the same order as the paper's GPT-3 small budget.",inference,,,,"PF-8,PF-13","用 PF-8，dmodel=4096、L=32、Wq+Wv：r=1 → 2×64×4096×1=0.52M；r=8 → 2×64×4096×8=4.19M；r=16 → 8.39M。论文 GPT-3 的小预算为 4.7M（PF-13），7B 上 r=8 只调 q/v 与之同量级。假设：7B 模型 dmodel=4096、L=32（Llama-2-7B 量级）。","P-H1,P-C4",medium
+INF-4,"8,000 labeled English samples are within the paper's demonstrated data regime.",inference,,,,"PF-16,PF-17,P-D1,P-D3,P-D4","论文在 100/1k/10k 与全量 MNLI(392K) 样本上都验证过 LoRA（PF-16/PF-17），数据集规模从低数据到 ~42k（E2E）都有覆盖；8,000 落在 1k 与 10k 之间，该区间 LoRA 与全量微调可比。英文数据与论文英文数据集同域，跨语言限制（PF-18）不适用。","P-D4,P-A3",medium
+INF-5,"A 7B LoRA fine-tune on 8k samples should finish in a few GPU-hours and well under the $200 cloud budget, but the exact throughput is an estimate, not a paper figure.",inference,,,,"PF-7","仅作启发式估算。论文给 GPT-3 175B LoRA 的 V100 吞吐 43.1 tokens/s（PF-7）。假设吞吐约与模型规模成反比：43.1×(175/7)≈1078 tokens/s（V100 量级）。假设 RTX 4090 bf16 ≈ V100 的 1.3 倍（外部硬件假设）：≈1400 tokens/s。工作量=8000 样本×384 tokens×5 epoch=15.36M tokens → ≈3.0 小时单卡；按 4090 租金约 $0.5–2/小时，仅几十美元。175/7 的规模缩放与 1.3 倍硬件系数是我的假设，不是论文数据；论文没有 7B 或 4090 的吞吐。","P-C1,P-A6",low
+UND-1,"Whether LoRA matches full-fine-tuning quality on a 7B model.",undetermined,,,,"","论文没有 7B 实验（除 GPT-3 外最大是 DeBERTa 1.5B）。需要本地小实验或外部 LoRA-on-7B 研究来定。","P-A4",low
+UND-2,"Exact VRAM (activations included) for a 7B model at the reader's sequence length/batch on a single 24GB card.",undetermined,,,,"","论文唯一绝对显存数字是 GPT-3 175B（1.2TB→350GB）。需要用所选 7B 模型和序列长度跑一次内存 profiling（如 PyTorch max_memory_allocated / transformers Trainer）来定。","P-A5",low
+UND-3,"Exact throughput (tokens/s) and exact rental cost on an RTX 4090 for a 7B model.",undetermined,,,,"","论文只给 V100 上 GPT-3 175B 的吞吐（32.5/43.1）。需要在真实 4090 上做一次短 benchmark 来定。","P-A6",low
+UND-4,"Optimal rank r and which weight matrices to adapt for a 7B model.",undetermined,,,,"","论文的 rank 研究在 GPT-3（Table 5/6）与 GPT-2（Table 18），且论文自述模型规模与最优 rank 的关系是开放问题（PF-19）。需要在读者任务上做 r=1,2,4,8,16 的小型扫描来定。","P-H1",low
+UND-5,"Whether the paper's exact ratios (3x memory, 10,000x params, 2/3 VRAM) hold at 7B scale.",undetermined,,,,"","这些倍数是在 GPT-3 175B 上测得的。机制应当可迁移，但具体倍数在 7B 上不保证；INF-2/INF-3 已用带假设的算式做了估计。","P-C3,P-C4",low

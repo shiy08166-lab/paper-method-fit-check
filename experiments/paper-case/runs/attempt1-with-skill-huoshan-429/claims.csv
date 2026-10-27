@@ -1,0 +1,55 @@
+claim_id,claim_text,classification,locator,quote,numeric_value,dependency_preconditions,reasoning,confidence
+PF1,LoRA freezes the pretrained weights and injects trainable rank-decomposition matrices into each Transformer layer.,paper-fact,PAGE 1 / Abstract,"We propose Low-Rank Adaptation, or LoRA, which freezes the pre-
+trained model weights and injects trainable rank decomposition matrices into each
+layer of the Transformer architecture, greatly reducing the number of trainable pa-
+rameters for downstream tasks.",,PC-HID-2,,high
+PF2,"Compared to GPT-3 175B fine-tuned with Adam, LoRA reduces trainable parameters 10,000x and GPU memory 3x.",paper-fact,PAGE 1 / Abstract,"Compared to GPT-3 175B fine-tuned with Adam,
+LoRA can reduce the number of trainable parameters by 10,000 times and the
+GPU memory requirement by 3 times.",10000,PC-COMP-3; PC-COMP-4,,high
+PF3,"LoRA trainable-parameter count is |Theta| = 2 * L_LoRA * dmodel * r, where L_LoRA is the number of weight matrices LoRA is applied to.",paper-fact,PAGE 6 / Section 5.1,"The number of trainable parameters is determined by the rank r and the shape of the original weights:
+|Θ| = 2 × ˆLLoRA × dmodel × r, where ˆLLoRA is the number of weight matrices we apply LoRA to.",,PC-HYP-4,,high
+PF4,"The study adapts only attention weights for downstream tasks and freezes MLP modules, leaving MLP/LayerNorm/bias adaptation to future work.",paper-fact,PAGE 5 / Section 4.2,"We limit our study to only adapting the attention weights for downstream
+tasks and freeze the MLP modules (so they are not trained in downstream tasks) both for simplicity
+and parameter-efficiency.",,PC-HYP-2,,high
+PF5,"LoRA's linear design lets trainable matrices be merged with frozen weights, introducing no inference latency compared to a fully fine-tuned model by construction.",paper-fact,PAGE 2 / Section 1,"Our simple linear design allows us to merge the trainable matrices with the frozen weights
+when deployed, introducing no inference latency compared to a fully fine-tuned model, by
+construction.",,PC-HID-3,,high
+PF6,"For GPT-3 175B, the number of trainable parameters can be as small as 0.01% of the full model parameter count.",paper-fact,PAGE 3 / Section 2,"When the pre-trained model is GPT-3 175B, the number of train-
+able parameters |Θ| can be as small as 0.01% of |Φ0|.",,PC-COMP-3; PC-COMP-4,,high
+PF7,"With Adam, LoRA reduces VRAM usage by up to 2/3 for a large Transformer because optimizer states for frozen parameters are not stored.",paper-fact,PAGE 5 / Section 4.2,"For a large Transformer trained with Adam, we reduce that VRAM
+usage by up to 2/3 if r (cid:28) dmodel as we do not need to store the optimizer states for the frozen
+parameters.",,PC-COMP-3; PC-COMP-4; PC-HYP-4,,high
+PF8,"On GPT-3 175B, LoRA reduces training VRAM from 1.2TB to 350GB.",paper-fact,PAGE 5 / Section 4.2,"On GPT-3 175B, we reduce the VRAM consumption during training from 1.2TB to
+350GB.",350,PC-COMP-3; PC-COMP-4,,high
+PF9,"With r=4 and only query/value matrices adapted, GPT-3 checkpoint size drops roughly 10,000x from 350GB to 35MB.",paper-fact,PAGE 5 / Section 4.2,"With r = 4 and only the query and value projection matrices being adapted, the checkpoint
+size is reduced by roughly 10,000× (from 350GB to 35MB)",10000,PC-COMP-3; PC-HYP-2,,high
+PF10,"On GPT-3 175B, LoRA training throughput is 43.1 tokens/s per V100 GPU vs 32.5 tokens/s for full fine-tuning.",paper-fact,PAGE 5 / footnote 5,"For GPT-3 175B, the training throughput for full fine-tuning is 32.5 tokens/s per V100 GPU; with the same
+number of weight shards for model parallelism, the throughput is 43.1 tokens/s per V100 GPU for LoRA.",43.1,PC-COMP-1; PC-COMP-5,,high
+PF11,"For GPT-3, a very low rank (r=1 or 2) suffices even when full rank d is as high as 12,288.",paper-fact,PAGE 2 / Section 1,"a very low rank (i.e., r in Figure 1 can be one or two) suffices even
+when the full rank (i.e., d) is as high as 12,288",12288,PC-HYP-1,,high
+PF12,"On GPT-3 175B, a parameter budget of 18M (about 35MB in FP16) equals r=8 for one attention weight type or r=4 for two types across all 96 layers.",paper-fact,PAGE 10 / Section 7.1,"We set a parameter budget of 18M (roughly 35MB if stored
+in FP16) on GPT-3 175B, which corresponds to r = 8 if we adapt one type of attention weights or
+r = 4 if we adapt two types, for all 96 layers.",18,PC-HYP-1; PC-HYP-4,,high
+PF13,"A rank as small as one suffices for adapting both Wq and Wv in the paper's GPT-3 study, while training Wq alone needs a larger r.",paper-fact,PAGE 10 / Section 7.2,"To our surprise, a
+rank as small as one suffices for adapting both Wq and Wv on these datasets while training Wq alone
+needs a larger r.",,PC-HYP-1; PC-HYP-2,,high
+PF14,Adapting both Wq and Wv gives the best overall performance among the studied attention weight choices.,paper-fact,PAGE 10 / Section 7.1,"Adapting both Wq and
+Wv gives the best performance overall.",,PC-HYP-2,,high
+PF15,"GPT-3 adaptation used AdamW, 2 epochs, batch size 128, and weight decay 0.1.",paper-fact,PAGE 19 / Appendix D.4,"For all GPT-3 experiments, we train using AdamW (Loshchilov & Hutter, 2017) for 2 epochs with
+a batch size of 128 samples and a weight decay factor of 0.1.",,PC-HYP-3,,high
+PF16,The paper uses two LoRA budgets on GPT-3 175B: 4.7M (rq=rv=1 or rv=2) and 37.7M (rq=rv=8 or rq=rk=rv=ro=2).,paper-fact,PAGE 20 / Appendix D.4,"two parameter budgets for LoRA: 4.7M (rq = rv = 1 or rv = 2) and 37.7M (rq = rv = 8
+or rq = rk = rv = ro = 2).",,PC-HYP-1; PC-HYP-2; PC-HYP-4,,high
+PF17,"On low-data MNLI subsets, LoRA achieves better performance than fine-tuning on MNLI-100 and MNLI-Full, and comparable results on MNLI-1k and MNLI-10K.",paper-fact,PAGE 22 / Section F.3,"LoRA achieves better performance than fine-tuning on both
+MNLI-100 and MNLI-Full, and comparable results on MNLI-1k and MNLI-10K considering the
+(±0.3) variance due to random seeds.",,PC-DATA-5,,high
+PF18a,GPT-3 experiments use a sequence length of 384 for one dataset (sentence split across a page break; continuation names WikiSQL on the next page).,paper-fact,PAGE 19 / Appendix D.4,We use a sequence length of 384 for,384,PC-HYP-8,,medium
+PF18b,GPT-3 experiments use sequence length 768 for MNLI and 2048 for SAMSum.,paper-fact,PAGE 20 / Appendix D.4,"768 for MNLI (Williams et al., 2018), and 2048 for SAMSum (Gliwa
+et al., 2019).",768,PC-HYP-8,,high
+INF1,"A 7B-class model with L=32 layers and dmodel=4096, applying LoRA only to Wq and Wv with r=8, has about 4.2M trainable LoRA parameters.",inference,,,,PC-HYP-4; PC-HYP-2,"Inference, not a paper statement. Paper formula: |Theta| = 2 * L_LoRA * dmodel * r. With Wq+Wv adapted, L_LoRA = 2 * L = 64. Assuming a 7B architecture with L=32, dmodel=4096 (LLaMA-7B-style external assumption), |Theta| = 2 * 64 * 4096 * 8 = 4,194,304 ~ 4.2M. If the actual 7B model has different L or dmodel, recompute with the same formula.",medium
+INF2,"On a 24GB card, LoRA on a 7B model plausibly fits but full fine-tuning does not; exact LoRA peak memory still needs measurement on the target setup.",inference,,,,PC-COMP-3; PC-COMP-4; PC-HID-5; PC-HYP-4,"Inference, not a paper statement. Assumptions: BF16 frozen weights = 2 bytes/param; AdamW states = 2*4 bytes/trainable param; gradients = 2 bytes/trainable param. Frozen base: 7e9*2 = 14 GB. LoRA trainable ~4.19M params -> optimizer+gradient ~4.19M*10 ~ 42 MB, negligible. So LoRA baseline ~14 GB + activations; with gradient checkpointing and small seq/batch there is budget left in 24 GB. Full fine-tune: 7e9*(2 weights + 2 grads + 8 Adam states) = 84 GB before activations, which exceeds 24 GB.",medium
+INF3,"For the reader's 7B fine-tune, r=8 on Wq and Wv is a reasonable starting config to sweep, with lower ranks as a fallback for larger sequence length or slower runs.",inference,,,,PC-HYP-1; PC-HYP-2; PF12; PF13; PF14,"Inference. Paper uses r=8 for q/v as a GPT-3 budget (37.7M) and also shows r=1 can suffice for q/v on its tasks; best weight selection is Wq+Wv. A 7B model is smaller, so starting at r=8 q/v is a reasonable adaptation, but the paper does not give a 7B-specific optimum, so r should be swept (e.g. 4/8/16).",medium
+INF4,"To keep a 7B LoRA run inside 24GB, the highest-impact controls are to lower max sequence length (e.g. 512 or 768 rather than 2048), use batch size 1-2, and enable gradient checkpointing.",inference,,,,PC-HYP-8; PC-HID-5,"Inference. Activation memory scales roughly linearly with batch_size * sequence_length (external standard assumption; the paper does not report activation memory bytes). Paper's GPT-3 settings are 384/768/2048 sequence lengths at batch 128; the reader cannot reuse batch 128, so scaling down seq/batch and checkpointing is the concrete change. Exact memory reduction must be measured on the chosen 7B model.",medium
+UND1,The exact peak GPU memory of a target 7B model fine-tuned with LoRA on a 24GB RTX 4090 is not stated in the paper and cannot be read off it.,undetermined,,,,PC-HID-5,"Paper reports only GPT-3 175B VRAM (1.2TB->350GB) on V100; it has no 7B, RTX 4090, or activation-memory figures. Would need: run/measure the chosen 7B model with the chosen framework/precision, or consult framework memory estimators.",high
+UND2,"Whether LoRA's reported gains transfer to the reader's own 8,000-sample English task/domain is not determined by the available material.",undetermined,,,,PC-HID-6,"The paper evaluates GLUE/E2E/DART/WebNLG/WikiSQL/SAMSum (and MNLI low-data subsets), not the reader's unspecified 7B task. Would need: a small pilot run on the reader's 8,000 samples and a matching full-fine-tune/prefix baseline.",high
+UND3,The optimal LoRA hyperparameters for the reader's 7B model are not given in the paper.,undetermined,,,,PC-HYP-3; PC-HYP-1,"Paper provides hyperparameters for GPT-3/GPT-2/RoBERTa/DeBERTa, but no 7B configuration. Would need: a learning rate / rank / epoch / sequence-length sweep on the reader's model and dataset.",high
+UND4,Whether <= $200 of cloud GPU rental is enough for the reader's 7B LoRA experiments cannot be determined from the paper.,undetermined,,,,PC-COMP-5,"Paper gives throughput for GPT-3 on V100 (43.1 tokens/s) and says FT is costly, but gives no dollar figures or cost model. Would need: current cloud GPU pricing and a run-time estimate from a pilot.",high

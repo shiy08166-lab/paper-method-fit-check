@@ -1,0 +1,8 @@
+﻿id,category,value,unit,source_locator,confidence
+P1,compute,24,GB VRAM（1× RTX 4090；可选云卡预算 ≤ $200）,cases/task-paper.md「你的约束」表-算力,high
+P2,model,"7,000,000,000",parameters（7B 级；GPT-2 medium 量级至 7B 量级）,cases/task-paper.md「你的约束」表-模型规模,high
+P3,data,8000,labeled English samples,cases/task-paper.md「你的约束」表-数据,high
+P4,objective,方法机制 + 24GB 单卡可行性判定（不要求复现 GPT-3 175B 数字）,qualitative,cases/task-paper.md「你的约束」表-目标/判定口径,high
+A1,paper-evidence,,,absent: 论文没有 7B 级模型的 LoRA 显存/吞吐实测；实验模型只有 RoBERTa base/large、DeBERTa XXL(1.5B)、GPT-2 M/L(≤774M) 与 GPT-3 175B,absent
+A2,paper-evidence,,,"absent: 论文没有 8,000 样本的 LoRA-vs-全微调对比；低数据研究只用 MNLI-100/1k/10k",absent
+A3,paper-evidence,,,absent: 论文没有 RTX 4090/24GB 单卡显存实测；硬件只有 NVIDIA Tesla V100 与 Quadro RTX8000,absent

@@ -1,0 +1,163 @@
+[
+  {
+    "id": "PF-1",
+    "kind": "claim-quote",
+    "locator": "ABSTRACT, PAGE 1",
+    "quote": "We propose Low-Rank Adaptation, or LoRA, which freezes the pre-\ntrained model weights and injects trainable rank decomposition matrices into each\nlayer of the Transformer architecture, greatly reducing the number of trainable pa-\nrameters for downstream tasks.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-2",
+    "kind": "claim-quote",
+    "locator": "ABSTRACT, PAGE 1",
+    "quote": "Compared to GPT-3 175B fine-tuned with Adam,\nLoRA can reduce the number of trainable parameters by 10,000 times and the\nGPU memory requirement by 3 times.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-3",
+    "kind": "claim-quote",
+    "locator": "ABSTRACT, PAGE 1",
+    "quote": "Compared to GPT-3 175B fine-tuned with Adam,\nLoRA can reduce the number of trainable parameters by 10,000 times and the\nGPU memory requirement by 3 times.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-4",
+    "kind": "claim-quote",
+    "locator": "§4.2, PAGE 5",
+    "quote": "On GPT-3 175B, we reduce the VRAM consumption during training from 1.2TB to\n350GB.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-5",
+    "kind": "claim-quote",
+    "locator": "§4.2, PAGE 5",
+    "quote": "With r = 4 and only the query and value projection matrices being adapted, the checkpoint\nsize is reduced by roughly 10,000× (from 350GB to 35MB)",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-6",
+    "kind": "claim-quote",
+    "locator": "§4.2, PAGE 5",
+    "quote": "We also observe a 25% speedup\nduring training on GPT-3 175B compared to full fine-tuning",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-7",
+    "kind": "claim-quote",
+    "locator": "fn 5, PAGE 5",
+    "quote": "For GPT-3 175B, the training throughput for full fine-tuning is 32.5 tokens/s per V100 GPU; with the same\nnumber of weight shards for model parallelism, the throughput is 43.1 tokens/s per V100 GPU for LoRA.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-8",
+    "kind": "claim-quote",
+    "locator": "§5.1, PAGE 6",
+    "quote": "|Θ| = 2 × ˆLLoRA × dmodel × r, where ˆLLoRA is the number of weight matrices we apply LoRA to.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-9",
+    "kind": "claim-quote",
+    "locator": "INTRODUCTION, PAGE 2",
+    "quote": "we show that a very low rank (i.e., r in Figure 1 can be one or two) suffices even\nwhen the full rank (i.e., d) is as high as 12,288",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-10",
+    "kind": "claim-quote",
+    "locator": "§4, PAGE 4",
+    "quote": "The principles outlined here apply\nto any dense layers in deep learning models",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-11",
+    "kind": "claim-quote",
+    "locator": "§8, PAGE 12",
+    "quote": "the proposed principles are generally applicable to any neural\nnetworks with dense layers",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-12",
+    "kind": "claim-quote",
+    "locator": "§5.1, PAGE 6",
+    "quote": "we only apply LoRA to Wq and Wv in most experiments for simplicity",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-13",
+    "kind": "claim-quote",
+    "locator": "§D.4, PAGE 20",
+    "quote": "present two parameter budgets for LoRA: 4.7M (rq = rv = 1 or rv = 2) and 37.7M (rq = rv = 8\nor rq = rk = rv = ro = 2).",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-14",
+    "kind": "claim-quote",
+    "locator": "§D.4, PAGE 19",
+    "quote": "For all GPT-3 experiments, we train using AdamW (Loshchilov & Hutter, 2017) for 2 epochs with\na batch size of 128 samples and a weight decay factor of 0.1.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-15",
+    "kind": "claim-quote",
+    "locator": "§D.4, PAGE 20",
+    "quote": "WikiSQL (Zhong et al., 2017), 768 for MNLI (Williams et al., 2018), and 2048 for SAMSum (Gliwa\net al., 2019).",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-16",
+    "kind": "claim-quote",
+    "locator": "§F.3, PAGE 22",
+    "quote": "we randomly\nsample 100, 1k and 10k training examples from the full training set of MNLI to form the low-data\nMNLI-n tasks.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-17",
+    "kind": "claim-quote",
+    "locator": "§F.3, PAGE 22",
+    "quote": "LoRA achieves better performance than fine-tuning on both\nMNLI-100 and MNLI-Full, and comparable results on MNLI-1k and MNLI-10K considering the\n(±0.3) variance due to random seeds.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-18",
+    "kind": "claim-quote",
+    "locator": "fn 6, PAGE 10",
+    "quote": "if the downstream task were in a different language than the one used for pre-training, retraining\nthe entire model (similar to LoRA with r = dmodel) could certainly outperform LoRA with a small r.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-19",
+    "kind": "claim-quote",
+    "locator": "§H.2, PAGE 24",
+    "quote": "the relationship between model size and the optimal rank for adaptation is still an open\nquestion",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-20",
+    "kind": "claim-quote",
+    "locator": "§4.1, PAGE 4",
+    "quote": "we can explicitly compute and\nstore W = W0 + BA and perform inference as usual",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-21",
+    "kind": "claim-quote",
+    "locator": "§5.3, PAGE 7",
+    "quote": "fully\nfine-tuned DeBERTa XXL (1.5B) on GLUE",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-22",
+    "kind": "claim-quote",
+    "locator": "§5.5, PAGE 8",
+    "quote": "we scale up to GPT-3 with 175 billion parameters",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "PF-23",
+    "kind": "claim-quote",
+    "locator": "§5.2, PAGE 7",
+    "quote": "RoBERTa base\n(125M) and RoBERTa large (355M)",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  }
+]

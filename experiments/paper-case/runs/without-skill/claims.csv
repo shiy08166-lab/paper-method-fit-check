@@ -1,0 +1,42 @@
+﻿claim_id,claim_text,classification,locator,quote,numeric_value,dependency_preconditions,reasoning,confidence
+F1,LoRA 冻结预训练权重、注入可训练的低秩分解矩阵，从而大幅减少下游任务的可训练参数。,paper-fact,PAGE 1 (Abstract),"We propose Low-Rank Adaptation, or LoRA, which freezes the pre-
+trained model weights and injects trainable rank decomposition matrices into each
+layer of the Transformer architecture, greatly reducing the number of trainable pa-
+rameters for downstream tasks.",,,方法机制的直接陈述，原文无数字。,high
+F2,"相比用 Adam 全微调 GPT-3 175B，LoRA 把可训练参数量减少 10,000 倍、GPU 显存需求降低 3 倍（摘要口径）。",paper-fact,PAGE 1 (Abstract),"Compared to GPT-3 175B fine-tuned with Adam,
+LoRA can reduce the number of trainable parameters by 10,000 times and the
+GPU memory requirement by 3 times.",10000,,"10,000 倍为摘要口径；3 倍与正文 1.2TB→350GB（≈3.4×）存在舍入口径差异，见 F3a/U4 说明。",high
+F3a,GPT-3 175B 上，LoRA 把训练期显存占用从 1.2TB 降到 350GB。,paper-fact,PAGE 5 §4.2,"On GPT-3 175B, we reduce the VRAM consumption during training from 1.2TB to
+350GB.",350,,350GB/175B=2 字节/参数，是下文 7B 冻结权重 14GB 的锚点。,high
+F3b,对用 Adam 训练的大 Transformer，LoRA 最多把 VRAM 占用降低 2/3（约降到 1/3），因为冻结参数不需要保存优化器状态。,paper-fact,PAGE 5 §4.2,"For a large Transformer trained with Adam, we reduce that VRAM
+usage by up to 2/3 if r (cid:28) dmodel as we do not need to store the optimizer states for the frozen
+parameters.",,,分数 2/3 不作 numeric_value（避免自检把 2、3 拆开误判），数字见引文。,high
+F4,"r=4 且只适配 query/value 投影时，checkpoint 从 350GB 降到 35MB，约 10,000 倍。",paper-fact,PAGE 5 §4.2,"With r = 4 and only the query and value projection matrices being adapted, the checkpoint
+size is reduced by roughly 10,000× (from 350GB to 35MB)4.",10000,,"350GB/35MB=10,000，与引文中 10,000× 一致。",high
+F5,LoRA 可训练参数量公式：|Θ| = 2 × L̂_LoRA × d_model × r。,paper-fact,PAGE 6 §5.1,"|Θ| = 2 × ˆLLoRA × dmodel × r, where ˆLLoRA is the number of weight matrices we apply LoRA to.",,,公式本身不填 numeric_value；是 I2 换算的核心依据。,high
+F6,论文大多数实验只对 Wq 与 Wv 应用 LoRA。,paper-fact,PAGE 6 §5.1,"As mentioned in Section 4.2, we only apply LoRA to Wq and Wv in most experiments for simplicity.",,,,high
+F7,训练时 W0 冻结、不收梯度，A 与 B 是可训练参数。,paper-fact,PAGE 4 §4.1,"During training, W0 is frozen and does not receive gradient updates, while A and B contain trainable
+parameters.",,,,high
+F8,部署时把 LoRA 权重合并为 W = W0 + BA，推理与全微调模型相比不增加延迟。,paper-fact,PAGE 4 §4.1,"When deployed in production, we can explicitly compute and
+store W = W0 + BA and perform inference as usual.",,,,high
+F9,"GPT-3 175B 上低秩 r 取 1 或 2 已足够，即使满秩 d 高达 12,288。",paper-fact,PAGE 2 §1,"we show that a very low rank (i.e., r in Figure 1 can be one or two) suffices even
+when the full rank (i.e., d) is as high as 12,288",12288,,"12,288 是 GPT-3 的 hidden 维度，支撑 7B 上小 r 也大概率够用的类比。",high
+F10a,论文正文称 GPT-3 175B 训练比全微调快 25%（注意与脚注吞吐不一致，见 U4）。,paper-fact,PAGE 5 §4.2,"We also observe a 25% speedup
+during training on GPT-3 175B compared to full fine-tuning5",25,,25% 与脚注 43.1/32.5≈+32.6% 对不上，两处都保留为原文。,high
+F10b,脚注：GPT-3 175B 全微调吞吐 32.5 tokens/s/V100，LoRA 为 43.1 tokens/s/V100。,paper-fact,PAGE 5 §4.2 footnote 5,"For GPT-3 175B, the training throughput for full fine-tuning is 32.5 tokens/s per V100 GPU; with the same
+number of weight shards for model parallelism, the throughput is 43.1 tokens/s per V100 GPU for LoRA.",43.1,,43.1/32.5≈1.326，即 +32.6%；与正文 25% 不一致（U4）。,high
+F11,GPT-3 实验统一用 AdamW、2 epochs、batch size 128、weight decay 0.1；WikiSQL 序列长度 384。,paper-fact,PAGE 19 §D.4,"For all GPT-3 experiments, we train using AdamW (Loshchilov & Hutter, 2017) for 2 epochs with
+a batch size of 128 samples and a weight decay factor of 0.1. We use a sequence length of 384 for",128,,batch 128 是多卡设定；7B 单卡需减小 batch，见 I2。,high
+F12,GPT-3 各任务序列长度：MNLI 768、SAMSum 2048（WikiSQL 的 384 见 PAGE 19）。,paper-fact,PAGE 20 §D.4,"WikiSQL (Zhong et al., 2017), 768 for MNLI (Williams et al., 2018), and 2048 for SAMSum (Gliwa",2048,,序列长度影响激活显存；7B 上需按此缩 batch/开检查点，见 I2。,high
+F13,GPT-3 175B 低数据实验：LoRA 在 MNLI-100 与 MNLI-Full 优于全微调，在 MNLI-1k 与 MNLI-10K 与全微调相当。,paper-fact,PAGE 22 §F.3,"LoRA achieves better performance than fine-tuning on both
+MNLI-100 and MNLI-Full, and comparable results on MNLI-1k and MNLI-10K considering the
+(±0.3) variance due to random seeds.",,,"8,000 样本落在 1k 与 10k 之间，见 I3。",high
+F14,论文所有实验使用 NVIDIA Tesla V100。,paper-fact,PAGE 5 §5,We use NVIDIA Tesla V100 for all experiments.,,,硬件口径为 V100/Quadro RTX8000，无 RTX 4090，见 A3。,high
+I1,7B 模型全微调（Adam/AdamW 混合精度）在 24 GB 单卡上装不下（尚未计入激活）。,inference,,,,P1;P2,算式（非论文声明）：Memory_full ≈ P×(2+2+8) 字节/参数，P=7×10^9。2=权重 fp16、2=梯度 fp16、8=AdamW 的 fp32 m/v 两矩（假设，不含 fp32 master 权重与激活）。得 7e9×12=84 GB（>24 GB）；若再加 fp32 master 权重 4B/参数则 112 GB。交叉验证（论文锚点）：175B 全微调 1.2TB ⇒ 1.2e12/175e9≈6.9 B/参数（PAGE 5），同比例 7e9×6.9≈48 GB，仍 >24 GB。参数来源：2/2/8 字节为标准 AdamW 混合精度假设；6.9 B/参数由论文 1.2TB/175B 导出。假设：7B=7×10^9 参数的 dense decoder-only 模型。,medium
+I2,7B 模型 LoRA 微调（冻结 fp16 权重 + r=8 适配 Wq/Wv）的静态显存约 14 GB + 可忽略的优化器状态，24 GB 单卡有条件可行，但必须用 bf16/fp16、梯度检查点、小 batch 并实测激活峰值。,inference,,,,P1;P2,"算式（非论文声明）：Memory_LoRA ≈ P×2（冻结 fp16 权重）+ |Θ|×(2+2+8)（可训练参数的梯度+Adam 状态）+ 激活。|Θ|=2×L̂_LoRA×d_model×r（论文公式，PAGE 6）。取 L̂_LoRA=2×32=64（Wq+Wv，32 层）、d_model=4096、r=8：|Θ|=2×64×4096×8=4,194,304≈4.2M（假设 32 层/4096 是 7B dense 模型典型配置，非论文数值）。冻结权重=7e9×2=14 GB（锚点：论文 350GB/175B=2 B/参数，PAGE 5）。可训练部分=4.19e6×12≈50 MB≈0.05 GB。剩给激活≈24−14−0.05≈9.9 GB；能否装下取决于 batch/序列长度/是否梯度检查点（论文未给 7B 激活值，需实测）。假设：bf16/fp16、梯度检查点、batch≤4、序列长度按需≤2048 并实测。",medium
+I3,"用户 8,000 条英文样本落在论文 MNLI-1k 与 MNLI-10k 之间，LoRA 与全微调质量相当的结论可外推为「够用」，但论文只在 GPT-3 175B/MNLI 上验证过。",inference,,,,P3,"8,000 在 1,000 与 10,000 之间；论文 F13（PAGE 22）显示该区间 LoRA 与全微调相当，但那是 GPT-3 175B 的 MNLI，不是 7B 或用户自有任务。外推是推断，需在 7B 上小规模验证。",medium
+I4,论文的 3 倍显存节省是相对 GPT-3 175B 全微调；迁移到 7B 时节省比例会因激活占比不同而变化，不能直接套用 3 倍。,inference,,,,P1;P2,论文 1.2TB→350GB 的 3.4× 缩减主体是「消除冻结参数的优化器状态」（PAGE 5）。7B 的优化器状态占比与 175B 不同，且激活显存占比随 batch/序列长度变化，因此 3× 不能直接搬用到 24GB 场景，须按 I2 公式重算。,medium
+U1,Table 3 中 GPT-2 medium/large 的可训练参数量（354.92M / 774.03M）无法从压平的抽取文本可靠确定行列归属。,undetermined,,,,,source_manifest 明示表格被压平为单元格序列、行列身份不保留；Table 3 片段中数字与 Method 行交错出现，无法可靠判定 354.92M/774.03M 属于哪一行哪一列，故不按出现顺序猜测、降级。需要回原始 PDF 重新排版解析或查论文 LaTeX 源才能定。,low
+U2,Table 4 中 GPT-3 各方法的可训练参数量/准确率（如 4.7M、37.7M、73.4 等）无法从压平文本可靠归行归列。,undetermined,,,,,Table 4 同为压平单元格序列，行列身份丢失；引用其中任何单个数字都无法证明它对应哪一行哪一列，故不猜、降级。需要原始 PDF/LaTeX 源或重新排版抽取才能确定。,low
+U3,7B 模型在 24 GB 单卡 LoRA 微调时的激活显存峰值，论文未给出。,undetermined,,,,P1;P2,论文只给 GPT-3 175B 总显存（1.2TB→350GB，PAGE 5）与 V100/Quadro RTX8000 硬件，没有 7B 激活显存或 24GB 单卡实测。需要：在 RTX 4090 上实测，或用 PyTorch memory snapshot / transformers 的显存 profiler 量化激活峰值。,low
+U4,论文正文的 25% 加速与脚注吞吐 43.1/32.5 ≈ +32.6% 不一致，无法确定最终口径。,undetermined,,,,,正文 25%（F10a，PAGE 5）与脚注 32.5→43.1 tokens/s（F10b，PAGE 5）即 43.1/32.5≈1.326（+32.6%）对不上。保留两处原文、不抹平；需要作者澄清或按 32.5/43.1 重算才算定。,low

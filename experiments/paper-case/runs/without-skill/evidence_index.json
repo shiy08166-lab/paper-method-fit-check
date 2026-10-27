@@ -1,0 +1,114 @@
+[
+  {
+    "id": "F1",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 1 (Abstract)",
+    "quote": "We propose Low-Rank Adaptation, or LoRA, which freezes the pre-\ntrained model weights and injects trainable rank decomposition matrices into each\nlayer of the Transformer architecture, greatly reducing the number of trainable pa-\nrameters for downstream tasks.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F2",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 1 (Abstract)",
+    "quote": "Compared to GPT-3 175B fine-tuned with Adam,\nLoRA can reduce the number of trainable parameters by 10,000 times and the\nGPU memory requirement by 3 times.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F3a",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 5 §4.2",
+    "quote": "On GPT-3 175B, we reduce the VRAM consumption during training from 1.2TB to\n350GB.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F3b",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 5 §4.2",
+    "quote": "For a large Transformer trained with Adam, we reduce that VRAM\nusage by up to 2/3 if r (cid:28) dmodel as we do not need to store the optimizer states for the frozen\nparameters.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F4",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 5 §4.2",
+    "quote": "With r = 4 and only the query and value projection matrices being adapted, the checkpoint\nsize is reduced by roughly 10,000× (from 350GB to 35MB)4.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F5",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 6 §5.1",
+    "quote": "|Θ| = 2 × ˆLLoRA × dmodel × r, where ˆLLoRA is the number of weight matrices we apply LoRA to.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F6",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 6 §5.1",
+    "quote": "As mentioned in Section 4.2, we only apply LoRA to Wq and Wv in most experiments for simplicity.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F7",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 4 §4.1",
+    "quote": "During training, W0 is frozen and does not receive gradient updates, while A and B contain trainable\nparameters.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F8",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 4 §4.1",
+    "quote": "When deployed in production, we can explicitly compute and\nstore W = W0 + BA and perform inference as usual.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F9",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 2 §1",
+    "quote": "we show that a very low rank (i.e., r in Figure 1 can be one or two) suffices even\nwhen the full rank (i.e., d) is as high as 12,288",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F10a",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 5 §4.2",
+    "quote": "We also observe a 25% speedup\nduring training on GPT-3 175B compared to full fine-tuning5",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F10b",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 5 §4.2 footnote 5",
+    "quote": "For GPT-3 175B, the training throughput for full fine-tuning is 32.5 tokens/s per V100 GPU; with the same\nnumber of weight shards for model parallelism, the throughput is 43.1 tokens/s per V100 GPU for LoRA.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F11",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 19 §D.4",
+    "quote": "For all GPT-3 experiments, we train using AdamW (Loshchilov & Hutter, 2017) for 2 epochs with\na batch size of 128 samples and a weight decay factor of 0.1. We use a sequence length of 384 for",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F12",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 20 §D.4",
+    "quote": "WikiSQL (Zhong et al., 2017), 768 for MNLI (Williams et al., 2018), and 2048 for SAMSum (Gliwa",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F13",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 22 §F.3",
+    "quote": "LoRA achieves better performance than fine-tuning on both\nMNLI-100 and MNLI-Full, and comparable results on MNLI-1k and MNLI-10K considering the\n(±0.3) variance due to random seeds.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  },
+  {
+    "id": "F14",
+    "kind": "paper-fact-quote",
+    "locator": "PAGE 5 §5",
+    "quote": "We use NVIDIA Tesla V100 for all experiments.",
+    "sha256": "a8f387d278213370e3b7705539545292188a7c44ba185875f83c373a36b5984d"
+  }
+]

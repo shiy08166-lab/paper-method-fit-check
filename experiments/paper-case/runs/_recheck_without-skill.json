@@ -1,0 +1,21 @@
+{
+  "schema_version": "paper-method-fit-check/agreement/v1",
+  "source_file": "materials\\source.txt",
+  "source_sha256_note": "建议同时记录 source 文件的 SHA-256，便于评审核对",
+  "tolerance": 0.01,
+  "claims_checked": 24,
+  "findings": [],
+  "findings_count": 0,
+  "all_passed": true,
+  "preconditions": {
+    "total": 7,
+    "categories_present": [
+      "compute",
+      "data",
+      "model",
+      "objective",
+      "paper-evidence"
+    ],
+    "rows_without_locator_or_absent": []
+  }
+}

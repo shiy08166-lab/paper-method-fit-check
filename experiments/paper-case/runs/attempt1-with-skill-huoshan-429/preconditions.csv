@@ -1,0 +1,26 @@
+id,category,value,unit,source_locator,confidence
+PC-COMP-1,compute,NVIDIA Tesla V100 (all experiments),GPU,PAGE 5 / Section 5,stated
+PC-COMP-2,compute,NVIDIA Quadro RTX8000 (adapter-latency study only),GPU,PAGE 4 / Table 1 and Appendix B,stated
+PC-COMP-3,compute,350,GB VRAM during LoRA training (GPT-3 175B),PAGE 5 / Section 4.2,stated
+PC-COMP-4,compute,1.2,TB VRAM full fine-tuning (GPT-3 175B),PAGE 5 / Section 4.2,stated
+PC-COMP-5,compute,43.1 (LoRA) vs 32.5 (full fine-tune),tokens/s per V100 GPU (GPT-3),PAGE 5 / footnote 5,stated
+PC-DATA-1,data scale,"GLUE, E2E NLG, DART, WebNLG, WikiSQL, SAMSum",datasets evaluated,PAGE 5 / Section 5 and Appendix C,stated
+PC-DATA-2,data scale,"56,355 / 8,421",WikiSQL train/validation examples,PAGE 18 / Appendix C,stated
+PC-DATA-3,data scale,"14,732 / 819",SAMSum train/test examples,PAGE 18 / Appendix C,stated
+PC-DATA-4,data scale,"42,000 / 4,600 / 4,600 (approx.)",E2E train/val/test examples,PAGE 18 / Appendix C,stated
+PC-DATA-5,data scale,"100, 1k, 10k sampled from full MNLI training set",low-data training examples,PAGE 22 / Section F.3,stated
+PC-HYP-1,hyperparameters,"r = 1 or 2 for Wq/Wv (with d up to 12,288)",rank,PAGE 2 / Section 1,stated
+PC-HYP-2,hyperparameters,only Wq and Wv adapted in most experiments; MLP frozen,adaptation target,PAGE 5-6 / Sections 4.2 and 5.1,stated
+PC-HYP-3,hyperparameters,"2 epochs, batch size 128, weight decay 0.1, AdamW (GPT-3)",training setup,PAGE 19 / Appendix D.4,stated
+PC-HYP-4,hyperparameters,|Theta| = 2 * L_LoRA * dmodel * r,trainable parameter formula,PAGE 6 / Section 5.1,stated
+PC-HYP-5,hyperparameters,alpha/r scaling; alpha set to first r tried and not tuned,scaling,PAGE 4 / Section 4.1,stated
+PC-HYP-6,hyperparameters,"A: random Gaussian init, B: zero init",initialization,PAGE 4 / Section 4.1,stated
+PC-HYP-7,hyperparameters,128 (RoBERTa GLUE restricted runs),sequence length,PAGE 18 / Appendix D.1,stated
+PC-HYP-8,hyperparameters,"384 (WikiSQL), 768 (MNLI), 2048 (SAMSum)",sequence length (GPT-3),PAGE 19-20 / Appendix D.4,stated
+PC-HID-1,hidden assumptions,Task adaptation delta W has low intrinsic rank (hypothesis; supported on studied tasks),assumption,PAGE 2 / Section 1,stated
+PC-HID-2,hidden assumptions,Pre-trained weights stay frozen and are shared across tasks,assumption,PAGE 1 / Abstract and Section 4.1,stated
+PC-HID-3,hidden assumptions,"Absorbing A,B into W removes inference latency",mechanism,PAGE 4-5 / Section 4.1,stated
+PC-HID-4,hidden assumptions,Small r may not suffice when downstream task/domain differs from pre-training,limitation,PAGE 10 / footnote 6,stated
+PC-HID-5,hidden assumptions,not stated,GB peak VRAM for a 7B model on RTX 4090,N/A - paper gives only GPT-3 175B VRAM (1.2TB to 350GB) on V100; no 7B or RTX 4090 numbers,absent
+PC-HID-6,hidden assumptions,not stated,"transfer to reader's own 8,000-sample English task/domain","N/A - paper evaluates GLUE/E2E/DART/WebNLG/WikiSQL/SAMSum, not the reader's domain",absent
+PC-HID-7,hidden assumptions,LoRA package and PyTorch integration released (github.com/microsoft/LoRA),implementation availability,PAGE 1 / Abstract,stated
