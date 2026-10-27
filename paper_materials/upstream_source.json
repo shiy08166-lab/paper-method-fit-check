@@ -1,0 +1,33 @@
+{
+  "schema_version": "paper-method-fit-check/upstream-source/v1",
+  "upstream_project": "karpathy/nanochat",
+  "license": "MIT",
+  "origin_url": "https://github.com/karpathy/nanochat/blob/master/README.md",
+  "raw_url": "https://raw.githubusercontent.com/karpathy/nanochat/master/README.md",
+  "sha256": "1ac00d0999b0bebb397f596f38dd2d6a218a60994775a488f9ef3cc93484cf00",
+  "bytes": 16800,
+  "line_ending": "CRLF",
+  "collected_at": "2026-10-23T06:42:53Z",
+  "package_contents": {
+    "shipped": [
+      "nanochat_README_leaderboard_upstream.md"
+    ],
+    "not_shipped": "上游 README 全文（16,800 B）未随包：它与本包的损坏件约 90% 重复，按赛题「去掉重复副本」处理。",
+    "why_still_shipped_excerpt": "leaderboard 一节是**原表**，是评审核对「受损单元格不是抄回来的」唯一直接证据，故原样保留（逐字节切片）。"
+  },
+  "prose_equality_proof": {
+    "claim": "损坏件除 leaderboard 章节外的正文行集合 = 上游同口径行集合，去掉合成声明块带来的那一行 `---` 后完全相同",
+    "definition": "对两份文件：去 leaderboard 章节 → 去掉以 `|` 开头的表格行 → 取非空行的 strip() 集合 → 排序 → 用 \\n 连接 → UTF-8 → SHA-256",
+    "upstream_prose_set_sha256": "6583e1c786f4e08008927907ee5f1dc837fb5aa37c53b44ee004ffddedf86a38",
+    "material_prose_set_sha256": "ff19d67e13cebe0bda7a12552dd9551d175fbe434fe0a5bb4296b522a8981f2a",
+    "material_prose_set_minus_synthetic_dashes_sha256": "6583e1c786f4e08008927907ee5f1dc837fb5aa37c53b44ee004ffddedf86a38",
+    "difference": "两侧集合恰好差 1 行：合成声明块自带的 `---`（该行在上游无对应）",
+    "run_time_record": "runs/C-with-3/logs/line_provenance.json（运行期记录：exclude_table_lines_only → material_lines=211 / clean_lines=208 / unmatched=1（L2 `---`））",
+    "how_to_reproduce": [
+      "python3 runs/C-with-3/scripts/line_provenance.py --material paper_materials/nanochat_README_table_corrupted.md --clean <上游 README.md> --out /tmp/lp.json",
+      "期望：exclude_table_lines_only: material_lines=211 clean_lines=208 unmatched=1 (L2 ---) clean_only=0",
+      "上游 README 用本文件记录的 raw_url 取回后校验 sha256 一致即可"
+    ],
+    "note": "上游 leaderboard 表格在运行期从未被读取、打印或落盘（见 runs/C-with-3/logs/run_log.md），因此受损单元格的「无法确定」未被上游答案污染。"
+  }
+}

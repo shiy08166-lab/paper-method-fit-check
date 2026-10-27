@@ -1,0 +1,148 @@
+{
+  "schema_version": "paper-method-fit-check/science-space-provenance/v1",
+  "platform": {
+    "name": "玻尔科学空间",
+    "surface": "网页端 www.bohrium.com，会话面板 /agent-widget/",
+    "session_id": "35822cccea564cf59cf21",
+    "session_url": "https://www.bohrium.com/agent-widget/35822cccea564cf59cf21",
+    "run_location": "玻尔云端",
+    "workspace_dir": "/bohr-workspace",
+    "python": "3.12.4",
+    "model": "not disclosed in captured UI",
+    "cost": "not disclosed in captured UI"
+  },
+  "captured_files": [
+    {
+      "file": "science-space/prompt-turn1.md",
+      "sha256": "cee9527639468184d0a125b81854ddef19958bdd28d1b260860ee4a943ece685",
+      "what": "第 1 轮实际提示词全文"
+    },
+    {
+      "file": "science-space/prompt-turn2.md",
+      "sha256": "88f5408ad65ceb862fcfe610da0b0d65fdca5904af3c4c417f115dd0d5ed785b",
+      "what": "第 2 轮实际提示词全文"
+    },
+    {
+      "file": "science-space/answer-turn1.md",
+      "sha256": "2bd8b7638658d203b07337b2a4014f1a80cd1691eaac6653077a13649d3aa115",
+      "what": "第 1 轮完整最终答案"
+    },
+    {
+      "file": "science-space/answer-turn2.md",
+      "sha256": "fb2c8f29ccc21489ccf2a39205fa16677bb4abf0ab3c101ec6331bb66ed6ac5a",
+      "what": "第 2 轮完整最终答案（R-01…R-16）"
+    },
+    {
+      "file": "science-space/author-verification-cites.csv",
+      "what": "16 处引用的机器可查复核结果"
+    }
+  ],
+  "inputs_uploaded_to_cloud": [
+    {
+      "file": "SKILL.md",
+      "bytes": 13291,
+      "sha256": "7ec803cb2f547c340515e3e5a0e04cc447d5b4348e7585e892d41d8fb35d79f3"
+    },
+    {
+      "file": "task-C.md",
+      "bytes": 4184,
+      "sha256": "e364bf2a641b4899b3c6b483a1d0cee11333fa12901ba8e43140a47988245ae8"
+    },
+    {
+      "file": "material-corrupted.md",
+      "bytes": 17623,
+      "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+    },
+    {
+      "file": "check_agreement.py",
+      "bytes": 7322,
+      "sha256": "1f1ee51288dc01d1f88ba95d532987a7f2d668a6d66ac3b72951950371ab0f2a"
+    },
+    {
+      "note": "云端读到的任务书 / 材料 / 自检脚本与包内冻结输入**逐字节一致**；唯一差别是 Skill 用 v1.1（v1.0 + 第 7 步命令补 --source，见 tests/test_skill_step7.py）。"
+    }
+  ],
+  "cloud_deliverables_not_packaged": {
+    "note": "云端工作区内的产物文件本体未随包（赛题文本上限）；其**结论字段**逐字见于 science-space/answer-turn1.md 与 answer-turn2.md，**字节数与完整 SHA-256** 见本文件，**12 条 paper-fact 的逐字引文 + 作者逐条命中复核** 见 science-space/cloud_claims_paperfact.csv。第 3 轮（取证轮）完整答复 6,153 B 未随包，实质内容已按上表转成可核验形式。",
+    "files": [
+      "preconditions.csv（14 条 / 3 条 absent）、claims.csv（22 条 = 12/5/5）、evidence_index.json（12 条引文）、verdict.md（四段 + 异常处理对照 + 失败留痕）、logs/agreement.json（claims_checked=22 / findings_count=0 / all_passed=true）",
+      "logs/claims_v1_draft.csv 与 logs/agreement_v1.json（第 1 版草稿与报告，保留未删）、logs/quote_check_v2.json（模型自加的「命中恰好 1 次」自检）、cases/constraints.md 与 scripts/build_deliverables.py（模型自己的生成脚本）"
+    ],
+    "sha256_prefixes_reported_by_cloud": {
+      "claims.csv": "79cfb6636ac5d10c2707c62f2d6f4deb66090b373fe548e3589aafbe1a67b52a",
+      "verdict.md": "43ab0c1081ee0f89bdadccc5a1a01fc3d838f0fc70621bc1600e66f872e69953"
+    },
+    "files_with_bytes_and_sha256": [
+      {
+        "file": "preconditions.csv",
+        "bytes": 2117,
+        "sha256": "b3caa17b69cb4b1182348885679149fd366b0241f0969db0e2118ca1f339950f"
+      },
+      {
+        "file": "claims.csv",
+        "bytes": 8466,
+        "sha256": "79cfb6636ac5d10c2707c62f2d6f4deb66090b373fe548e3589aafbe1a67b52a"
+      },
+      {
+        "file": "evidence_index.json",
+        "bytes": 4642,
+        "sha256": "d162e76e1c801bbc1244bb7dff5d7f6be323f241b02f98ef041af2a693d142b9"
+      },
+      {
+        "file": "verdict.md",
+        "bytes": 14034,
+        "sha256": "43ab0c1081ee0f89bdadccc5a1a01fc3d838f0fc70621bc1600e66f872e69953"
+      },
+      {
+        "file": "logs/agreement.json",
+        "bytes": 2359,
+        "sha256": "d49527312346987e126b372f161cf00c6ff5d2307ddacd2bdcd58d6d603c7e35"
+      },
+      {
+        "file": "logs/quote_check_v2.json",
+        "bytes": 228,
+        "sha256": "9662fbee9e7e7718fdc7e98b557ba6e8019145a5dc5e035f1811f4d3a18b9d81"
+      }
+    ]
+  },
+  "network_channel_test_in_cloud": [
+    {
+      "channel": "ghproxy.net → raw.githubusercontent.com",
+      "result": "http=200 size=17623 sha256 matches"
+    },
+    {
+      "channel": "api.github.com /contents",
+      "result": "timeout after 30s (curl rc=28)"
+    },
+    {
+      "channel": "cdn.jsdelivr.net/gh",
+      "result": "http=301 (redirect not followed without -L)"
+    }
+  ],
+  "declared_limits": [
+    "未运行训练、未下载数据集、未安装 PyTorch；联网仅限 3 条取件通道探测（材料靠附件挂载）。",
+    "模型名称与调用成本：平台界面未披露，故不写。",
+    "云端 claims.csv 的 12 条 paper-fact 引文未由作者逐条独立复核（该文件未随包）；作者复核了云端答复正文里的 16 处片段与行号。"
+  ],
+  "author_independent_check": {
+    "what": "作者用包内权威材料（SHA-256 64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c，17,623 B，CRLF）逐条复核云端 claims.csv 的 12 条 paper-fact 引文",
+    "file": "science-space/cloud_claims_paperfact.csv",
+    "result": "12/12 命中且按云端给出的行号定位正确",
+    "note": "第 3 轮答复正文里另有一处用 `...` 缩写的引文（非逐字），已在 author-verification.md §2 记录。"
+  },
+  "screenshots": [
+    {
+      "file": "science-space/reader-final.png",
+      "what": "玻尔科学空间会话界面截图（第 3 轮答复中的 12 条 paper-fact 引文与其行号）",
+      "crop_note": "已裁掉底部账号区（个人头像与账号名），其余为界面原样"
+    }
+  ],
+  "control_run": {
+    "session_id": "3f8b9c490d384432b0a65",
+    "what": "同条件对照：同一平台、同一材料、同一任务书、同一交付物契约、同一个自检脚本，**唯一变量是没有 SKILL.md**",
+    "prompt": "science-space/prompt-control-without-skill.md",
+    "answer": "science-space/answer-control-without-skill.md",
+    "result": "结论词同义；33 条（22/5/6）vs 22 条（12/5/5）；checker 首次即 0 标记；5/5；同样撞上 CRLF 行号坑；第一版负控同样无效；唯一差别是它把受损表的一格指派成了 CORE",
+    "conclusion": "**没有证据说 Skill 提效**；只测到一处差别。设计与口径见 docs/control_experiment.md"
+  }
+}

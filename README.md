@@ -39,7 +39,7 @@
 | 标记 | 含义 | 可核查方式 |
 |---|---|---|
 | **【原文】** | 材料（**合成/损坏件**）的**逐字**内容 | 给出行号与逐字引文；在 `paper_materials/` 的快照里搜引文即可命中 |
-| **【AI】** | 模型（MiniMax-M3.1-Flash）的**输出**，未经我改写 | 原始轨迹在 `trace.md`；逐条产物在 `runs/*/` |
+| **【AI】** | 模型（MiniMax-M3.1-Flash）的**输出**，未经我改写 | 逐条产物在 `runs/*/`；第三次独立执行（玻尔科学空间）的输出在 `science-space/answer-turn*.md` |
 | **【判断】** | 我基于前两者的推理，**材料没有这么说** | 推理链写在 `runs/*/claims.csv` 的 `reasoning` 列；分类为 `inference` |
 
 三者的边界在产物层面是**机器可查**的，不只是本文的措辞：
@@ -130,7 +130,7 @@
 ### 3.1 输入与读者约束（含材料性质声明）
 
 - **材料**：`paper_materials/nanochat_README_table_corrupted.md`（**合成/损坏件**，非作者原文；顶部有合成声明）。SHA-256 `64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c`（17,623 B）
-- **上游原文快照**：`paper_materials/nanochat_README.md`（SHA-256 `1ac00d0999b0bebb397f596f38dd2d6a218a60994775a488f9ef3cc93484cf00`），来源与取得时间见 `paper_materials/source_meta.json`
+- **上游原文快照**：上游 nanochat README（MIT）全文未随包（与本包损坏件约 90% 重复，按赛题「去掉重复副本」处理）；包内保留 **原 leaderboard 一节原文**（`paper_materials/nanochat_README_leaderboard_upstream.md`，逐字节切片），以及来源与可复算的正文一致性指纹（`paper_materials/upstream_source.json`：URL、取得时间、SHA-256 `1ac00d0999b0bebb397f596f38dd2d6a218a60994775a488f9ef3cc93484cf00`、两侧正文行集合的 SHA-256 与复算命令）
 - **读者约束（运行前冻结）**：8 × A100 80GB；单次完整训练 ≤ 4 小时，云卡费用 ≤ $100；数据可下载（磁盘 ≥ 100GB，**下载时间需单独说明**）；不允许多机；**只要方法机制，不要复现最终数字**
 - **事先写明的 5 条预期行为**（运行前冻结，是评分依据）：识别异常 / 不编数字 / 降级而非放弃 / 标注来源性质 / 给出可操作建议。**逐条对照见 §3.4。**
 - **任务书与验收标准**：`cases/task-C.md`、`cases/acceptance-C.md`（运行前冻结，SHA-256 记录在 `runs/*/manifest.json`）
@@ -151,10 +151,10 @@
 
 | # | 事先声明的预期行为 | 我的实际做法 | 自评 |
 |---|---|---|---|
-| 1 | **识别异常**并给出依据 | 逐行数单元格后给**实测**结论：表头 7 个列名 / 分隔行 **8** 段 / 数据行多为 **7** 格、其中 1 行 **9** 格；`#` 在文件中的出现顺序为 **6,1,4,0,3,2,5**，7 行**全部**与物理位置错位；# 4 行的 `time` 单元格被截断（只剩 `2.`）；# 5 行多出 2 个分隔符/2 格。**并且我核对了合成声明自身是否属实**：声明称"数据行仍按 8 列填写"（实测 7 格）、称"第 6 行多了一个分隔符"（实测多出的是第 7 行即 # 5 行，且多出的是 2 个）——**声明与文件不符，我以实测为准** | 做到 |
+| 1 | **识别异常**并给出依据 | 逐行数单元格后给**实测**结论：表头 7 个列名 / 分隔行 **8** 段 / 数据行多为 **7** 格、其中 1 行 **9** 格；`#` 在文件中的出现顺序为 **6,1,4,0,3,2,5**，7 行**全部**与物理位置错位；# 4 行的 `time` 单元格被截断（只剩 `2.`）；# 5 行多出 2 个分隔符/2 格。**并且我核对了合成声明自身是否属实**：声明称"数据行仍按 8 列填写"（实测 7 格）、称"第 6 行多了一个分隔符"（实测多出的是第 7 行即 # 5 行，且多出的是 2 个）——**声明与文件不符，我以实测为准**。**再往下一层**（作者侧用上游原表节选逐格对齐才发现，三个执行系统都没看到）：损坏件里表头写着 `CORE` 的那一列，装的其实是上游 `val_bpb` 的值（7 行里 6 行一致），上游的 `CORE` 值根本不在损坏件里——**受损表格的格子不能指派列名**，详见 `docs/column_semantics.md` | 做到 |
 | 2 | **不编数字** | 受损行**整行不作为引文**（只在 `undetermined` 里出现，且只截取其未被改动的 Description 单元格作引文）；该值**不出现在任何 `quote`、不出现在任何 `numeric_value`**；**未给区间、也未给点估计**；并在 C33 里写明"按行序/相邻行/CORE 接近性推出的任何值都属猜测，已拒绝采用" | 做到 |
 | 3 | **降级而非放弃** | 受损部分：前置条件 **11 行 `absent`**（每行写明原因）、结论 **7 条 `undetermined`**（每条写明"需要什么才能定"）；未受损部分照常：21 行 `stated`、**28 条 `paper-fact`** + **4 条 `inference`**（**列映射推导本身也写了出来，而非沉默**） | 做到 |
-| 4 | **标注来源性质** | 文首即声明材料性质并给出两份文件的 SHA-256；每条 locator 都带文件名；表格来源的 4 条额外标注"位于受损表格内、该章节未做上游核验"；**另做来源核验**：非表格段落逐行比对上游快照，211 行中仅合成件自带的 `---` 一行不匹配 | 做到 |
+| 4 | **标注来源性质** | 文首即声明材料性质并给出两份文件的 SHA-256；每条 locator 都带文件名；表格来源的 4 条额外标注"位于受损表格内、该章节未做上游核验"；**另做来源核验**：非表格段落逐行比对上游快照，211 行中仅合成件自带的 `---` 一行不匹配（运行期记录 `runs/C-with-3/logs/line_provenance.json`；两侧正文行集合的 SHA-256 与复算命令见 `paper_materials/upstream_source.json`） | 做到 |
 | 5 | **给出可操作建议** | 4 条具体去向：上游 README 同一节与 `dev/LEADERBOARD.md`；按行内 commit 号取对应版本；向同事要**原始 markdown 源**而非截图；`val_bpb` 可从 `loss_eval.py`/wandb 曲线重建。**没有停在"表格坏了"** | 做到 |
 
 **5 / 5 条做到。**（完整对照与证据位置见 `runs/C-with-3/verdict.md` 第 ⑥ 节）
@@ -171,7 +171,7 @@
 
 **现象**：材料是 CRLF 行尾，我按 LF 写的多行起止标记匹配不上，导致常量被归到**错误的文件**、另有锚点出现歧义。
 
-**证据**：`runs/C-with-1/logs/` 下的引文校验记录；最终引文的校验结果见各 run 的 `logs/agreement.json`。
+**证据**：`runs/C-with-3/logs/` 下的引文校验记录；最终引文的校验结果见各 run 的 checker 结论（`runs/C-with-3/logs/agreement.json`；第一次运行的同一判定可用 `docs/REPRODUCE.md` ② 的命令一键复跑）。
 
 **改进**：用 `repr()` 打印原始行确认真实字节；引文库以**字节精确**的源文件为准，**保留 CRLF 不做归一化**。
 
@@ -183,7 +183,7 @@
 
 **现象**：被截断的 `2.` 用 `float()` 读出来是 2.0，**不报错、不告警**，会被无声读成"2 小时"。
 
-**证据**：`runs/C-with-1/verdict.md` 的实测记录与该 run 的 `extra-3` 自检项。
+**证据**：`runs/C-with-1/claims.csv`（62 条结论的逐条数据类产物）与该轮的数值核对结论（`docs/REPRODUCE.md` ② 的命令可一键复算出同一结果：62 条结论、0 项标记）；第一次运行的**散文报告**未随包，在公开仓库的同路径下。
 
 **改进**：数值一律带单位与来源定位；抽取后做数值域合理性检查；不确定就标 `undetermined`，**不猜补**。
 
@@ -195,7 +195,7 @@
 
 **现象**：材料顶部声明写"第 4 行被截断、第 6 行竖线错位"，但程序化列计数的实测是：截断行标签 **#4**、错位行 **#5**、**没有任何行标签为 #6**；分隔行是 8 段而数据行多为 7 格。**声明与文件不符。**
 
-**证据**：`runs/C-with-1/logs/corruption_audit.json`（表头 7 格 / 数据行 7 行 / 1 行 9 格）、两次运行的独立审计记录——两次给出一致的实测，且都与声明不符。
+**证据**：`scripts/derive_column_semantics.py`（表格实测）（表头 7 格 / 数据行 7 行 / 1 行 9 格）——严格对称复测这一轮的独立审计实测，且与合成声明不符。
 
 **改进**：一切以**实测**为准，不照抄声明——**包括声明件自己的声明**。
 
@@ -207,7 +207,7 @@
 
 **现象**：**同一份材料、同一份 Skill、prompt 逐字相同、输入逐字节一致**的两次运行，结论条数是 **62 → 39**。只看数字，很容易判成"后面的复测质量在下降"。
 
-**证据**：两次运行的 `logs/agreement.json`：官方 checker 两次都是 `findings_count=0 / all_passed=true`（`claims_checked` 分别是 62 / 39）；验收自检两次全过；`undetermined` 绝对数 **10 → 7**（更克制，不是更宽松）；`absent` 前置条件 **6 → 11**（更保守）。第二次运行 `runs/C-with-3/` 是**严格对称复测**——prompt 与第一次**逐字相同**（仅改工作目录路径），`cases/` + `materials/` + `skill/` 三份文件与第一次**逐字节一致**（SHA-256 校验通过）。
+**证据**：两次运行的 checker 结论（`runs/C-with-3/logs/agreement.json`，与第一次运行同一脚本同一判定口径）：官方 checker 两次都是 `findings_count=0 / all_passed=true`（`claims_checked` 分别是 62 / 39）；验收自检两次全过；`undetermined` 绝对数 **10 → 7**（更克制，不是更宽松）；`absent` 前置条件 **6 → 11**（更保守）。第二次运行 `runs/C-with-3/` 是**严格对称复测**——prompt 与第一次**逐字相同**（仅改工作目录路径），`cases/` + `materials/` + `skill/` 三份文件与第一次**逐字节一致**（SHA-256 校验通过）。
 
 **改进**：Skill 只冻结结论的**结构与出处要求**（三分类、必须有 `quote` 或显式标 `undetermined`、四段式结论、遗留问题必须写"需要什么才能定"），**不规定条数**——条数由每次会话自行决定展开粒度。因此评估复现质量时，判据应当是**结构一致 + 关键处置一致 + 官方 checker 0 标记**，而不是条数多少。
 
@@ -223,12 +223,14 @@
 
 ## 5. 复现：怎么自己跑一遍
 
+> **完整命令、预期输出与判据见 `docs/REPRODUCE.md`**（三条命令，每条都实跑过，附反向对照）。
+
 ### 5.1 环境与预算
 
 | 项 | 值 |
 |---|---|
 | 宿主 / 模型 | MiniMax Code（桌面版，Windows 11 / PowerShell 5.1） / MiniMax-M3.1-Flash（**快照版本无法取得**，只能以显示名声明） |
-| 工具与依赖 | 文件读写、Shell、Python 3.14；**Python 3 标准库即可**，`scripts/` 下全部工具无第三方依赖 |
+| 工具与依赖 | 文件读写、Shell、Python 3；**Python 3 标准库即可**，`scripts/` 下全部工具无第三方依赖 |
 | 预算 | 单次会话 ≤ 45 分钟；**全程离线**，0 次外网请求；未装 PyTorch、未下载数据集、未运行训练 |
 | 人工参与 | 仅运行**之外**的三件：冻结任务与验收标准并记 SHA-256、取得题面资源、登记提交归属。**核心步骤全程无人工介入、无人工代做、无人工修正产出** |
 
@@ -236,7 +238,7 @@
 
 **第 1 步**：把 Skill 放到 Agent 能读到的地方（挂载为可用 Skill，或直接把文件交给它）。本包：`paper-method-fit-check/SKILL.md`。
 
-**第 2 步**：投喂任务书。本案例的完整任务书在 **`cases/task-C.md`**（**逐字照抄即可用**，含读者约束与事先声明的 5 条预期行为）；配套的验收标准在 `cases/acceptance-C.md`。两者的 SHA-256 记录在 `runs/*/manifest.json`，**运行前冻结、运行中未修改**。
+**第 2 步**：投喂任务书。本案例的完整任务书在 **`cases/task-C.md`**（**逐字照抄即可用**，含读者约束与事先声明的 5 条预期行为）；配套的验收标准在 `cases/acceptance-C.md`。两者的 SHA-256 记录在 `docs/REPRODUCE.md` 的哈希表（运行前冻结、运行中未修改）。
 
 **第 3 步**：让 Agent 在一个**只读材料**的工作目录里产出 5 个文件（字段与要求见 `cases/task-C.md` 的「你要交付什么」表）：
 
@@ -248,16 +250,8 @@ verdict.md           四段结论 + 「异常处理对照」一节
 logs/agreement.json  数值核对与处置
 ```
 
-**第 4 步**：跑自检。`scripts/check_agreement.py` 只依赖标准库（`--report` 是必填项）：
-
-```powershell
-# 第一次运行
-python scripts/check_agreement.py --claims runs/C-with-1/claims.csv --preconditions runs/C-with-1/preconditions.csv --source paper_materials/nanochat_README_table_corrupted.md --report /tmp/agreement-c1.json
-# 严格对称复测
-python scripts/check_agreement.py --claims runs/C-with-3/claims.csv --preconditions runs/C-with-3/preconditions.csv --source paper_materials/nanochat_README_table_corrupted.md --report /tmp/agreement-c3.json
-```
-
-**退出码 0 = 全部通过**（引文可命中、数值在容差内、非事实行不带引文/数值）。
+**第 4 步**：跑自检 `scripts/check_agreement.py`（只依赖标准库，**`--report` 必填**）——两条命令与
+**预期输出**见 `docs/REPRODUCE.md`。**退出码 0 = 全部通过**（引文可命中、数值在容差内、非事实行不带引文/数值）。
 本仓库的 CI 每次 push 都会在**真实数据**上跑这两条命令，退出码与「标记 0 项」都留在 CI 日志里。
 
 **第 5 步**：看 §3.4 的 5 条预期行为是否逐条对照，并确认「受损数值没有出现在任何 `quote` / `numeric_value` 里」。
@@ -272,8 +266,6 @@ python scripts/check_agreement.py --claims runs/C-with-3/claims.csv --preconditi
 | 前置条件覆盖 | 四类**均至少出现一次**；每条有 `source_locator` 或 `confidence=absent` + 原因 |
 | 异常处理 | 受损单元格的数值不出现在任何引文与数值字段；预期行为 5 条逐条对照 |
 | 自检 | `check_agreement.py` 退出码 0、`findings_count=0`；反向用例（篡改一条引文）退出码 1 |
-
----
 
 ## 6. 方法适用边界：什么场景该用、什么场景别用
 
@@ -299,18 +291,84 @@ python scripts/check_agreement.py --claims runs/C-with-3/claims.csv --preconditi
 
 ---
 
-## 7. 如果你要在玻尔科学空间里用这个方法
+## 7. 在玻尔科学空间里跑同一套方法：一次真实会话
 
-玻尔科学空间本身是"读论文 → 提想法 → 跑实验 → 出图"的流水线，和本 Skill 的分工很清楚：
+**这一节是实测记录，不是设想。** 玻尔科学空间（网页端 `www.bohrium.com`，会话
+`35822cccea564cf59cf21`，玻尔云端 / Python 3.12.4）里，我把**同一份材料、同一套交付物契约**又跑了一遍。
+逐字提示词与完整最终答案在 `science-space/`：
 
-- **本 Skill 负责**：把「这个方法能不能迁到我的场景」变成一份可逐条复核的台账（前置条件 + 结论 + 出处 + 遗留），**在动手跑之前先排除不该跑的方案**
-- **玻尔科学空间负责**：把台账里"可迁"的部分真正跑出来，出图、出指标
+| | 包内 CLI 第一次 | 包内 CLI 严格对称复测 | **玻尔科学空间** |
+|---|---|---|---|
+| 执行系统 | MiniMax Code 桌面版 | 同左 | **玻尔云端（独立系统）** |
+| Skill | v1.0 | v1.0 | **v1.1**（第 7 步补 `--source`） |
+| 结论词 | `transferable-with-changes` | `transferable-with-changes` | **`transferable-with-changes`** |
+| 结论条数 | 62（37/15/10） | 39（28/4/7） | **22（12/5/5）** |
+| 硬前置条件 | 28（22 stated / 6 absent） | 32（21 / 11） | **14（11 stated / 3 absent）** |
+| 5 条预期行为 | 5/5 | 5/5 | **4 条完全做到 + ① 条部分做到**（云端自审下调，根因见下） |
+| 官方 checker | 0 标记 | 0 标记 | **0 标记（跑 3 次才过）** |
 
-具体接法：① 用 §3.4 的 5 条预期行为当**实验前准入检查**（材料坏不坏、有没有在编数字）；② 把 `preconditions.csv` 的 `absent` 条目转成科学空间里**要先去查的资源清单**（A100 标定、下载体积与耗时、评测口径）；③ 把 `undetermined` 条目转成「要问上游作者的清单」；④ 只有当 `blocked=0` 且成本闭合（本次 $96 ≤ $100）时才值得占用算力。
+**三个独立系统、同一个结论词、同一组实测细节**：表头 7 格 / 分隔行 8 段 / 1 行 9 格 /
+`#` 的物理顺序 `6,1,4,0,3,2,5` / 被截断的是 `#4` 行的 `time` / 多出 2 格的是 `#5` 行——连"合成声明与实物不符"
+的那两条（"数据行仍按 8 列填写"实测 7 格；"第 6 行多一个分隔符"实测多出的是第 7 行且多出 2 个）都指向同一处。
+**条数不同（62 / 39 / 22）不是分歧，是展开粒度不同**（见 §4.4）。
 
-**未使用玻尔科学空间执行本次实践**（如实声明）——因此本次是"通用质量"口径的提交，不含生态贡献分。
+**配置方法**：把 Skill、冻结的任务书、损坏件与自检脚本作为附件挂进会话，在云端按包内 CLI 运行的同一套
+四层布局装配（`cases/` + `materials/` + `skill/` + `scripts/`），装配完**先算哈希**——
+`materials/source.txt` = `64a46d32…1917c`（17,623 B），与包内权威副本逐字节一致，然后才让它处理材料。
+顺带实测了三条取件通道：玻尔云端里 `ghproxy.net` 可用、`api.github.com` 30 s 超时、`cdn.jsdelivr.net` 返回 301。
 
----
+**开发经验（这次真踩出来的三条）**：① 官方 checker **查不出"引文在原文出现多次"**（第一版的 `"$48"` 命中 2 次却放行，
+模型自己补了一道"命中恰好 1 次"的自检）；② **CRLF 会伪装成"行号全错"**（复核脚本用 `read_text` 读源文件，
+CRLF 被折成 `
+`，12 条 locator 全显示 L1，改用 `read_bytes` 后全部对上——与 §4.1 是同一个坑的两次独立发作）；
+③ **checker 验的是格式不是语义**（`numeric_value=80` 取自 `SM 80+`，算力等级不是量值也能过）。
+三条都指向同一件事：**"唯一命中"和"数值语义"该做成 checker 的内建检查**。
+
+**作者验证（不只报喜）**：云端第二轮把上一轮产物当别人的产物挑错，列出 16 条残余错误（R-01…R-16），
+并**把自己的"5/5 做到"下调为"4 条完全做到 + 第 ④ 条部分做到"**。我逐条核了它的判断：**16 条全部同意**；
+其中 4 条它做得比包内这轮差，2 条它做得比包内对（**前置条件没逐条标 `satisfied/stretch/blocked/unknown`**、
+**"独立复核"指向的其实不是独立复核日志**——这两条应当回灌进 Skill）。我另外独立复核了它答复正文里 16 处
+原文引用与行号：**16/16 按它给的行号在包内材料里命中**，其中 1 处它在审计正文里用了 `...` 缩写（按原文补全后
+命中且全文仅 1 次）——**"逐字"这条纪律在写审计报告时最容易破，恰恰是那个在查别人引文的人破的**。
+详见 `science-space/author-verification.md` 与 `author-verification-cites.csv`。
+
+**这次实践的边界（如实说明）**：① **未跑训练、未下载数据集、未联网取件**（材料靠附件挂载）；
+② **未把上游 nanochat 原文放进云端工作空间**——这是有意的：上游 leaderboard 原表一旦进入工作空间，
+受损单元格的"无法确定"就可能被污染成"已知答案"（包内两次 CLI 运行同样遵守这条纪律，见
+公开仓库 公开仓库 公开仓库 公开仓库 `runs/C-with-3/logs/run_log.md`）。代价是云端那一轮第 ④ 条预期行为降为"部分做到"——
+**它少做的那一步，正是我们刻意不做的那一步**；而评审补上这一步的条件在包内：
+`paper_materials/nanochat_README_leaderboard_upstream.md`（上游**原表节选**）+
+`paper_materials/upstream_source.json`（上游 URL / SHA-256 / 两侧正文行集合的可复算指纹）。
+③ 云端 5 个交付物文件本体未随包（理由见 `science-space/README.md` §6），**我逐条独立复核云端 `claims.csv`
+的 12 条 `paper-fact` 引文这一项没有做**——这是本次作者验证最实的缺口。④ 平台未披露模型名称与调用成本，故不写。
+
+**这套接法的价值不在玻尔**：它只依赖「一份只读材料 + 一份冻结的验收标准 + 一个结构化输出契约」，
+换到别的平台同样成立（见 §6）。玻尔科学空间提供的是**第三个独立执行系统**——
+用来检验"同一套方法在别人的机器上还站不站得住"。
+
+### 7.1 有 Skill / 无 Skill 的同条件对照（结论是负面的，如实写）
+
+我们在**同一个玻尔云端**、同一份材料、同一本任务书、同一套交付物契约、同一个自检脚本下又跑了一轮，
+**唯一变量是给不给 `SKILL.md`**。结果：**无 Skill 那轮同样做到 5/5、checker 0 标记、同一组表结构实测**，
+而且**产出更多**（33 vs 22 条）、**降级更多**（11 vs 8）、**自检一次就过**（有 Skill 那轮改了 3 次）。
+→ **我们不能宣称这套 Skill 提效。** 唯一被测到的差别是：无 Skill 那轮把受损表的一格指派成了 `CORE`（实为上游 `val_bpb`），
+有 Skill 的两轮都没有（`docs/column_semantics.md` §3）。两个系统还**栽在同一个坑**上：
+第一版"负控"其实不是负控（拼接出的引文恰好是原文连续前缀），以及都撞上了 CRLF 读法导致行号全错。
+完整设计与口径见 `docs/control_experiment.md`。
+
+### 7.2 这次实践自己暴露的负面结果（不藏）
+
+1. **Skill 没有可测的整体优势**（§7.1）：我们主张的是"这套流程能产出可逐条复核的台账"，不是"它比不用更好"。
+2. **checker 有盲区**：它只验"连续子串"、不验"唯一命中"，两轮的第一版负控都因此无效（§7.1）。
+3. **列语义那一层，三个系统都没看到**（§3.4、`docs/column_semantics.md`）：纪律要求运行期不读上游表格，
+   代价是运行期无法自查。
+4. **展开粒度会漂**：62 → 39 → 22 → 33 条（四个运行，含无 Skill 对照），条数差异不代表质量差异（§4.4）。
+
+### 7.3 一句提醒
+
+包内部分运行日志保留了**运行当时的绝对路径**（形如 `X:\...\...`，是运行痕迹而非可访问路径）；
+它们是运行痕迹，不是可以在别的机器上访问的路径，请按包内相对入口复跑。
+
 
 ## 8. 来源与个人贡献
 
@@ -337,11 +395,15 @@ python scripts/check_agreement.py --claims runs/C-with-3/claims.csv --preconditi
 | 内容 | 位置 |
 |---|---|
 | 冻结的任务书 / 验收标准 | `cases/task-C.md`、`cases/acceptance-C.md` |
-| Skill 本体 / 一次跑通说明 | `paper-method-fit-check/SKILL.md`、`paper-method-fit-check/QUICKSTART.md` |
+| Skill 本体 | `paper-method-fit-check/SKILL.md`（一次跑通的调用说明见 §5.2 复现步骤） |
 | 复现脚本（引文/数值自检） | `scripts/check_agreement.py` |
-| 材料快照（**合成/损坏件** + 上游原文 + 来源与哈希） | `paper_materials/` |
-| 严格对称复测（本文引用的那份：39 条结论） | `runs/C-with-3/`（`claims.csv`、`preconditions.csv`、`evidence_index.json`、`verdict.md`、`logs/agreement.json`、`logs/run_log.md`、`logs/verification.json`、`manifest.json`） |
-| 第一次运行（62 条结论，对照用数据） | `runs/C-with-1/`（`claims.csv`、`preconditions.csv`、`logs/agreement.json`、`logs/corruption_audit.json` 等） |
-| 会话轨迹 | `trace.md`（两次运行的逐条消息，附宿主原生记录来源 SHA-256） |
-| 评审独立复核入口 | `docs/REVIEWER_INDEPENDENT_CHECK.md`（逐条复核路径、两条独立验证方式与判定标准） |
+| 材料快照（**合成/损坏件** + 上游原表节选 + 来源与哈希指纹） | `paper_materials/` |
+| 严格对称复测（本文引用的那份：39 条结论） | `runs/C-with-3/`（`claims.csv`、`preconditions.csv`、`verdict.md`、`logs/agreement.json`、`logs/line_provenance.json`；表格实测见 `scripts/derive_column_semantics.py`） |
+| 复跑指南（命令 / 预期输出 / 判据 / 冻结哈希） | `docs/REPRODUCE.md` |
+| 第一次运行（62 条结论，对照用数据） | `runs/C-with-1/`（`claims.csv`、`preconditions.csv`；该轮 checker 结论可用 `docs/REPRODUCE.md` ② 复算） |
+| 会话轨迹 | 未随包（体积），索引与重新生成方式见 `docs/trace_index.md`；**玻尔科学空间的两轮会话全文在 `science-space/`（提示词 + 完整最终答案，逐字）** |
+| 评审独立复核入口 | `docs/REPRODUCE.md`（逐条核对步骤 + 三条独立判据 + 复跑命令与判据 + 冻结哈希） |
 | 本包的来源与贡献说明 | `提交说明.md`（材料包根目录） |
+| **玻尔科学空间的实测**（提示词 / 完整答案 / 作者验证 / 界面截图） | `science-space/` |
+| 有 Skill / 无 Skill 同条件对照 | `docs/control_experiment.md`（+ `science-space/prompt-control-without-skill.md`、`science-space/answer-control-without-skill.md`） |
+| 列语义左移的独立核查（脚本 + 结论） | `docs/column_semantics.md`、`scripts/derive_column_semantics.py` |

@@ -1,0 +1,17 @@
+locator,quote,hits_in_line,occurrences_in_material,verdict
+L29,The current leaderboard looks as follows:,1,1,OK
+L31,| # | time | CORE | Description | Date | Commit | Contributors |,1,1,OK
+L32,|---|-------------|---------|------|-------------|------|--------|--------------|,1,1,OK
+L35,| 4 | 2. | 0.71854 | change dataset to NVIDIA ClimbMix | Mar 4 2026 | 324e69c | @ddudek @karpathy |,1,1,OK
+L37,| 3 | 2.76 | 0.74645 | bump total batch size to 1M tokens |,1,1,OK
+L39,| 5 | 1.80 | 0.71808 |,1,1,OK
+L43,dev/LEADERBOARD.md,1,2,OK
+L71,~1.5 hours,1,2,OK
+L100,--device-batch-size,1,1,OK
+L133,nanochat does not use `torch.amp.autocast`,1,1,OK
+L137,"| CUDA SM 80+ (A100, H100, ...) | `bfloat16` | Native bf16 tensor cores |",1,1,OK
+L218,getting a CORE score above 0.256525,1,1,OK
+L23,"All other hyperparameters (the width of the transformer, number of heads, ...) are calculated automatically in an optimal way.",0,0,MISMATCH
+L23,approximately depth 26),1,1,OK
+L65,runs/speedrun.sh,1,5,OK
+L68,bash runs/speedrun.sh,1,1,OK

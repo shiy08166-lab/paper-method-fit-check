@@ -1,0 +1,324 @@
+[
+  {
+    "id": "E01",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L1",
+    "quote": "> **合成材料声明（构造件）**",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E02",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L4",
+    "quote": "> 本文件是 **人工构造** 的「格式异常」样本，用于玻尔产品周赛 Skill 开发赛道的案例 C",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E03",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L5",
+    "quote": "> （边界与异常处理）。它由 `materials/A/nanochat_README.md` 的",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E04",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L7",
+    "quote": "> 1. 表格行序被打乱（`#` 编号与行序错位）",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E05",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L8",
+    "quote": "> 2. 表头缺少 `val_bpb` 列，数据行仍按 8 列填写（列数与表头不符）",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E06",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L9",
+    "quote": "> 3. 第 4 行的 `time` 单元格被截断成 `2.`",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E07",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L10",
+    "quote": "> 4. 第 6 行的竖线数量错位（行内多了一个分隔符）",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E08",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L12",
+    "quote": "> **这不是作者原文。** 引用本文件中的任何数字都必须标注其性质；",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E09",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L13",
+    "quote": "> 被破坏的单元格里的值**不得**被当作作者的事实，也**不得**按上下文猜补。",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E10",
+    "kind": "synthetic-declaration",
+    "locator": "materials\\nanochat_README_table_corrupted.md L14",
+    "quote": "> 未受损的正文段落与 `materials/A/` 下的原文快照一致。",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E11",
+    "kind": "table-header-damaged",
+    "locator": "materials\\nanochat_README_table_corrupted.md L31 (leaderboard table header, 7 cells)",
+    "quote": "| # | time | CORE | Description | Date | Commit | Contributors |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E12",
+    "kind": "table-separator-damaged",
+    "locator": "materials\\nanochat_README_table_corrupted.md L32 (leaderboard table separator, 8 cells)",
+    "quote": "|---|-------------|---------|------|-------------|------|--------|--------------|",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E13",
+    "kind": "damaged-row-evidence",
+    "locator": "materials\\nanochat_README_table_corrupted.md L35 (leaderboard row, `#`=4, time cell truncated)",
+    "quote": "| 4 | 2. | 0.71854 | change dataset to NVIDIA ClimbMix | Mar 4 2026 | 324e69c | @ddudek @karpathy |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E14",
+    "kind": "damaged-row-evidence",
+    "locator": "materials\\nanochat_README_table_corrupted.md L39 (leaderboard row, `#`=5, two extra pipes)",
+    "quote": "| 5 | 1.80 | 0.71808 | autoresearch [round 1](https://x.com/karpathy/status/2031135152349524125) | Mar 9 2026 | 6ed7d1d | @karpathy | broken | extra |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E15",
+    "kind": "damaged-row-evidence",
+    "locator": "materials\\nanochat_README_table_corrupted.md L36 (leaderboard row, `#`=0, OpenAI GPT-2 checkpoint)",
+    "quote": "| 0 | 168 hours | 0.2565 | Original OpenAI GPT-2 checkpoint | 2019 | - | OpenAI |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E16",
+    "kind": "damaged-row-evidence",
+    "locator": "materials\\nanochat_README_table_corrupted.md L33 (leaderboard row, `#`=6)",
+    "quote": "| 6 | 1.65 | 0.71800 | autoresearch round 2 | Mar 14 2026 | a825e63 | @karpathy |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E17",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L23 (§nanochat 首段)",
+    "quote": "nanochat is the simplest experimental harness for training LLMs. It is designed to run on a single GPU node, the code is minimal/hackable, and it covers all major LLM stages including tokenization, pretraining, finetuning, evaluation, and inference.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E18",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L23 (§nanochat 首段)",
+    "quote": "you can train your own GPT-2 capability LLM (which cost ~$43,000 to train in 2019) for only $48 (~2 hours of 8XH100 GPU node) and then talk to it over a simple CLI. On a spot instance, the total cost can be closer to ~$15.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E19",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L23 (§nanochat 首段)",
+    "quote": "nanochat is configured out of the box to train an entire miniseries of compute-optimal models by setting one single complexity dial: `--depth`, the number of layers in the GPT transformer model (GPT-2 capability happens to be approximately depth 26).",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E20",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L23 (§nanochat 首段)",
+    "quote": "All other hyperparameters (the width of the transformer, number of heads, learning rate adjustments, training horizons, weight decays, ...) are calculated automatically in an optimal way.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E21",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L29 (§Time-to-GPT-2 Leaderboard 导语)",
+    "quote": "which is the wall-clock time required to train a nanochat model to GPT-2 grade capability, as measured by the DCLM CORE score.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E22",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L41 (§Time-to-GPT-2 Leaderboard 尾段)",
+    "quote": "the wall clock time needed to outperform the GPT-2 (1.6B) CORE metric on an 8XH100 GPU node. The GPT-2 CORE score is 0.256525.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E23",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L41 (§Time-to-GPT-2 Leaderboard 尾段)",
+    "quote": "at the current ~$3/GPU/hr, an 8XH100 node is ~$24/hr, so 2 hours is ~$48",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E24",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L65 (§Reproduce and talk to GPT-2)",
+    "quote": "The entire pipeline to do so is contained in the single file [runs/speedrun.sh](runs/speedrun.sh), which is designed to be run on an 8XH100 GPU node.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E25",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L71 (§Reproduce and talk to GPT-2)",
+    "quote": "this will take ~1.5 hours to run",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E26",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L77 (§Reproduce and talk to GPT-2)",
+    "quote": "The speedrun is a 4e19 FLOPs capability model",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E27",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L98 (§Getting started 注意事项)",
+    "quote": "- The code will run just fine on the Ampere 8XA100 GPU node as well, but a bit slower.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E28",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L99 (§Getting started 注意事项)",
+    "quote": "All code will run just fine on even a single GPU by omitting `torchrun`, and will produce ~identical results (code will automatically switch to gradient accumulation), but you'll have to wait 8 times longer.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E29",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L100 (§Getting started 注意事项)",
+    "quote": "Look for `--device-batch-size` in the scripts and reduce it until things fit. E.g. from 32 (default) to 16, 8, 4, 2, or even 1.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E30",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L105 (§Research)",
+    "quote": "For quick experimentation (~5 min pretraining runs) my favorite scale is to train a 12-layer model (GPT-1 sized)",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E31",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L119 (§Research 监控指标 1)",
+    "quote": "`val_bpb` (validation loss in vocab-size-invariant units of bits per byte) as a function of `step`, `total_training_time` and `total_training_flops`.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E32",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L120 (§Research 监控指标 2)",
+    "quote": "2. `core_metric` (the DCLM CORE score)",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E33",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L125 (§Research 末段)",
+    "quote": "GPT-2 capability model (which is of most interest at the moment) happens to be somewhere around d24-d26 range with the current code.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E34",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L125 (§Research 末段)",
+    "quote": "But any candidate changes to the repo have to be principled enough that they work for all settings of depth.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E35",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L129 (§Running on CPU / MPS)",
+    "quote": "It dramatically shrinks the LLM that is being trained to make things fit into a reasonable time interval of a few ten minutes of training. You will not get strong results in this way.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E36",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L133 (§Precision / dtype)",
+    "quote": "nanochat does not use `torch.amp.autocast`. Instead, precision is managed explicitly through a single global `COMPUTE_DTYPE` (defined in `nanochat/common.py`).",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E37",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L137 (§Precision / dtype 表 CUDA SM 80+ 行)",
+    "quote": "| CUDA SM 80+ (A100, H100, ...) | `bfloat16` | Native bf16 tensor cores |",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E38",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L141 (§Precision / dtype)",
+    "quote": "You can override the default with the `NANOCHAT_DTYPE` environment variable:",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E39",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L148 (§Precision / dtype)",
+    "quote": "model weights are stored in fp32 (for optimizer precision), but our custom `Linear` layer casts them to `COMPUTE_DTYPE` during the forward pass. Embeddings are stored directly in `COMPUTE_DTYPE` to save memory.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E40",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L150 (§Precision / dtype)",
+    "quote": "`float16` training automatically enables a `GradScaler` in `base_train.py` to prevent gradient underflow. SFT supports this too but RL currently does not.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E41",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L174 (§File structure)",
+    "quote": "repackage_data_reference.py # Pretraining data shard generation",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E42",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L176 (§File structure)",
+    "quote": "dataset.py                  # Download/read utils for pretraining data",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E43",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L188 (§File structure)",
+    "quote": "speedrun.sh                 # Train the ~$100 nanochat d20",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E44",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L218 (§Contributing)",
+    "quote": "speeding up the latency to GPT-2 (i.e. getting a CORE score above 0.256525). Currently this takes ~1.5 hours (down from 3h)",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E45",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L43 (§Time-to-GPT-2 Leaderboard 尾段)",
+    "quote": "See [dev/LEADERBOARD.md](dev/LEADERBOARD.md) for more docs on how to interpret and contribute to the leaderboard.",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  },
+  {
+    "id": "E46",
+    "kind": "prose",
+    "locator": "materials\\nanochat_README_table_corrupted.md L25 (§nanochat 首段后)",
+    "quote": "For questions about the repo, I recommend either using [DeepWiki](https://deepwiki.com/karpathy/nanochat) from Devin/Cognition to ask questions about the repo, or use the [Discussions tab](https://github.com/karpathy/nanochat/discussions)",
+    "sha256": "64a46d328926d45842d9e8ad0a1817b01d176ad915e55ba92609119ca571917c"
+  }
+]

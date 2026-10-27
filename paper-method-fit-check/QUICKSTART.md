@@ -14,7 +14,7 @@
 python3 scripts/check_agreement.py \
     --claims claims.csv \
     --preconditions preconditions.csv \
-    --source materials/nanochat_README.md \
+    --source paper_materials/nanochat_README.md \
     --tolerance 0.01 \
     --report logs/agreement.json
 ```

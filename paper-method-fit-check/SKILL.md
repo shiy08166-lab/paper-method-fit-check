@@ -79,9 +79,11 @@ description: Decide whether a paper's method transfers to your project: extract 
   python3 scripts/check_agreement.py \
       --claims claims.csv \
       --preconditions preconditions.csv \
+      --source materials/source.txt \
       --tolerance 0.01 \
       --report logs/agreement.json
   ```
+- `--source` is **required**: it points at the source document the quotes are checked against (in this package, `materials/source.txt` is the working copy of the original).
 - The script compares every quoted numeric value against the number it was transcribed from, and flags any row whose relative difference exceeds the tolerance.
 - A flagged row is **not** deleted — it is corrected, or its classification is downgraded to `inference`, or the disagreement is written into section 4 of `verdict.md` as a genuine inconsistency in the source.
 - **Checkpoint**: `logs/agreement.json` exists, every flag has a recorded disposition, and no row is left unreviewed.
