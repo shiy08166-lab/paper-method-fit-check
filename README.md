@@ -8,7 +8,7 @@
 
 ## 0. 五分钟速览
 
-**我解决的具体问题**：读技术文档时最耗人的不是「看不懂」，而是**看懂了却不知道能不能用在我这**。更麻烦的是真实场景里文档常常是**坏的**——同事转给你时表格坏掉了：列对不上、行序错乱、有个数字被截断。这时你不仅要判断「能不能用」，还必须**在坏材料上不编数字**，并且说清「哪些部分因此定不了」。
+**我解决的具体问题**：读技术文档最耗人的不是「看不懂」，而是**看懂了却不知道能不能用在我这**；而真实场景里文档常常是**坏的**（表格列对不上、行序错乱、数字被截断）——此时不仅要判断「能不能用」，还必须**在坏材料上不编数字**，并说清「哪些部分因此定不了」。
 
 **我的做法**：把它固化成一个 Skill。输入一份技术文档 + 一组读者约束（算力、预算、数据规模、目标），输出四样东西——
 
@@ -30,7 +30,7 @@
 
 两次运行的**结论条数不同（62 → 39），但结论词、关键处置与「受损值一律降级」的处理完全一致**，官方 checker 两次都是 0 标记。这说明：**复现质量该看结构与处置是否一致，不是看条数**（见 §4.4）。
 
-**这份材料里的表格是故意破坏的合成件**（顶部有声明），我的材料核验刻意**不读上游原文的表格**——所以受损单元格的数值在本报告中**不可能是抄回来的**，只能是「无法确定」（见 §3.4、§3.6）。
+**这份材料里的表格是故意破坏的合成件**（顶部有声明），材料核验刻意**不读上游原文的表格**——所以受损单元格的数值在本报告中**不可能是抄回来的**，只能是「无法确定」（见 §3.4、§3.5）。
 
 ## 0.5 阅读约定：三种陈述严格分标
 
@@ -151,7 +151,7 @@
 
 | # | 事先声明的预期行为 | 我的实际做法 | 自评 |
 |---|---|---|---|
-| 1 | **识别异常**并给出依据 | 逐行数单元格后给**实测**结论：表头 7 个列名 / 分隔行 **8** 段 / 数据行多为 **7** 格、其中 1 行 **9** 格；`#` 在文件中的出现顺序为 **6,1,4,0,3,2,5**，7 行**全部**与物理位置错位；# 4 行的 `time` 单元格被截断（只剩 `2.`）；# 5 行多出 2 个分隔符/2 格。**并且我核对了合成声明自身是否属实**：声明称"数据行仍按 8 列填写"（实测 7 格）、称"第 6 行多了一个分隔符"（实测多出的是第 7 行即 # 5 行，且多出的是 2 个）——**声明与文件不符，我以实测为准**。**再往下一层**（作者侧用上游原表节选逐格对齐才发现，三个执行系统都没看到）：**损坏是逐行不同的**——`#0` 行被删的是 `val_bpb` 占位符（它的第 3 格**确实是** CORE），而 `#1`–`#6` 行被删的是**上游的 CORE 值**（它们的第 3 格装的是 `val_bpb`）。**受损表格的格子不能按位置指派列名**。**这也修正了我们自己**：C29 的列映射假设只对 1/7 行成立，而它唯一的旁证恰好来自那唯一成立的一行——详见 `docs/column_semantics.md` 与 `docs/ledger.md`（L-07 条） | 做到 |
+| 1 | **识别异常**并给出依据 | 逐行数单元格后给**实测**结论：表头 7 个列名 / 分隔行 **8** 段 / 数据行多为 **7** 格、其中 1 行 **9** 格；`#` 在文件中的出现顺序为 **6,1,4,0,3,2,5**，7 行**全部**与物理位置错位；# 4 行的 `time` 单元格被截断（只剩 `2.`）；# 5 行多出 2 个分隔符/2 格。**并且我核对了合成声明自身是否属实**：声明称"数据行仍按 8 列填写"（实测 7 格）、称"第 6 行多了一个分隔符"（实测多出的是第 7 行即 # 5 行，且多出的是 2 个）——**声明与文件不符**（详见 §4.3）。**再往下一层**（作者侧用上游原表节选逐格对齐才发现，三个执行系统都没看到）：**损坏是逐行不同的**——`#0` 行被删的是 `val_bpb` 占位符（它的第 3 格**确实是** CORE），而 `#1`–`#6` 行被删的是**上游的 CORE 值**（它们的第 3 格装的是 `val_bpb`）。**受损表格的格子不能按位置指派列名**。**这也修正了我们自己**：C29 的列映射假设只对 1/7 行成立，而它唯一的旁证恰好来自那唯一成立的一行——详见 `docs/column_semantics.md` 与 `docs/ledger.md`（L-07 条） | 做到 |
 | 2 | **不编数字** | 受损行**整行不作为引文**（只在 `undetermined` 里出现，且只截取其未被改动的 Description 单元格作引文）；该值**不出现在任何 `quote`、不出现在任何 `numeric_value`**；**未给区间、也未给点估计**；并在 C33 里写明"按行序/相邻行/CORE 接近性推出的任何值都属猜测，已拒绝采用" | 做到 |
 | 3 | **降级而非放弃** | 受损部分：前置条件 **11 行 `absent`**（每行写明原因）、结论 **7 条 `undetermined`**（每条写明"需要什么才能定"）；未受损部分照常：21 行 `stated`、**28 条 `paper-fact`** + **4 条 `inference`**（**列映射推导本身也写了出来，而非沉默**） | 做到 |
 | 4 | **标注来源性质** | 文首即声明材料性质并给出两份文件的 SHA-256；每条 locator 都带文件名；表格来源的 4 条额外标注"位于受损表格内、该章节未做上游核验"；**另做来源核验**：非表格段落逐行比对上游快照，211 行中仅合成件自带的 `---` 一行不匹配（运行期记录 `runs/C-with-3/logs/line_provenance.json`；两侧正文行集合的 SHA-256 与复算命令见 `paper_materials/upstream_source.json`） | 做到 |
@@ -171,7 +171,7 @@
 
 **现象**：材料是 CRLF 行尾，我按 LF 写的多行起止标记匹配不上，导致常量被归到**错误的文件**、另有锚点出现歧义。
 
-**证据**：`runs/C-with-3/logs/` 下的引文校验记录；最终引文的校验结果见各 run 的 checker 结论（`runs/C-with-3/logs/agreement.json`；第一次运行的同一判定可用 `docs/REPRODUCE.md` ② 的命令一键复跑）。
+**证据**：`runs/C-with-3/logs/` 下的引文校验记录；最终引文的校验结果见各 run 的 checker 结论（`agreement_recheck.json`；第一次运行的同一判定可用 `docs/REPRODUCE.md` ② 的命令一键复跑）。
 
 **改进**：用 `repr()` 打印原始行确认真实字节；引文库以**字节精确**的源文件为准，**保留 CRLF 不做归一化**。
 
@@ -207,7 +207,7 @@
 
 **现象**：**同一份材料、同一份 Skill、prompt 逐字相同、输入逐字节一致**的两次运行，结论条数是 **62 → 39**。只看数字，很容易判成"后面的复测质量在下降"。
 
-**证据**：严格对称复测的 checker 结论（`runs/C-with-3/logs/agreement.json`，与第一次运行同一脚本同一判定口径）：官方 checker 两次都是 `findings_count=0 / all_passed=true`（`claims_checked` 分别是 62 / 39）；验收自检两次全过；`undetermined` 绝对数 **10 → 7**（更克制，不是更宽松）；`absent` 前置条件 **6 → 11**（更保守）。第二次运行 `runs/C-with-3/` 是**严格对称复测**——prompt 与第一次**逐字相同**（仅改工作目录路径），`cases/` + `materials/` + `skill/` 三份文件与第一次**逐字节一致**（SHA-256 校验通过）。
+**证据**：严格对称复测的 checker 结论（`agreement_recheck.json`，与第一次运行同一脚本同一判定口径）：官方 checker 两次都是 `findings_count=0 / all_passed=true`（`claims_checked` 分别是 62 / 39）；验收自检两次全过；`undetermined` 绝对数 **10 → 7**（更克制，不是更宽松）；`absent` 前置条件 **6 → 11**（更保守）。第二次运行 `runs/C-with-3/` 是**严格对称复测**——prompt 与第一次**逐字相同**（仅改工作目录路径），`cases/` + `materials/` + `skill/` 三份文件与第一次**逐字节一致**（SHA-256 校验通过）。
 
 **改进**：Skill 只冻结结论的**结构与出处要求**（三分类、必须有 `quote` 或显式标 `undetermined`、四段式结论、遗留问题必须写"需要什么才能定"），**不规定条数**——条数由每次会话自行决定展开粒度。因此评估复现质量时，判据应当是**结构一致 + 关键处置一致 + 官方 checker 0 标记**，而不是条数多少。
 
@@ -231,6 +231,45 @@ arXiv 许可）上做同条件对照（有 / 无 Skill 两次独立会话 + 作�
 
 我们的自检器验的是「**引文里的数 == 你写的数**」，**从不验**「这个数是不是从论文自己的别的数推出来的」——
 方法的一个盲区，改进项见 `experiments/paper-case/ledger_slim.md` 末尾。
+
+### 4.5.1 论文原文片段（随包，供逐字核验上面三条指控）
+
+下面是**核查这三处所必需的原文片段**，用 `pymupdf` 从 PDF 按页取文本后**原样复制**，未做改写。
+**论文**：*LoRA*（Hu et al., arXiv **2106.09685v2**）｜**PDF**：`experiments/paper-case/materials/lora_2106.09685.pdf`，
+1609513 B，SHA-256 `e9a0d312…7395a`，26 页，arXiv 许可。
+
+**片段 1 · 第 1 页摘要（「3 times」自述）**
+
+```text
+can reduce the number of trainable parameters by 10,000 times and the
+GPU memory requirement by 3 times.```
+
+**片段 2 · 第 5 页正文（「2/3」与「1.2TB → 350GB」同段相邻）**
+
+```text
+The most signiﬁcant beneﬁt comes from the reduction in
+memory and storage usage. For a large Transformer trained with Adam, we reduce that VRAM
+usage by up to 2/3 if r ≪dmodel as we do not need to store the optimizer states for the frozen
+parameters. On GPT-3 175B, we reduce the VRAM consumption during training from 1.2TB to
+350GB. With r = 4 and only the query and value projection matrices being adapted, the checkpoint
+```
+
+**片段 3 · 第 5 页正文（「25% speedup」自述）**
+
+```text
+on the ﬂy on machines that store the pre-trained weights in VRAM. We also observe a 25% speedup
+during training on GPT-3 175B compared to full ﬁne-tuning5 as we do not need to calculate the
+gradient for the vast majority of the parameters.
+```
+
+**片段 4 · 第 5 页脚注 5（32.5 → 43.1 tokens/s）**
+
+```text
+5For GPT-3 175B, the training throughput for full ﬁne-tuning is 32.5 tokens/s per V100 GPU; with the same
+number of weight shards for model parallelism, the throughput is 43.1 tokens/s per V100 GPU for LoRA.
+```
+
+说明：① PDF 文本层的 `ﬁ` / `ﬂ` 是**连字字符**（字体编码呈现，非原文差异），此处原样保留；② 片段用**页码 + 上下文**定位。
 
 **诚实交代**：有 / 无 Skill 两次结论词相同、checker 都 0 标记、**两次都自己发现了那处不一致**；另一次有 Skill 的运行
 （换模型路由、被上游 429 掐断前）**漏掉了**，还写下为假的否定性断言 ⇒ **「发现不一致」不能归因于 Skill**；
@@ -335,12 +374,11 @@ arXiv 许可）上做同条件对照（有 / 无 Skill 两次独立会话 + 作�
 **配置方法**：把 Skill、冻结的任务书、损坏件与自检脚本作为附件挂进会话，在云端按包内 CLI 运行的同一套
 四层布局装配（`cases/` + `materials/` + `skill/` + `scripts/`），装配完**先算哈希**——
 `materials/source.txt` = `64a46d32…1917c`（17,623 B），与包内权威副本逐字节一致，然后才让它处理材料。
-顺带实测了三条取件通道：玻尔云端里 `ghproxy.net` 可用、`api.github.com` 30 s 超时、`cdn.jsdelivr.net` 返回 301。
+（当时另实测过三条取件通道的可用性，与本文结论无关，故不复述。）
 
 **开发经验（这次真踩出来的三条）**：① 官方 checker **查不出"引文在原文出现多次"**（第一版的 `"$48"` 命中 2 次却放行，
 模型自己补了一道"命中恰好 1 次"的自检）；② **CRLF 会伪装成"行号全错"**（复核脚本用 `read_text` 读源文件，
-CRLF 被折成 `
-`，12 条 locator 全显示 L1，改用 `read_bytes` 后全部对上——与 §4.1 是同一个坑的两次独立发作）；
+CRLF 被折成 `\r\n`，12 条 locator 全显示 L1，改用 `read_bytes` 后全部对上——与 §4.1 是同一个坑的两次独立发作）；
 ③ **checker 验的是格式不是语义**（`numeric_value=80` 取自 `SM 80+`，算力等级不是量值也能过）。
 三条都指向同一件事：**"唯一命中"和"数值语义"该做成 checker 的内建检查**。
 
@@ -355,7 +393,7 @@ CRLF 被折成 `
 **这次实践的边界（如实说明）**：① **未跑训练、未下载数据集、未联网取件**（材料靠附件挂载）；
 ② **未把上游 nanochat 原文放进云端工作空间**——这是有意的：上游 leaderboard 原表一旦进入工作空间，
 受损单元格的"无法确定"就可能被污染成"已知答案"（包内两次 CLI 运行同样遵守这条纪律，见
-公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 公开仓库 `runs/C-with-3/logs/run_log.md`）。代价是云端那一轮第 ④ 条预期行为降为"部分做到"——
+公开仓库 `runs/C-with-3/logs/run_log.md`）。代价是云端那一轮第 ④ 条预期行为降为"部分做到"——
 **它少做的那一步，正是我们刻意不做的那一步**；而评审补上这一步的条件在包内：
 `paper_materials/nanochat_README_leaderboard_upstream.md`（上游**原表节选**）+
 `paper_materials/upstream_source.json`（上游 URL / SHA-256 / 两侧正文行集合的可复算指纹）。
@@ -414,15 +452,11 @@ CRLF 被折成 `
 
 ## 9. 产物索引
 
-> 案例二（真论文）：`experiments/paper-case/ledger_slim.md`（作者侧独立重算账本）、
-> `comparison.md`（有/无 Skill 对照与诚实结论）。
-> 案例二（真论文）新增：`experiments/paper-case/README.md`（论文来源/版本/PDF 哈希与索引）、
-> `ledger_slim.md`（作者侧独立重算账本）、`comparison.md`（有/无 Skill 对照与诚实结论）、
-> `runs/*/logs/agreement.json`（两侧官方 checker 报告）。
-> 新增（案例二 · 真论文）：`experiments/paper-case/README.md`（论文来源/版本/哈希、任务与对照说明、三处不一致的复算表）、
-> `experiments/paper-case/ledger_slim.md`（作者侧独立重算账本：每个数字回原文算一遍 + 对方法盲区的交代）、
-> `experiments/paper-case/comparison.md`（同一篇论文上有/无 Skill 的对照表与诚实结论）、
-> `experiments/paper-case/runs/*/logs/agreement.json`（两侧官方 checker 报告原样随包）。
+> 案例二（真论文）：`experiments/paper-case/README.md`（论文来源/版本/PDF 哈希与索引）、
+> `ledger_slim.md`（作者侧独立重算账本：每个数字回原文算一遍 + 对方法盲区的交代）、
+> `comparison.md`（同一篇论文上有/无 Skill 的对照表与诚实结论）、
+> `runs/*/logs/agreement.json`（两侧官方 checker 报告原样随包）、
+> 论文原文片段见正文 §4.5.1（逐字片段 + PDF 的 SHA-256 与页码，供核验上面三条指控）。
 
 
 
