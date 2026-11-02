@@ -180,66 +180,19 @@ f-string 被渲染成插值后的样子，手抄的引文**当场失配**——�
 
 **有效条件**：只要被复现物的**结构**被冻结（分类规则 + 引文可程序化命中 + 事先写定的验收标准），条数差异就不代表结论分歧。**失效**：当结构未被冻结（只说"再跑一遍看看"）时，条数与结论的差异**就是**质量差异——此时必须先冻结验收标准，再谈复现。
 
-### 4.5 第二个案例：换一篇**真论文**，发现三处「论文自己的数对不上」
+### 4.5 第二个案例（真论文）：本次未随包，在此说明去向
 
-案例一是**合成/损坏件**。为避免只在一个材料上验证方法，我又在**真实论文** *LoRA: Low-Rank Adaptation of
-Large Language Models*（arXiv **2106.09685v2**；PDF **1,609,513 B / 26 页**，SHA-256 `e9a0d312…`，
-arXiv 许可）上做同条件对照（有 / 无 Skill 两次独立会话 + 作者侧独立重算），得到一个**关于方法本身**的发现：
+为让本包**聚焦一个明确的阅读问题**（官方题面：「围绕一个明确的阅读问题，提交能独立阅读、核查和复现的完整案例即可，
+**无需打包整个仓库**」），**第二个案例（真论文 *LoRA: Low-Rank Adaptation of Large Language Models*，
+arXiv 2106.09685v2）本次未随包**，其正文小节（§4.5 结论、§4.5.1 论文原文片段）与两份作者侧材料
+（独立重算账本、有/无 Skill 对照）已移出材料包。
 
-**引文逐字命中、数值 1% 内、官方 checker 0 标记 —— 全都拦不住下面三处**：
+它讲的是：在另一篇**真论文**上，作者侧独立重算发现**论文自己的三个数字口径不一致**
+（p.5「2/3」实为 70.83%、p.1「3 times」实为 3.43×、p.5「25% speedup」按同页脚注实为 +32.62%），
+并交代**我们自己的 checker 拦不住这类「论文自身数之间是否自洽」的问题** —— 即本方法的一个盲区。
 
-| 论文自述 | 位置 | 它自己的数 | 复算 | 判定 |
-|---|---|---|---|---|
-| `reduce that VRAM usage by up to 2/3` | p.5 | `1.2TB → 350GB` | 70.83% | **不符**（自述 66.67%） |
-| 摘要 `GPU memory requirement by 3 times` | p.1 | `1200/350` | 3.43× | **不符**（自述 3×） |
-| `We also observe a 25% speedup` | p.5 + 脚注 5 | `32.5 → 43.1 tokens/s` | +32.62% | **不符**（自述 25%） |
-
-我们的自检器验的是「**引文里的数 == 你写的数**」，**从不验**「这个数是不是从论文自己的别的数推出来的」——
-方法的一个盲区，改进项见 `experiments/paper-case/ledger_slim.md` 末尾。
-
-### 4.5.1 论文原文片段（随包，供逐字核验上面三条指控）
-
-下面是**核查这三处所必需的原文片段**，用 `pymupdf` 从 PDF 按页取文本后**原样复制**，未做改写。
-**论文**：*LoRA*（Hu et al., arXiv **2106.09685v2**）｜**PDF 本体未随包**（1,609,513 B，按题面口径其文本计入 240 KiB 上限），
-SHA-256 `e9a0d312…7395a`，26 页，arXiv 许可；下列片段是它的逐字切片，PDF 本体见公开仓库同路径。
-
-**片段 1 · 第 1 页摘要（「3 times」自述）**
-
-```text
-can reduce the number of trainable parameters by 10,000 times and the
-GPU memory requirement by 3 times.```
-
-**片段 2 · 第 5 页正文（「2/3」与「1.2TB → 350GB」同段相邻）**
-
-```text
-The most signiﬁcant beneﬁt comes from the reduction in
-memory and storage usage. For a large Transformer trained with Adam, we reduce that VRAM
-usage by up to 2/3 if r ≪dmodel as we do not need to store the optimizer states for the frozen
-parameters. On GPT-3 175B, we reduce the VRAM consumption during training from 1.2TB to
-350GB. With r = 4 and only the query and value projection matrices being adapted, the checkpoint
-```
-
-**片段 3 · 第 5 页正文（「25% speedup」自述）**
-
-```text
-on the ﬂy on machines that store the pre-trained weights in VRAM. We also observe a 25% speedup
-during training on GPT-3 175B compared to full ﬁne-tuning5 as we do not need to calculate the
-gradient for the vast majority of the parameters.
-```
-
-**片段 4 · 第 5 页脚注 5（32.5 → 43.1 tokens/s）**
-
-```text
-5For GPT-3 175B, the training throughput for full ﬁne-tuning is 32.5 tokens/s per V100 GPU; with the same
-number of weight shards for model parallelism, the throughput is 43.1 tokens/s per V100 GPU for LoRA.
-```
-
-说明：① PDF 文本层的 `ﬁ` / `ﬂ` 是**连字字符**（字体编码呈现，非原文差异），此处原样保留；② 片段用**页码 + 上下文**定位。
-
-**诚实交代**：有 / 无 Skill 两次结论词相同、checker 都 0 标记、**两次都自己发现了那处不一致**；另一次有 Skill 的运行
-（换模型路由、被上游 429 掐断前）**漏掉了**，还写下为假的否定性断言 ⇒ **「发现不一致」不能归因于 Skill**；
-可测的差别在台账形状（前置条件 21 vs 7 条、类别与置信度取值域是否按契约）。n=1，**不能做统计显著性宣称**。
-对照表与账本见 `experiments/paper-case/`；完整两次会话产物见公开仓库同路径。
+**它仍在公开仓库 `experiments/paper-case/`**（同一 commit、同一路径），可逐条复核；
+本包的其余内容（案例 C、玻尔科学空间实践、有/无 Skill 同条件对照、失败与反例）**全部原样保留**。
 
 ### 附：一切耗时与计数以会话记录 / 文件时间戳为准
 
@@ -402,10 +355,8 @@ number of weight shards for model parallelism, the throughput is 43.1 tokens/s p
 其中作者侧核查三份：`docs/control_experiment.md`（有/无 Skill 同条件对照）、`docs/column_semantics.md`
 （受损表列语义左移）、`docs/ledger.md`（正文每个数字的可复算账本）；`scripts/verify_results.py` 可一键把账本重算一遍。
 
-**案例二（真论文 · arXiv 2106.09685v2 LoRA）**：论文原文片段见正文 §4.5.1（逐字片段 + PDF 的 SHA-256 与页码，
-供核验上面三条指控）；作者侧独立重算账本 `experiments/paper-case/ledger_slim.md`（每个数字回原文算一遍 + 对方法
-盲区的交代）；同一篇论文上有/无 Skill 的对照与诚实结论 `experiments/paper-case/comparison.md`；两侧官方 checker
-报告原样随包 `runs/C-with-3/logs/agreement.json`。
+**第二个案例（真论文 LoRA）**：本次未随包（见 §4.5 的去向说明）；其原文片段、独立重算账本与有/无 Skill 对照
+仍在公开仓库 `experiments/paper-case/`，同一 commit、同一路径可查。
 
 **玻尔科学空间**：可读版在 `science-space/`（逐字提示词与完整答案、作者逐条验证、溯源登记、界面截图）；
 **平台侧原始记录**在 `bohr-platform/`（会话元数据、artifact 清单、每轮提示词原文、工作区产物、复核留痕）。

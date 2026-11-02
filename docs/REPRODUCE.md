@@ -106,7 +106,8 @@ python scripts/check_agreement.py \
 **未随包**（均在公开仓库里，**核验不需要**）：`runs/C-with-3/manifest.json`（运行当时的完整逐文件哈希记录）、
 `runs/C-with-3/scripts/`（作者的生成脚本）、`scripts/export_session_text.py` 与 `scripts/extract_usage_v2.py`
 （会话轨迹与 token 用量提取工具）、上游 nanochat 自身的文件（见正文 §3.3）、论文 PDF 本体与其完整两次会话产物、
-`experiments/paper-case/` 的完整 31 条账本。
+第二个案例（真论文 LoRA）的全部材料（正文 §4.5/§4.5.1、独立重算账本、有/无 Skill 对照、论文 PDF 与两次会话产物）——
+本次该案例整体未随包，理由与去向见正文 §4.5 与提交说明的「第二个案例」条。
 
 **如实披露（两个 stdout 未随包，是一处已知的证据缺口）**：运行当时的 `manifest.json` 记 `logs/verify_stdout.txt` 为
 1,590 B、`logs/check_agreement_stdout.txt` 为 190 B，并记有它们的 SHA-256；**这两个运行当时原件没有在任何位置保留下来**，
