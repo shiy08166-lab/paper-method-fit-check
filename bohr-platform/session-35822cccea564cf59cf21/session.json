@@ -1,0 +1,30 @@
+{
+ "_provenance": {
+  "source": "玻尔科学空间（Bohrium agent platform）会话",
+  "retrieved_with": "bohr agents sessions get / sessions messages / artifacts list / artifacts download-all",
+  "retrieved_at_utc": "2026-10-27T18:0xZ",
+  "how_to_verify": [
+   "bohr agents sessions get 35822cccea564cf59cf21",
+   "bohr agents sessions messages 35822cccea564cf59cf21",
+   "bohr agents artifacts list --session 35822cccea564cf59cf21",
+   "bohr agents artifacts download-all --session 35822cccea564cf59cf21 --dir <dir>"
+  ],
+  "note": "本目录是平台侧记录的原样快照；会话、消息与 artifact 均可在玻尔平台上按上列命令自行复核。"
+ },
+ "session": {
+  "id": "35822cccea564cf59cf21",
+  "title": "请在当前工作空间里做一次环境自检，并**原样**贴出命令与输出（不要总结、不要改任何文件）： ```bash set -x python3 -V pwd ls -la for u in \\...",
+  "messageCount": 4,
+  "createdAt": "2026-10-26T15:25:59.403Z",
+  "updatedAt": "2026-10-26T15:31:07.654Z",
+  "displayStatus": "done",
+  "sandboxMode": "cloud",
+  "teamId": "AgK4D5B8Fdju",
+  "readOnly": false
+ },
+ "billingReadiness": {
+  "readiness": "ready",
+  "fundingSource": "photon",
+  "checkedAt": "2026-10-27T17:13:54.816Z"
+ }
+}

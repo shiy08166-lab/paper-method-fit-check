@@ -10,7 +10,7 @@
 | | **有 Skill** | **无 Skill（对照）** |
 |---|---|---|
 | 玻尔会话 | `35822cccea564cf59cf21` | `3f8b9c490d384432b0a65` |
-| 提示词（逐字） | `science-space/prompt-turn1.md` | `science-space/prompt-control-without-skill.md` |
+| 提示词（逐字） | `bohr-platform/session-35822cccea564cf59cf21/prompts/turn-02.md` | `bohr-platform/session-3f8b9c490d384432b0a65/prompts/turn-01.md` |
 | 附件 | `SKILL.md`、`task-C.md`、`material-corrupted.md`、`check_agreement.py` | **去掉 `SKILL.md`**，其余三个相同 |
 | 提示词里写了什么 | 装配命令 + 读 `cases/task-C.md` 与 `skill/SKILL.md` + 5 条硬要求 + 自检命令 | 装配命令 + 读 `cases/task-C.md` + 5 条硬要求 + 自检命令（**逐字相同，只删掉"读 SKILL.md"那一句**） |
 | 最终答案（逐字） | `science-space/answer-turn1.md`（+ 二轮 `answer-turn2.md`） | `science-space/answer-control-without-skill.md` |

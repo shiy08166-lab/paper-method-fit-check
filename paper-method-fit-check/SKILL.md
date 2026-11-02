@@ -108,12 +108,11 @@ description: Decide whether a paper's method transfers to your project: extract 
 
 ## Validation
 
-- **原文锚定率**: every row in `claims.csv` marked `paper-fact` carries a non-empty `locator` and a `quote` that is a byte-identical contiguous substring of the extracted text; the ratio of `paper-fact` rows to total rows is reported in `report.md`. A claim without a locator is never presented as established.
-- **事实/推断分离**: every claim is classified as exactly one of `paper-fact` / `inference` / `undetermined`, and every `inference` row carries its reasoning in writing. No row is left unclassified, and no inference is worded as a statement from the paper.
-- **前置条件完备性**: `preconditions.csv` covers all four categories (compute, data scale, hyperparameters, hidden assumptions) and each row is either located in the source or explicitly marked `absent` with the reason it plausibly matters. Preconditions the paper never mentions are recorded, not omitted.
-- **结论可判定**: `verdict.md` carries exactly one verdict from `{transferable-as-is, transferable-with-changes, not-transferable, undetermined}`, every `stretch` precondition names a concrete change rather than a difficulty, and every `undetermined` claim appears in the "what remains open" section.
-- **数值一致**: every quoted numeric value agrees with the transcribed source within 1% relative error; disagreements are either corrected or written into the report as an inconsistency in the source, and `logs/agreement.json` shows no unreviewed flag.
-- **自检**: the whole workflow re-runs in a clean directory from `materials/` alone, with no dependency on files outside `submission/`, and produces the same verdict and the same set of located claims.
+- **原文锚定率**: every row in `claims.csv` marked `paper-fact` carries a non-empty `locator` and a `quote` that is a byte-identical contiguous substring of the extracted text, matching **exactly once**; the ratio of `paper-fact` rows to total rows is reported in `report.md`. A claim without a locator is never presented as established.
+- **事实/推断分离**: every claim is classified as exactly one of `paper-fact` / `inference` / `undetermined`, every `inference` row carries its reasoning in writing, and no inference is worded as a statement from the paper.
+- **前置条件完备性**: `preconditions.csv` covers all four categories (compute, data scale, hyperparameters, hidden assumptions); each row is either located in the source or explicitly marked `absent` with the reason it plausibly matters.
+- **结论可判定**: `verdict.md` carries exactly one verdict from `{transferable-as-is, transferable-with-changes, not-transferable, undetermined}`; every `stretch` precondition names a concrete change rather than a difficulty, and every `undetermined` claim appears in the "what remains open" section.
+- **数值一致与自检**: every quoted numeric value agrees with the transcribed source within 1% relative error; disagreements are corrected or written into the report as an inconsistency in the source, and `logs/agreement.json` shows no unreviewed flag. The whole workflow re-runs in a clean directory from `materials/` alone, with no dependency on files outside `submission/`, and produces the same verdict and the same set of located claims.
 
 ## Failure modes
 

@@ -14,7 +14,8 @@
 | 附件 | `upload/` 下：`SKILL.md`、`task-C.md`、`material-corrupted.md`、`check_agreement.py` |
 | 布局 | 按包内 CLI 运行的同一套四层布局装配：`cases/` + `materials/` + `skill/` + `scripts/` |
 
-**装配命令**（会话第 1 轮实际发出的第一段，见 `prompt-turn1.md`）：
+**装配命令**（会话实际发出的第一段，提示词原文见
+`bohr-platform/session-35822cccea564cf59cf21/prompts/turn-02.md`）：
 
 ```bash
 mkdir -p cases materials skill scripts logs
@@ -29,19 +30,11 @@ sha256sum materials/source.txt skill/SKILL.md
 **输入字节校验**：装配后模型自己先算了哈希——`materials/source.txt` = `64a46d32…1917c`（17,623 B）、
 `cases/task-C.md` = `e364bf2a…45ae8`、`scripts/check_agreement.py` = `1f1ee512…9a0f2a`。
 **云端读到的任务书、材料、自检脚本与包内冻结输入逐字节一致**；唯一差别是 Skill 用了 **v1.1**
-（v1.0 的第 7 步命令补上 `--source`，见 `tests/test_skill_step7.py`）。
+（v1.0 的第 7 步命令补上 `--source`）。
 
-**取件通道实测**（会话第 0 轮只做环境自检，不碰材料；逐条试了三条 GitHub 取件通道）：
-
-| 通道 | 玻尔云端内实测 |
-|---|---|
-| `https://ghproxy.net/https://raw.githubusercontent.com/…` | ✅ http=200，17,623 B，SHA-256 与权威副本一致 |
-| `https://api.github.com/…/contents/…` | ❌ 30 s 超时（rc=28） |
-| `https://cdn.jsdelivr.net/gh/…` | ⚠️ 301（未跟 `-L`），直接取会拿到重定向页 |
-
-结论：**在玻尔云端里取 GitHub 原文要走 ghproxy**。这次实际没用到下载通道（附件直接挂载即可），
-这条是"下次要拉大文件时哪条能用"的实测。第 0 轮是环境脚手架，不是案例的一部分，故其提示词与输出不随包
-（其**结论**即上表，已逐项写在这里）。
+**取件通道实测（会话第 0 轮环境自检，与本次结论无关，故只留结论）**：玻尔云端内取 GitHub 原文要走
+`ghproxy.net`（http=200，17,623 B，SHA-256 与权威副本一致）；`api.github.com` 30 s 超时；`cdn.jsdelivr.net`
+不跟 `-L` 会拿到重定向页。第 0 轮是环境脚手架、不是案例的一部分，故其提示词与输出不随包。
 
 ## 2. 实际过程（两轮，提示词与完整答案逐字随包）
 
@@ -80,7 +73,7 @@ sha256sum materials/source.txt skill/SKILL.md
 云端工作区里还有 5 个交付物文件本体（`preconditions.csv` / `claims.csv` / `evidence_index.json` / `verdict.md` /
 `logs/agreement.json`）与两个中间产物。**它们没有随包**：一是被赛题的"去掉冗长"要求管着（材料包文本上限 240 KiB），
 二是它们的**内容已逐字出现在本目录两轮答案正文里**（条数、分类计数、checker 字段、失败与重试过程），
-三是作者已对其中可核验的部分做了独立复核（`author-verification.md` + `author-verification-cites.csv`）。
+三是作者已对其中可核验的部分做了独立复核（`author-verification.md` + `author_verification_cites.csv`）。
 云端会话链接与平台未披露项登记在 `provenance.json`。
 
 **如实声明**：本轮**没有**运行训练、没有下载数据集；联网仅限上表那 3 条通道探测（材料靠附件挂载）。

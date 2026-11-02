@@ -26,8 +26,9 @@ LEDGER = []
 
 
 def rows_of(t):
+    # 用 splitlines()：受损件在材料包里是 LF 换行，按 "\r\n" 切会切不出任何行
     return [[c.strip() for c in ln.strip().strip("|").split("|")]
-            for ln in t.split("\r\n") if ln.startswith("|")]
+            for ln in t.splitlines() if ln.startswith("|")]
 
 
 def add(i, item, source, recomputed, ok, note="", gap=False):

@@ -8,7 +8,7 @@
 云端答复里给了 16 处「行号 + 原文片段」。我用**包内权威材料的字节**
 （`paper_materials/nanochat_README_table_corrupted.md`，SHA-256 `64a46d32…1917c`，17,623 B，CRLF）逐条判定：
 ① 该行号处是否**连续子串**命中；② 该片段在整份材料里出现几次；③ 行号是否与包内运行期实测
-（`scripts/derive_column_semantics.py`（表格实测））一致。逐条记录见 `author-verification-cites.csv`（机器可查、可重跑）。
+（`scripts/derive_column_semantics.py`（表格实测））一致。逐条记录见 `author_verification_cites.csv`（机器可查、可重跑）。
 
 ## 2. 复核结果
 
@@ -82,11 +82,9 @@ training horizons, weight decays, ...) are calculated automatically in an optima
 
 ## 5.1 我自己加的一条：列语义左移（云端与我自己都没看到）
 
-用包内的**上游原表节选**逐格对齐后发现：损坏件里表头写着 `CORE` 的那一列，装的是上游 `val_bpb` 的值
-（7 行里 6 行一致），上游的 `CORE` 值根本不在损坏件里。**所以给受损表的格子指派列名，是不成立的。**
-云端那一轮**没有犯**这个错（它的 12 条 `paper-fact` 里，表格来源的三条用的都是 `time` 与 `#0` 那条真 CORE）；
-**但「无 Skill」的对照轮犯了**（它把 `#4` 行的 `0.71854` 写成了 `CORE` 值）。
-完整推导、逐格证据与复算脚本见 `docs/column_semantics.md` 与 `scripts/derive_column_semantics.py`。
+在逐条复核之外，我另外发现一处**三个系统都没看到**的错误：受损表格里那列写着 CORE 的数字其实不是 CORE
+（`#0` 行被删的是 `val_bpq` 占位符，其余行装的是上游的 CORE 值）⇒ **受损表格的格子不能按位置指派列名**。
+逐格对齐过程、方法与脚本见 `docs/column_semantics.md` 与 `scripts/derive_column_semantics.py`。
 
 ## 6. 我复核不了的部分（如实说明）
 

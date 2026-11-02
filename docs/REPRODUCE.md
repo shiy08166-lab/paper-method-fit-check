@@ -86,25 +86,30 @@ python scripts/check_agreement.py \
 
 ## 会话轨迹（`trace.md` 未随包）
 
-包内**未随附** `trace.md`（23,090 B）：它与 `runs/*/` 下的产物内容重复，按赛题「去掉冗长」处理。它覆盖 9 次独立运行的宿主原生会话记录合并成的可见对话文本（不含内部推理与系统提示词，凭据已脱敏），共 69 段消息，每段开头给出该次运行原生记录文件的 SHA-256；原文件 SHA-256 `0098165347e1e28ee45a04e655f73965a8acdbd24cfbb8371ee0d8c5af75d4e6`；重新生成用 `scripts/export_session_text.py`（公开仓库同路径）。**逐条轨迹未随包不等于轨迹不存在**：包内保留了每次运行的全部机器可查产物。
+包内**未随附** `trace.md`（23,090 B）：它与 `runs/*/` 下的产物内容重复，按赛题「去掉冗长」处理。它是 9 次独立运行的
+宿主原生会话记录合并成的可见对话文本（不含内部推理与系统提示词，凭据已脱敏），共 69 段消息，每段开头给出该次运行
+原生记录文件的 SHA-256；原文件 SHA-256 `0098165347e1e28ee45a04e655f73965a8acdbd24cfbb8371ee0d8c5af75d4e6`；
+重新生成用 `scripts/export_session_text.py`（公开仓库同路径）。**逐条轨迹未随包不等于轨迹不存在**：包内保留了每次运行的
+全部机器可查产物。
 
-**统一披露**：`runs/C-with-3/verdict.md`（运行当时的结论文档，逐字节未改）内部提到的
-`logs/agreement_detail.md`、`logs/verification.json`、`logs/run_log.md` 三个文件**未随包**
-（体积；见公开仓库同路径）。本包用**随包脚本**覆盖了它们的主要作用：`scripts/check_agreement.py`
-（逐值判定）与 `scripts/derive_column_semantics.py`（表格结构实测与列语义对齐）。
+**统一披露**：`runs/C-with-3/verdict.md`（运行当时的结论文档，逐字节未改）内部提到的 `logs/agreement_detail.md`、
+`logs/verification.json`、`logs/run_log.md` 三个文件**未随包**（体积；见公开仓库同路径）。本包用**随包脚本**覆盖了
+它们的主要作用：`scripts/check_agreement.py`（逐值判定）与 `scripts/derive_column_semantics.py`（表格结构实测与
+列语义对齐）。
 
 ## 本包收录了什么 / 没收录什么
 
-本包是公开仓库的**精选子集**（赛题允许「无需打包整个仓库」），但**核验本次结论所需的一切都在包内**：
-损坏件、两次运行的结论台账/前置条件台账/结论文档、官方 checker、正文逐行来源核验、表格实测脚本、
-冻结的任务书与验收标准、Skill 本体。
+本包是公开仓库的**精选子集**（赛题允许「无需打包整个仓库」），但**核验本次结论所需的一切都在包内**：损坏件、
+结论台账/前置条件台账/结论文档、官方 checker、正文逐行来源核验、表格实测脚本、冻结的任务书与验收标准、Skill 本体，
+以及玻尔科学空间的平台侧原始记录（`bohr-platform/`）。
 
 **未随包**（均在公开仓库里，**核验不需要**）：`runs/C-with-3/manifest.json`（运行当时的完整逐文件哈希记录）、
-`runs/C-with-3/scripts/`（作者的生成脚本）、`scripts/export_session_text.py` 与
-`scripts/extract_usage_v2.py`（会话轨迹与 token 用量提取工具）、上游 nanochat 自身的文件（见正文 §3.3）。
+`runs/C-with-3/scripts/`（作者的生成脚本）、`scripts/export_session_text.py` 与 `scripts/extract_usage_v2.py`
+（会话轨迹与 token 用量提取工具）、上游 nanochat 自身的文件（见正文 §3.3）、论文 PDF 本体与其完整两次会话产物、
+`experiments/paper-case/` 的完整 31 条账本。
 
-**如实披露（两个 stdout 未随包，是一处已知的证据缺口）**：运行当时的 `manifest.json` 记
-`logs/verify_stdout.txt` 为 1,590 B、`logs/check_agreement_stdout.txt` 为 190 B，并记有它们的 SHA-256；
-**这两个运行当时原件没有在任何位置保留下来**，整理阶段重新捕获的版本（1,118 B / 112 B）也与运行当时记录不一致，
-故本包**不收录这两个 stdout**。官方 checker 的判定请以 `logs/agreement.json` 的字段与
-`scripts/check_agreement.py` 的逐值判定为准。除这两个 stdout 外，包内运行产物与运行当时记录的哈希逐字节一致。
+**如实披露（两个 stdout 未随包，是一处已知的证据缺口）**：运行当时的 `manifest.json` 记 `logs/verify_stdout.txt` 为
+1,590 B、`logs/check_agreement_stdout.txt` 为 190 B，并记有它们的 SHA-256；**这两个运行当时原件没有在任何位置保留下来**，
+整理阶段重新捕获的版本（1,118 B / 112 B）也与运行当时记录不一致，故本包**不收录这两个 stdout**。官方 checker 的判定
+请以 `runs/C-with-3/logs/agreement.json` 的字段与 `scripts/check_agreement.py` 的逐值判定为准。除这两个 stdout 外，
+包内运行产物与运行当时记录的哈希逐字节一致。

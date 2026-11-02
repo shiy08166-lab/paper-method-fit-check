@@ -1,0 +1,60 @@
+{
+  "schema_version": "paper-method-fit-check/agreement/v1",
+  "source_file": "materials/source.txt",
+  "source_sha256_note": "建议同时记录 source 文件的 SHA-256，便于评审核对",
+  "tolerance": 0.01,
+  "claims_checked": 22,
+  "findings": [],
+  "findings_count": 0,
+  "all_passed": true,
+  "preconditions": {
+    "total": 14,
+    "categories_present": [
+      "compute",
+      "data scale",
+      "hidden assumptions",
+      "hyperparameters"
+    ],
+    "rows_without_locator_or_absent": []
+  },
+  "dispositions": [
+    {
+      "claim_id": "CF-01",
+      "finding_kinds_seen": [
+        "numeric_mismatch（第一版）"
+      ],
+      "detail": "第一版草稿的 quote 用了短片段 \"$48\"：(a) 该片段在原文命中 2 次（L23、L41），不满足「唯一命中」；(b) 引文里没有 2 这个数，numeric_value=2 因此被判 numeric_mismatch。",
+      "disposition": "改：quote 拉长为 \"you can train your own GPT-2 capability LLM ... (~2 hours of 8XH100 GPU node)\"，原文只命中 1 次，且引文内含 numeric_value=2（hours）。未删任何行。",
+      "status": "resolved"
+    },
+    {
+      "claim_id": "IN-01",
+      "finding_kinds_seen": [
+        "numeric_on_non_fact（第一版）"
+      ],
+      "detail": "第一版把推算出的 A100 墙钟 3.2 写进了 numeric_value。它是假设推导值，不是原文数值。",
+      "disposition": "改：numeric_value 清空，3-3.6 小时的推导与假设（A100≈H100 的 50% 吞吐）移入 reasoning 列，classification 保持 inference。未删任何行。",
+      "status": "resolved"
+    }
+  ],
+  "deletion_policy": "第一版草稿未删除，保留在 logs/claims_v1_draft.csv 与其报告 logs/agreement_v1.json。",
+  "final_disposition_summary": {
+    "rows_corrected": [
+      "CF-01"
+    ],
+    "rows_downgraded_to_inference": [],
+    "rows_marked_undetermined_instead": [
+      "UN-01",
+      "UN-02",
+      "UN-03",
+      "UN-04",
+      "UN-05"
+    ],
+    "source_side_inconsistencies_kept": [
+      "排行榜表格行序被打乱（#6,#1,#4,#0,#3,#2,#5），但 # 与 time 仍单调，见 verdict.md 第 4 段与异常处理对照",
+      "表头 7 列 / 分隔行 8 组（val_bpb 缺列），数据行 7 格与表头一致",
+      "#4 行 time 截断为 \"2.\"",
+      "#5 行 9 格（尾部多 broken、extra 两格）"
+    ]
+  }
+}
